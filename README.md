@@ -1,1 +1,12 @@
-# nanoTwitter 
+## NanoTwitter
+NanoTwitter is a app with basic function of twitter. You can follow other users and tweet.
+
+## Getting Started
+These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
+### Installing
+1. download for our website
+2. double click the icon
+```
+Give some code exmaple
+```
+### Running the tests
