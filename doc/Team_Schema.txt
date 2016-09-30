@@ -6,9 +6,9 @@ table users
 	password:text
 	birthday:date
 	nickname:text
-description: string
-follower_number: integer
-followering_number: integer
+	description: string
+	follower_number: integer
+	followering_number: integer
 
 table tweets
 	id:integer
@@ -16,12 +16,12 @@ table tweets
 	create_time:date
 	user_id:integer
 	is_forwarding: boolean   #whether this tweet is forwarding another tweet
-  	forward_id: integer      #id of the tweet forwarded by current tweet
-  	is_mentioning: boolean   #whether this tweet has mentioned users
+  forward_id: integer      #id of the tweet forwarded by current tweet
+  is_mentioning: boolean   #whether this tweet has mentioned users
  	has_hashtag: boolean     #whether this tweet has any hashtag
-          like_numbers: integer
-          forwarded_number: integer
-          reply_number: integer
+  like_numbers: integer
+  forwarded_number: integer
+  reply_number: integer
 
 
 table hashtags
@@ -59,7 +59,7 @@ table notifications
 	like_id:integer
 	follower_id:integer
 	reply_id:integer
-          read_mark: boolean
+  read_mark: boolean
 	create_time: date
 
 
