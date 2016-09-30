@@ -1,0 +1,123 @@
+nanoTwitter Team Schema
+1.Development
+table users
+	id:integer
+	username:text(unique)
+	password:text
+	birthday:date
+	nickname:text
+description: string
+follower_number: integer
+followering_number: integer
+
+table tweets
+	id:integer
+	content:text
+	create_time:date
+	user_id:integer
+	is_forwarding: boolean   #whether this tweet is forwarding another tweet
+  	forward_id: integer      #id of the tweet forwarded by current tweet
+  	is_mentioning: boolean   #whether this tweet has mentioned users
+ 	has_hashtag: boolean     #whether this tweet has any hashtag
+          like_numbers: integer
+          forwarded_number: integer
+          reply_number: integer
+
+
+table hashtags
+	id:integer
+	content:text
+
+table tweet_hashtags
+	id:integer
+	tweet_id:integer
+	hashtag_id:integer
+
+table follower_followings
+	id:integer
+	user_follower_id:integer
+	user_following_id:integer
+	follow_date:date
+
+table likes
+	id:integer
+	user_id:integer
+	tweet_id:integer
+
+table replies
+	id:integer
+	user_id:integer
+	tweet_id:integer(nil if reply_id is not nil)
+	reply_id:integer(nil if tweet_id is not nil)
+	content:text
+
+table notifications
+	id:integer
+	user_id:integer
+	content:text
+	type:text(like,new follower or reply)
+	like_id:integer
+	follower_id:integer
+	reply_id:integer
+          read_mark: boolean
+	create_time: date
+
+
+table mentions
+ 	 id: integer
+ 	 tweet_id: integer
+ 	 user_mentioned_id: integer
+
+
+users
+	has_many tweets
+	has_many users(follower-following relationship,user to user is many to many)
+
+class Post < ActiveRecord::Base
+   has_and_belongs_to_many(:posts,
+      :join_table => "post_connections",
+      :foreign_key => "post_a_id",
+      :association_foreign_key => "post_b_id")
+end
+
+	has_many notifications
+	has_many likes
+	has_many mentions
+
+tweets
+	belongs_to users
+	has_many replies
+	has_many hashtags
+	has_many likes
+	has_many mentions
+	has_many users(likes relation and reply relation)
+
+likes
+belongs_to user
+belongs_to tweet
+
+mentions
+belongs_to user
+belongs_to tweet
+
+
+hashtags
+	has_many tweets
+
+tweet-hashtags
+	belongs_to tweet
+	belongs_to hashtag
+
+replies
+	belongs_to user
+	belongs_to tweet
+belongs_to reply
+
+notification
+	belongs_to user
+	belongs_to like
+	belongs_to reply
+	belongs_to follower_following
+
+2.Product
+another database with same structure of development database
