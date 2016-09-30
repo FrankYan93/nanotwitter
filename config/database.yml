@@ -1,0 +1,8 @@
+development:
+  adapter: postgresql
+  database: nano_development
+  host: localhost
+test:
+  adapter: postgresql
+  database: nano_test
+  host: localhost
