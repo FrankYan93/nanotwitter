@@ -9,23 +9,27 @@ These instructions will get you a copy of the project up and running on your loc
 ```
 Give some code exmaple
 ```
+
 ### Running the tests
 **How to run tests**
 balabala
 ```
 Give some code exmaple
 ```
-## Deployment
+### Deployment
+
 ## Built with
 * ruby
 * sinatra
 * foo
+
 ## Versioning
 
 ## Authors
 * **Jiadong Yan**
 * **Jiaming Xu**
 * **Xinyi Jiang**
+
 ## License
 This project is licensed under xxx License
 ## Acknowledgments
