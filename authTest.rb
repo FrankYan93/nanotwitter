@@ -2,7 +2,7 @@ ENV['RACK_ENV'] = 'test'
 require 'test/unit'
 require 'rack/test'
 
-require 'application'
+require './app.rb'
 
 class ApplicationTest < Test::Unit::TestCase
   include Rack::Test::Methods
