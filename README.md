@@ -15,17 +15,17 @@ balabala
 ```
 Give some code exmaple
 ```
-### Deployment
-### Built with
+## Deployment
+## Built with
 * ruby
 * sinatra
 * foo
-### Versioning
+## Versioning
 
-### Authors
+## Authors
 * **Jiadong Yan**
 * **Jiaming Xu**
 * **Xinyi Jiang**
-### License
+## License
 This project is licensed under xxx License
-### Acknowledgments
+## Acknowledgments
