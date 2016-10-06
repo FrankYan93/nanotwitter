@@ -23,3 +23,27 @@ end
 get '/' do
 	erb :index
 end
+
+get '/home' do
+	"Welcome Home!"
+end
+
+post '/submit' do
+	username=params['username']
+	password=params['password']
+	@errorString=""
+	user=User.find_by username: username
+	unless user.nil?
+		@errorString="Username existed!"
+		puts @errorString
+		erb :index
+	else
+		user = User.create(username: username, password: password)
+		user.save
+		redirect to('/home')
+	end
+end
+
+get '/home' do
+	"Welcome Home!"
+end

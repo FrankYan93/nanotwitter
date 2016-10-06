@@ -1,6 +1,9 @@
-<h4>"Welcome to nanoTitter"</h4>
-<form action="/submit" method="POST">
-	<input type="text" name="username" value="Enter User Name" />
-  <input type="text" name="password" value="Enter Password" />
-	<input type="submit" value="Submit" />
-</form>
+<h1>"Welcome to nanoTitter"</h1>
+<h2>"Come and register!"</h2>
+<div>
+    <form action="/submit" method="POST">
+        Username:<input type="text" name="username" value="Enter User Name"/><%= @errorString %><br>
+        Password:<input type="text" name="password" value="Enter Password"/>
+        <input type="submit" value="Submit"/>
+    </form>
+</div>
