@@ -31,12 +31,12 @@ get '/' do
 end
 
 get '/home' do
-	"Welcome Home!"
+  erb :home
 end
 
 post '/signup' do
 	username = params['username']
-	user = User.find_by username: 'a'
+	user = User.find_by username: username
   @errorString=""
 	unless user.nil?
 		@errorString="Username existed!"
@@ -55,7 +55,7 @@ end
 post '/signin/?' do
   if user = User.authenticate(params)
     session[:user] = user
-    redirect_to_original_request
+    redirect '/home'
   else
 #    puts 'You could not be signed in. Did you enter the correct username and password?'
     redirect '/signin'
