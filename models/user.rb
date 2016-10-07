@@ -29,6 +29,8 @@ class User < ActiveRecord::Base
         return nil if user_record.nil?
         puts user_record[:password]
         password_hash = Password.new(user_record[:password])
-        user_record[:id] if password_hash == params[:password]
+        if password_hash == params[:password]
+          return user_record[:id],user_record[:username]
+        end
     end
 end

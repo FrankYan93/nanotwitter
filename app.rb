@@ -37,6 +37,7 @@ def create
     user.password = newpassword
     user.save
     session[:user_id] = user.id
+    session[:username] = username
 end
 
 def redirect_to_original_request
@@ -79,7 +80,7 @@ get '/signin/?' do
 end
 
 post '/signin/?' do
-    current_user_id = User.authenticate(params)
+    current_user_id,current_username = User.authenticate(params)
     @errorMessage=''
     if current_user_id.nil?
         puts 'You could not be signed in. Did you enter the correct username and password?'
@@ -87,13 +88,14 @@ post '/signin/?' do
         erb :signin
     else
         session[:user_id] = current_user_id
+        session[:username] = current_username
         puts current_user_id
         redirect '/home'
     end
 end
 
 get '/signout/?' do
-    session[:user] = nil
+    session[:user_id] = nil
     #  puts 'You have been signed out.'
     redirect '/'
 end
