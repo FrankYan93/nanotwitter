@@ -18,12 +18,17 @@ include BCrypt
 def create
   newpassword = Password.create(params[:password])
   puts newpassword
-#  @user.username = params[:username]
+#  @user = User.new(params[:user])
 #  @user.password=params[:password]
 #  @user.save!
   username = params[:username]
   puts username
-  user = User.create(username: username, password: newpassword)
+#  user = User.new(username,newpassword)
+#  user.save
+  user = User.new;
+  user.username = username
+  user.password = newpassword
+  user.save
 end
 
 def redirect_to_original_request

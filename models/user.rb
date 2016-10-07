@@ -14,7 +14,7 @@ class User < ActiveRecord::Base
   attr_reader :name
   attr_reader :last_signin
 
-
+=begin
   def password
     @password ||= Password.new(password)
   end
@@ -25,11 +25,17 @@ class User < ActiveRecord::Base
     puts "give password"
   end
 
+
   def initialize(username)
     @name = username
-    puts "create a new user"
   end
 
+  def initialize(username, password)
+    @name = username
+    self.username = username
+    self.password = password
+  end
+=end
   def self.authenticate(config, params = {})
     return nil if params[:username].blank? || params[:password].blank?
 
@@ -38,7 +44,7 @@ class User < ActiveRecord::Base
     return nil if user_record == nil
 
     password_hash = Password.new(user_record[:password])
-    Userr.new(username) if password_hash == params[:password]
+    user_record[:id] if password_hash == params[:password]
   end
 
 
