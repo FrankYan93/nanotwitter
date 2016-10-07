@@ -1,5 +1,5 @@
-require 'sinatra/activerecord/rake'
-require_relative 'app'
+require './app'
+require "sinatra/activerecord/rake"
 require 'zlib'
 
 namespace :db do

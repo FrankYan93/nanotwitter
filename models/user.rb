@@ -16,16 +16,18 @@ class User < ActiveRecord::Base
 
 
   def password
-    @password ||= Password.new(password_hash)
+    @password ||= Password.new(password)
   end
 
   def password=(new_password)
     @password = Password.create(new_password)
-    self.password_hash = @password
+    self.password = @password
+    puts "give password"
   end
 
   def initialize(username)
     @name = username
+    puts "create a new user"
   end
 
   def self.authenticate(config, params = {})

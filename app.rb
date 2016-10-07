@@ -10,12 +10,20 @@ require './models/reply.rb'
 require './models/tweethashtag.rb'
 require './models/tweet.rb'
 require './models/user.rb'
+require './lib/authentication.rb'
 
+enable :sessions
+include BCrypt
 
 def create
-  @user = User.new(params[:user])
-  @user.password = params[:password]
-  @user.save!
+  newpassword = Password.create(params[:password])
+  puts newpassword
+#  @user.username = params[:username]
+#  @user.password=params[:password]
+#  @user.save!
+  username = params[:username]
+  puts username
+  user = User.create(username: username, password: newpassword)
 end
 
 def redirect_to_original_request
@@ -31,8 +39,11 @@ get '/' do
 end
 
 get '/home' do
+  authenticate!
+	"Welcome Home!"
   erb :home
 end
+
 
 post '/signup' do
 	username = params['username']
@@ -43,6 +54,9 @@ post '/signup' do
 		puts @errorString
 		erb :index
 	else
+    puts "create user!"
+    puts username
+    puts params[:password]
 		create
 		redirect to('/home')
 	end
