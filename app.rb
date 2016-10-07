@@ -15,6 +15,13 @@ require './lib/authentication.rb'
 enable :sessions
 include BCrypt
 
+def authenticate!
+  if session[:user_id] == nil
+    session[:original_request] = request.path_info
+    redirect '/signin'
+  end
+end
+
 def create
     newpassword = Password.create(params[:password])
     puts newpassword
@@ -45,7 +52,7 @@ get '/' do
 end
 
 get '/home' do
-    # Authentication.authenticate!
+    authenticate!
     'Welcome Home!'
     erb :home
 end
@@ -85,7 +92,7 @@ post '/signin/?' do
     end
 end
 
-get '/signout' do
+get '/signout/?' do
     session[:user] = nil
     #  puts 'You have been signed out.'
     redirect '/'
