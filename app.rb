@@ -36,7 +36,7 @@ end
 
 post '/signup' do
 	username = params['username']
-	user = User.find_by username: username
+	user = User.find_by username: 'a'
   @errorString=""
 	unless user.nil?
 		@errorString="Username existed!"
