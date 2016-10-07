@@ -2,7 +2,7 @@ class CreateUsers < ActiveRecord::Migration
   def change
     create_table :users do |t|
       t.string :username
-      t.string :password
+      t.string :password_hash
       t.date   :birthday
       t.string :nickname
       t.string :description
@@ -11,6 +11,3 @@ class CreateUsers < ActiveRecord::Migration
     end
   end
 end
-
-
-      

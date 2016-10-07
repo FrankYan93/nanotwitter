@@ -1,3 +1,4 @@
+require 'bcrypt'
 require 'sinatra'
 require 'sinatra/activerecord'
 require './models/followerfollowing.rb'
@@ -10,15 +11,20 @@ require './models/tweethashtag.rb'
 require './models/tweet.rb'
 require './models/user.rb'
 
-use Rack::Auth::Basic do |username, password|
-  username == 'admin' and password == 'admin'
+
+def create
+  @user = User.new(params[:user])
+  @user.password = params[:password]
+  @user.save!
 end
 
-get '/protected' do
-  "You're welcome"
+def redirect_to_original_request
+  user = session[:user]
+#  puts "Welcome back #{user.name}."
+  original_request = session[:original_request]
+  session[:original_request] = nil
+  redirect original_request
 end
-
-
 
 get '/' do
 	erb :index
@@ -28,22 +34,41 @@ get '/home' do
 	"Welcome Home!"
 end
 
-post '/submit' do
-	username=params['username']
-	password=params['password']
-	@errorString=""
-	user=User.find_by username: username
+post '/signup' do
+	username = params['username']
+	user = User.find_by username: username
+  @errorString=""
 	unless user.nil?
 		@errorString="Username existed!"
 		puts @errorString
 		erb :index
 	else
-		user = User.create(username: username, password: password)
-		user.save
+		create
 		redirect to('/home')
 	end
 end
 
-get '/home' do
-	"Welcome Home!"
+get '/signin/?' do
+  erb :signin
+end
+
+post '/signin/?' do
+  if user = User.authenticate(params)
+    session[:user] = user
+    redirect_to_original_request
+  else
+#    puts 'You could not be signed in. Did you enter the correct username and password?'
+    redirect '/signin'
+  end
+end
+
+get '/signout' do
+  session[:user] = nil
+#  puts 'You have been signed out.'
+  redirect '/'
+end
+
+get '/protected/?' do
+  authenticate!
+  erb :protected, locals: { title: 'Protected Page' }
 end

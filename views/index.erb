@@ -1,10 +1,11 @@
 <h1>"Welcome to nanoTitter"</h1>
 <h2>"Come and register!"</h2>
 <div>
-    <form action="/submit" method="POST">
+    <form action="/signup" method="POST">
         Username:<input type="text" name="username" value="Enter User Name"/><%= @errorString %><br>
-        Password:<input type="text" name="password" value="Enter Password"/>
-        <input type="submit" value="Submit"/>
+        Password:<input type="text" name="password" value="Enter Password"/><br>
+        <input type="submit" value="Submit"/><br>
     </form>
 </div>
-<h2>"Already registered? Login here!"</h2>
+<br>
+<a href="/signin/?">"Already registered? Login here!"</a>
