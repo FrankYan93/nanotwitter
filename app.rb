@@ -73,10 +73,11 @@ end
 
 post '/signin/?' do
     current_user_id = User.authenticate(params)
+    @errorMessage=''
     if current_user_id.nil?
         puts 'You could not be signed in. Did you enter the correct username and password?'
         @errorMessage = 'You could not be signed in. Did you enter the correct username and password?'
-        redirect '/signin'
+        erb :signin
     else
         session[:user_id] = current_user_id
         puts current_user_id
