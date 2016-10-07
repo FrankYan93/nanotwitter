@@ -44,7 +44,7 @@ get '/' do
 end
 
 get '/home' do
-  authenticate!
+  Authentication.authenticate!
 	"Welcome Home!"
   erb :home
 end
