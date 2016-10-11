@@ -11,6 +11,7 @@ require './models/tweethashtag.rb'
 require './models/tweet.rb'
 require './models/user.rb'
 require './lib/authentication.rb'
+Dir[File.dirname(__FILE__) + '/api/users/*.rb'].each {|file| require file }
 
 enable :sessions
 include BCrypt
