@@ -11,6 +11,7 @@ require './models/tweethashtag.rb'
 require './models/tweet.rb'
 require './models/user.rb'
 require './lib/authentication.rb'
+require_relative './user_create_tweet_api.rb'
 
 enable :sessions
 include BCrypt
