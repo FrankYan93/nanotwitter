@@ -11,7 +11,9 @@ require './models/tweethashtag.rb'
 require './models/tweet.rb'
 require './models/user.rb'
 require './lib/authentication.rb'
-require_relative './user_create_tweet_api.rb'
+Dir[File.dirname(__FILE__) + '/api/users/*.rb'].each {|file| require file }
+Dir[File.dirname(__FILE__) + '/api/tweets/*.rb'].each {|file| require file }
+
 
 enable :sessions
 include BCrypt
