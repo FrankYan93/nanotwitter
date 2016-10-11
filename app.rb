@@ -91,6 +91,7 @@ post '/signin/?' do
         session[:username] = current_username
         puts current_user_id
         redirect '/home'
+        redirect_to_original_request
     end
 end
 
