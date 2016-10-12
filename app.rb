@@ -38,6 +38,9 @@ def create
     user = User.new
     user.username = username
     user.password = newpassword
+    user.follower_number=0
+    user.followering_number=0
+    user.nickname=""
     user.save
     session[:user_id] = user.id
     session[:username] = username
