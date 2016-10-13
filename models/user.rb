@@ -30,7 +30,7 @@ class User < ActiveRecord::Base
         puts user_record[:password]
         password_hash = Password.new(user_record[:password])
         if password_hash == params[:password]
-          return user_record[:id],user_record[:username]
+            return user_record[:id], user_record[:username]
         end
     end
 end

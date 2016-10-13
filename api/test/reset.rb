@@ -51,7 +51,7 @@ def setUser
   CSV.foreach('./api/test/seeds/users.csv') do |row|
     user_id = row[0].to_i
     user_name = row[1]
-    User.create(username: user_name, follower_number: 0, folloring_number: 0).update_column(:id, user_id)
+    User.create(username: user_name, follower_number: 0, following_number: 0).update_column(:id, user_id)
   end
 end
 

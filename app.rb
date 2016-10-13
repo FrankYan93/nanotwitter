@@ -14,18 +14,17 @@ require './lib/authentication.rb'
 require './api/test/status.rb'
 require './api/test/reset.rb'
 
-Dir[File.dirname(__FILE__) + '/api/users/*.rb'].each {|file| require file }
-Dir[File.dirname(__FILE__) + '/api/tweets/*.rb'].each {|file| require file }
-
+Dir[File.dirname(__FILE__) + '/api/users/*.rb'].each { |file| require file }
+Dir[File.dirname(__FILE__) + '/api/tweets/*.rb'].each { |file| require file }
 
 enable :sessions
 include BCrypt
 
 def authenticate!
-  if session[:user_id] == nil
-    session[:original_request] = request.path_info
-    redirect '/signin'
-  end
+    if session[:user_id].nil?
+        session[:original_request] = request.path_info
+        redirect '/signin'
+    end
 end
 
 def create
@@ -41,9 +40,9 @@ def create
     user = User.new
     user.username = username
     user.password = newpassword
-    user.follower_number=0
-    user.followering_number=0
-    user.nickname=""
+    user.follower_number = 0
+    user.followering_number = 0
+    user.nickname = ''
     user.save
     session[:user_id] = user.id
     session[:username] = username
@@ -89,8 +88,8 @@ get '/signin/?' do
 end
 
 post '/signin/?' do
-    current_user_id,current_username = User.authenticate(params)
-    @errorMessage=''
+    current_user_id, current_username = User.authenticate(params)
+    @errorMessage = ''
     if current_user_id.nil?
         puts 'You could not be signed in. Did you enter the correct username and password?'
         @errorMessage = 'You could not be signed in. Did you enter the correct username and password?'
