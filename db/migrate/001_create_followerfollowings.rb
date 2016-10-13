@@ -3,7 +3,7 @@ class CreateFollowerfollowings < ActiveRecord::Migration
     create_table :followerfollowings do |t|
       t.integer :user_id
       t.integer :followed_user_id
-      t.date    :follow_date
+      t.datetime   :follow_date
     end
   end
 end

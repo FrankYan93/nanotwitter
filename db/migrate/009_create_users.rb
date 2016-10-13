@@ -7,7 +7,7 @@ class CreateUsers < ActiveRecord::Migration
       t.string :nickname
       t.string :description
       t.integer :follower_number
-      t.integer :followering_number
+      t.integer :following_number
     end
   end
 end
