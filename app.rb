@@ -11,6 +11,9 @@ require './models/tweethashtag.rb'
 require './models/tweet.rb'
 require './models/user.rb'
 require './lib/authentication.rb'
+require './api/test/status.rb'
+require './api/test/reset.rb'
+
 Dir[File.dirname(__FILE__) + '/api/users/*.rb'].each {|file| require file }
 Dir[File.dirname(__FILE__) + '/api/tweets/*.rb'].each {|file| require file }
 

@@ -1,4 +1,4 @@
-class Tweethashtags < ActiveRecord::Base
+class Tweethashtag < ActiveRecord::Base
   belongs_to :tweet
   belongs_to :hashtag
 end
