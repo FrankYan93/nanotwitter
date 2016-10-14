@@ -4,7 +4,7 @@ put '/api/v1/register/:username/:password' do
     newUser.username=params[:username]
     newUser.password = newpassword
     newUser.follower_number = 0
-    newUser.followering_number = 0
+    newUser.following_number = 0
     newUser.nickname = ''
     newUser.save
     newUser.to_json

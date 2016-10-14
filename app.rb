@@ -1,7 +1,7 @@
 require 'bcrypt'
 require 'sinatra'
 require 'sinatra/activerecord'
-requier 'time'
+require 'time'
 #require './lib/authentication.rb'
 
 Dir[File.dirname(__FILE__) + '/models/*.rb'].each { |file| require file }
