@@ -8,6 +8,7 @@ Dir[File.dirname(__FILE__) + '/api/users/*.rb'].each { |file| require file }
 Dir[File.dirname(__FILE__) + '/api/tweets/*.rb'].each { |file| require file }
 Dir[File.dirname(__FILE__) + '/api/test/*.rb'].each { |file| require file }
 
+
 enable :sessions
 include BCrypt
 
