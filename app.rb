@@ -1,8 +1,10 @@
 require 'bcrypt'
 require 'sinatra'
 require 'sinatra/activerecord'
+require 'byebug'
 require 'time'
-#require './lib/authentication.rb'
+
+
 
 Dir[File.dirname(__FILE__) + '/models/*.rb'].each { |file| require file }
 Dir[File.dirname(__FILE__) + '/api/users/*.rb'].each { |file| require file }
@@ -34,7 +36,7 @@ def create
     user.username = username
     user.password = newpassword
     user.follower_number = 0
-    user.followering_number = 0
+    user.following_number = 0
     user.nickname = ''
     user.save
     session[:user_id] = user.id

@@ -8,7 +8,8 @@ class TestTweetCreate < MiniTest::Unit::TestCase
   end
 
   def test_it_says_hello_world
-    put '/api/v1/register/bbb/bbb'#, :username => 'ddd', :password => 'dddd'
+    put '/api/v1/register/dd/dddd'
+    #put '/api/v1/register/',:username => "dd", :password => "ddd"
     #get '/api/v1/users/', :user_id => '1'
     #puts User.all
     puts last_response.body

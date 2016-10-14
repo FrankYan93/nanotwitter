@@ -1,7 +1,7 @@
 put '/api/v1/register/:username/:password' do
-    newUser=User.new
+    newUser = User.new
     newpassword = Password.create(params[:password])
-    newUser.username=params[:username]
+    newUser.username = params[:username]
     newUser.password = newpassword
     newUser.follower_number = 0
     newUser.following_number = 0
