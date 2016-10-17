@@ -4,8 +4,7 @@ require 'sinatra/activerecord'
 require 'byebug'
 require 'time'
 
-
-
+#require apis
 Dir[File.dirname(__FILE__) + '/models/*.rb'].each { |file| require file }
 Dir[File.dirname(__FILE__) + '/api/users/*.rb'].each { |file| require file }
 Dir[File.dirname(__FILE__) + '/api/tweets/*.rb'].each { |file| require file }
@@ -25,13 +24,10 @@ end
 def create
     newpassword = Password.create(params[:password])
     puts newpassword
-    #  @user = User.new(params[:user])
-    #  @user.password=params[:password]
-    #  @user.save!
+
     username = params[:username]
     puts username
-    #  user = User.new(username,newpassword)
-    #  user.save
+
     user = User.new
     user.username = username
     user.password = newpassword
