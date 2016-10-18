@@ -10,15 +10,15 @@ class TestTweetCreate < MiniTest::Unit::TestCase
  def setup
 #create 3 test users
   put '/api/v1/register/testuser1/testpassword1'
-  @user1 =  JSON.parse(last_response.body)
+  @user1 =  User.find_by(username: "testuser1")
   @user1_id = @user1["id"]
 
   put '/api/v1/register/testuser2/testpassword2'
-  @user2 =  JSON.parse(last_response.body)
+  @user2 =  User.find_by(username: "testuser2")
   @user2_id = @user2["id"]
 
   put '/api/v1/register/testuser3/testpassword3'
-  @user3 =  JSON.parse(last_response.body)
+  @user3 =  User.find_by(username: "testuser3")
   @user3_id = @user3["id"]
 
 #create 3 tweets of each user
@@ -51,19 +51,19 @@ end
  def test_it_get_user_followers
     get "/api/v1/users/#{@user1_id}/followers/"
     result = JSON.parse(last_response.body)
-    assert_equal result["id"], @user3_id
+    assert_equal result[0]["id"], @user3_id
  end
 
  def test_it_get_user_followings
     get "/api/v1/users/#{@user1_id}/followings/"
-    result = JSON.parse(last_response.body.first)
-    puts result
+
+    result = JSON.parse(last_response.body)
+  #  result = last_response.body
+
     assert_equal result[0]["id"], @user2_id
     assert_equal result[1]["id"], @user3_id
 
-    @user1.destroy
-    @user2.destroy
-    @user3.destroy
+   get '/api/v1/test/reset/all'
  end
 
 

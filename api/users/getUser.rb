@@ -4,4 +4,5 @@ end
 
 def getUserByID(userId)
     get_user = User.find(userId)
+    get_user
 end
