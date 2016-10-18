@@ -5,7 +5,7 @@ gem 'activerecord', '~> 4.2', '>= 4.2.5'
 gem 'sinatra-activerecord'
 
 gem "byebug"
-gem "pg", require: false
+gem "pg"
 gem 'rack-test', group: :test
 gem 'test-unit'
 gem 'bcrypt'

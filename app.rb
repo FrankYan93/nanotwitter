@@ -60,6 +60,8 @@ end
 
 post '/signup' do
     username = params['username']
+    redirect to('/home')
+
     user = User.find_by username: username
     @errorString = ''
     if user.nil?
