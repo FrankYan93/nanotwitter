@@ -7,11 +7,15 @@ class TestTweetCreate < MiniTest::Unit::TestCase
     Sinatra::Application
   end
 
-  def test_it_create_new_user
+  def test_it_edit_profile
     put '/api/v1/register/testuser/testpassword'
+    user = JSON.parse(last_response.body)
+    user_id = user["id"]
+    put "/api/v1/users/#{user_id}/profile", birthday: "01-01-1990" , nickname: "test", description: "I am tall"
     user =  JSON.parse(last_response.body)
-    assert_equal user["username"], "testuser"
-    assert_equal Password.new(user["password"]), "testpassword"
+    assert_equal user["birthday"], "1990-01-01"
+    assert_equal user["nickname"], "test"
+    assert_equal user["description"], "I am tall"
 
     user = User.find_by(username: "testuser")
     user.destroy
