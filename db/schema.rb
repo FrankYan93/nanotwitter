@@ -15,10 +15,10 @@ ActiveRecord::Schema.define(version: 9) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "followerfollowings", force: :cascade do |t|
-    t.integer  "user_id"
-    t.integer  "followed_user_id"
-    t.datetime "follow_date"
+  create_table "followerfollowings", id: :integer, default: -> { "nextval('followerfollowing_id_seq'::regclass)" }, force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "followed_user_id"
+    t.date    "follow_date"
   end
 
   create_table "hashtags", force: :cascade do |t|
@@ -59,16 +59,16 @@ ActiveRecord::Schema.define(version: 9) do
   end
 
   create_table "tweets", force: :cascade do |t|
-    t.string   "content"
-    t.datetime "create_time"
-    t.integer  "user_id"
-    t.boolean  "is_forwarding"
-    t.integer  "forward_id"
-    t.boolean  "is_mentioning"
-    t.boolean  "has_hashtag"
-    t.integer  "like_numbers"
-    t.integer  "forwarded_number"
-    t.integer  "reply_number"
+    t.string  "content"
+    t.date    "create_time"
+    t.integer "user_id"
+    t.boolean "is_forwarding"
+    t.integer "forward_id"
+    t.boolean "is_mentioning"
+    t.boolean "has_hashtag"
+    t.integer "like_numbers"
+    t.integer "forwarded_number"
+    t.integer "reply_number"
   end
 
   create_table "users", force: :cascade do |t|
