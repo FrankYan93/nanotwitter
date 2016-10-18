@@ -7,15 +7,19 @@ class TestTweetCreate < MiniTest::Unit::TestCase
     Sinatra::Application
   end
 
-  def test_it_says_hello_world
-    put '/api/v1/register/dd/dddd'
-    #put '/api/v1/register/',:username => "dd", :password => "ddd"
-    #get '/api/v1/users/', :user_id => '1'
-    #puts User.all
-    puts last_response.body
-    puts last_response
-    assert last_response.body.include?('1')
+  def test_it_create_tweet
+    put '/api/v1/register/testtweet0/tweetpassword0'
+    user = JSON.parse(last_response.body)
+    user_id = user["id"]
+
+    put "/api/v1/users/#{user_id}/tweets/tall"
+    tweet = JSON.parse(last_response.body)
+    assert_equal tweet["content"], "tall"
+    assert_equal tweet["user_id"], user_id
+
+    user = User.find_by(username: "testtweet0")
+    tweet = Tweet.find_by(content: "tall")
+    user.destroy
+    tweet.destroy
   end
-
-
 end
