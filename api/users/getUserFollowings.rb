@@ -4,5 +4,5 @@ get '/api/v1/users/:user_id/followings/' do
     followRelations.each do |x|
         results << getUserByID(x.followed_user_id)
     end
-    results
+    results.to_json
 end

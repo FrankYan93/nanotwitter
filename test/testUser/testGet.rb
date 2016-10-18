@@ -56,10 +56,10 @@ end
 
  def test_it_get_user_followings
     get "/api/v1/users/#{@user1_id}/followings/"
-    result = JSON.parse(last_response.body).first
+    result = JSON.parse(last_response.body.first)
     puts result
-    assert_equal result[1]["id"], @user2_id
-    assert_equal result[2]["id"], @user3_id
+    assert_equal result[0]["id"], @user2_id
+    assert_equal result[1]["id"], @user3_id
 
     @user1.destroy
     @user2.destroy
