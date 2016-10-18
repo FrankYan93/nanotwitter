@@ -1,6 +1,6 @@
 require 'bcrypt'
 require 'sinatra'
-require 'active_record'
+require 'sinatra/activerecord'
 require 'byebug'
 require 'time'
 
