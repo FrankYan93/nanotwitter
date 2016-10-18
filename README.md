@@ -33,3 +33,6 @@ Give some code exmaple
 ## License
 This project is licensed under xxx License
 ## Acknowledgments
+
+## Tips
+heroku run rake db:migrate
