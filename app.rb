@@ -48,7 +48,7 @@ def redirect_to_original_request
 end
 
 get '/' do
-    erb :index
+    erb :index#, :layout => false
 end
 
 get '/home' do
