@@ -1,11 +1,17 @@
-<h1>"Welcome to nanoTitter"</h1>
-<h2>"Come and register!"</h2>
-<div>
-    <form action="/signup" method="POST">
-        Username:<input type="text" name="username"/><%= @errorString %><br>
-        Password:<input type="text" name="password"/><br>
-        <input type="submit" value="Sign Up Now!"/>
-    </form>
-</div>
+
+<div class="container">
+
+<form class="form-signin" action="/signup" method="POST" role="form">
+  <h1 class="form-signin-heading">Welcome to nanoTwitter</h1>
+  <h2 class="form-signin-heading">Come and register!</h2>
+    <div class="form-group">
+        <label for="exampleInputEmail1">Username</label>
+        <input type="text" name="username" class="form-control" id="exampleInputEmail1" placeholder="Enter Username"></div>
+    <div class="form-group">
+        <label for="exampleInputPassword1">Password</label>
+        <input type="password" name="password" class="form-control" id="exampleInputPassword1" placeholder="Password"></div>
+    <button class="btn btn-lg btn-primary btn-block" type="submit" >Sign Up Now!</button>
+</form>
 <br>
-<button type="submit" onclick="location='/signin/?'">"Already registered? Login here!"</button>
+<button type="submit" class="btn btn-lg btn-primary btn-block" onclick="location='/signin/?'">"Already registered? Login here!"</button>
+</div>
