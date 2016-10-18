@@ -7,7 +7,7 @@ class TestTweetCreate < MiniTest::Unit::TestCase
     Sinatra::Application
   end
 
- def test_it_create
+ def setup
 #create 3 test users
   put '/api/v1/register/testuser1/testpassword1'
   @user1 =  JSON.parse(last_response.body)
@@ -43,34 +43,31 @@ class TestTweetCreate < MiniTest::Unit::TestCase
 end
 
   def test_it_get_user
-    puts @user1
-    puts @user1_id
-    
     get "/api/v1/users/#{@user1_id}"
-
     user = JSON.parse(last_response.body)
-
-    puts user
     assert_equal user["id"], @user1_id
   end
 
  def test_it_get_user_followers
     get "/api/v1/users/#{@user1_id}/followers/"
-    puts result
-    assert_equal result[1]["id"], @user3_id
+    result = JSON.parse(last_response.body)
+    assert_equal result["id"], @user3_id
  end
 
- def test_it_get_user_followers
+ def test_it_get_user_followings
     get "/api/v1/users/#{@user1_id}/followings/"
-  #  puts result
-    #assert_equal result[1]["id"], @user2_id
-  # assert_equal result[2]["id"], @user3_id
+    result = JSON.parse(last_response.body).first
+    puts result
+    assert_equal result[1]["id"], @user2_id
+    assert_equal result[2]["id"], @user3_id
+
+    @user1.destroy
+    @user2.destroy
+    @user3.destroy
  end
 
-def test_it_destroy
-  @user1.destroy
-  @user2.destroy
-  @user3.destroy
-end
+
+
+
 
 end
