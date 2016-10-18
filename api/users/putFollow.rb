@@ -11,5 +11,7 @@ put '/api/v1/users/:user_id/follow/:following_id' do
   #  puts user["following_number"]
     followed_user["follower_number"] +=1
   #  puts followed_user["follower_number"]
+    user.save
+    followed_user.save
     followRelation.to_json
 end
