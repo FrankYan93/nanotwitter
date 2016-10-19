@@ -33,3 +33,6 @@ Give some code exmaple
 ## License
 This project is licensed under xxx License
 ## Acknowledgments
+
+## Tips
+1. To run the test, conduct "rake db:test:prepare" and "rake db:test:load"
