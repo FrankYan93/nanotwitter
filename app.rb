@@ -1,6 +1,7 @@
 require 'bcrypt'
 require 'sinatra'
 require 'sinatra/activerecord'
+require 'active_record'
 require 'byebug'
 require 'time'
 
@@ -42,7 +43,6 @@ end
 
 def redirect_to_original_request
     user = session[:user]
-    #  puts "Welcome back #{user.name}."
     original_request = session[:original_request]
     session[:original_request] = nil
     redirect original_request

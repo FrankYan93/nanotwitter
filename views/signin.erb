@@ -9,12 +9,14 @@
 </div>
 <br>
 <button type="submit" onclick="location='/'">"Havn't registered? Sign up here!"</button> -->
-
+<head>
+  <title>nanoTwitter-signin</title>
+</head>
 <body data-gr-c-s-loaded="true">
 
     <div class="container">
 
-        <form class="form-signin">
+        <form class="form-signin" action="/signin" method="POST">
             <h2 class="form-signin-heading">Please sign in</h2>
             <label for="inputEmail" class="sr-only">Username</label>
             <input type="text" name="username" id="inputEmail" class="form-control" placeholder="Username" required="" autofocus="">
