@@ -49,6 +49,7 @@ def redirect_to_original_request
 end
 
 get '/' do
+  @sessionUserId=session[:user_id]
     erb :index#, :layout => false
 end
 
@@ -69,7 +70,7 @@ post '/signup' do
         create
         redirect to('/home')
     else
-        @errorString = 'Username existed!'
+        @errorString = ' ------ Username existed! Please try another name!'
         puts @errorString
         erb :index
     end

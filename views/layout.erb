@@ -1,4 +1,3 @@
-
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.3.1/js/tether.min.js"></script>
@@ -33,19 +32,27 @@
                 </div>
                 <button type="submit" class="btn btn-default">Go</button>
             </form>
+            <ul class="nav navbar-nav navbar-right">
+              <li><a href="#">Log In</a></li>
+              <li><a href="#">Sign Up</a></li>
+            </ul>
             <ul class="nav navbar-nav navbar-right" id="tweet">
-              <script type="text/javascript">
-              $('#tweet').on('click',function(){
-                bootbox.prompt("Write a tweet now!", function(result){
-                if (result!==null){
-                 var putTweet=new XMLHttpRequest();
-                 putTweet.open("PUT",'/api/v1/users/1/tweets/'+result,false);
-                 putTweet.send();
-               }
-              })
-            }
-          );
-              </script>
+                <script type="text/javascript">
+                    $('#tweet').on('click', function () {
+                        bootbox.prompt("Write a tweet now!", function (result) {
+                            if (result !== null) {
+                                var current_user_id = <%= @sessionUserId %>;
+                                if (typeof current_user_id === 'number') {
+                                    var putTweet = new XMLHttpRequest();
+                                    putTweet.open("PUT", '/api/v1/users/' + current_user_id + '/tweets/' + result, false);
+                                    putTweet.send();
+                                }else{
+                                  alert("Please login first!");
+                                }
+                            }
+                        })
+                    });
+                </script>
                 <li>
                     <a href="#">Tweet</a>
                 </li>
@@ -55,6 +62,5 @@
     </div>
     <!-- /.container-fluid -->
 </nav>
-
 
 <%= yield %>
