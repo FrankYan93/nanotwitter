@@ -14,6 +14,7 @@ Dir[File.dirname(__FILE__) + '/service/*.rb'].each { |file| require file }
 
 
 enable :sessions
+
 include BCrypt
 
 def authenticate!
@@ -47,6 +48,7 @@ def redirect_to_original_request
     session[:original_request] = nil
     redirect original_request
 end
+
 
 get '/' do
   @sessionUserId=session[:user_id]
@@ -92,12 +94,12 @@ post '/signin/?' do
         session[:username] = current_username
         puts current_user_id
         redirect '/home'
-        redirect_to_original_request
+        #redirect_to_original_request
     end
 end
 
 get '/signout/?' do
-    session[:user_id] = nil
+    session.clear
     #  puts 'You have been signed out.'
     redirect '/'
 end

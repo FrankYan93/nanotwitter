@@ -33,22 +33,26 @@
                 <button type="submit" class="btn btn-default">Go</button>
             </form>
             <ul class="nav navbar-nav navbar-right">
-              <li><a href="#">Log In</a></li>
-              <li><a href="#">Sign Up</a></li>
+                <li>
+                    <a href="#">Log In</a>
+                </li>
+                <li>
+                    <a href="#">Sign Up</a>
+                </li>
             </ul>
             <ul class="nav navbar-nav navbar-right" id="tweet">
                 <script type="text/javascript">
                     $('#tweet').on('click', function () {
                         bootbox.prompt("Write a tweet now!", function (result) {
-                            if (result !== null) {
-                                var current_user_id = <%= @sessionUserId %>;
-                                if (typeof current_user_id === 'number') {
+                            var current_user_id = <%= session[:user_id] %> - 0;
+                            if (current_user_id !== 0) {
+                                if (result !== null) {
                                     var putTweet = new XMLHttpRequest();
                                     putTweet.open("PUT", '/api/v1/users/' + current_user_id + '/tweets/' + result, false);
                                     putTweet.send();
-                                }else{
-                                  alert("Please login first!");
                                 }
+                            } else {
+                                alert("Please login first!");
                             }
                         })
                     });

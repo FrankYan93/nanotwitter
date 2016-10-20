@@ -19,9 +19,16 @@ Give some code exmaple
 ### Deployment
 
 ## Built with
-* ruby
-* sinatra
-* foo
+* Ruby
+* Sinatra
+* Activerecord
+* PostgreSQL
+* Javascript
+* JQuery
+* Bootstrap
+* Bootbox
+* Rake
+* ...
 
 ## Versioning
 
