@@ -44,8 +44,13 @@
                 <script type="text/javascript">
                     $('#tweet').on('click', function () {
                         bootbox.prompt("Write a tweet now!", function (result) {
-                            var current_user_id = <%= session[:user_id] %> - 0;
-                            if (current_user_id !== 0) {
+                          <% if session[:user_id] %>
+                          <% cui=session[:user_id] %>
+                          <% else %>
+                          <% cui=-1 %>
+                          <% end %>
+                            var current_user_id = <%= cui %> - 0;
+                            if (current_user_id !== -1) {
                                 if (result !== null) {
                                     var putTweet = new XMLHttpRequest();
                                     putTweet.open("PUT", '/api/v1/users/' + current_user_id + '/tweets/' + result, false);

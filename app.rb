@@ -61,6 +61,10 @@ get '/home' do
     erb :home
 end
 
+get '/signup' do
+  erb :signUp
+end
+
 post '/signup' do
     username = params['username']
     user = User.find_by username: username
