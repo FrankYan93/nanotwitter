@@ -10,3 +10,4 @@ gem 'rack-test', group: :test
 gem 'test-unit'
 gem 'bcrypt'
 gem 'rake' , '>=0.9.2'
+gem 'faker'

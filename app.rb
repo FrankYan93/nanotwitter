@@ -4,6 +4,7 @@ require 'sinatra/activerecord'
 require 'active_record'
 require 'byebug'
 require 'time'
+require 'Faker'
 
 #require apis
 Dir[File.dirname(__FILE__) + '/models/*.rb'].each { |file| require file }
@@ -26,11 +27,7 @@ end
 
 def create
     newpassword = Password.create(params[:password])
-    puts newpassword
-
     username = params[:username]
-    puts username
-
     user = User.new
     user.username = username
     user.password = newpassword
@@ -78,14 +75,10 @@ post '/signup' do
     user = User.find_by username: username
     @errorString = ''
     if user.nil?
-        puts 'create user!'
-        puts username
-        puts params[:password]
         create
         redirect to('/home')
     else
         @errorString = ' ------ Username existed! Please try another name!'
-        puts @errorString
         erb :index
     end
 end
@@ -98,13 +91,11 @@ post '/signin/?' do
     current_user_id, current_username = User.authenticate(params)
     @errorMessage = ''
     if current_user_id.nil?
-        puts 'You could not be signed in. Did you enter the correct username and password?'
         @errorMessage = 'You could not be signed in. Did you enter the correct username and password?'
         erb :signin
     else
         session[:user_id] = current_user_id
         session[:username] = current_username
-        puts current_user_id
         redirect '/home'
         #redirect_to_original_request
     end
