@@ -48,14 +48,22 @@ end
 
 
 get '/' do
-  @sessionUserId=session[:user_id]
+  #@sessionUserId
+  if session[:user_id].nil?
     erb :index#, :layout => false
+  else
+    erb :home
+  end
 end
 
 get '/home' do
-    authenticate!
-    'Welcome Home!'
-    erb :home
+    if session[:user_id].nil?
+      erb :index
+    else
+    #authenticate!
+      'Welcome Home!'
+      erb :home
+    end
 end
 
 get '/signup' do
@@ -95,7 +103,6 @@ end
 
 get '/signout/?' do
     session.clear
-    #  puts 'You have been signed out.'
     redirect '/'
 end
 
