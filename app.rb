@@ -4,7 +4,7 @@ require 'sinatra/activerecord'
 require 'active_record'
 require 'byebug'
 require 'time'
-require 'Faker'
+require 'faker'
 
 #require apis
 Dir[File.dirname(__FILE__) + '/models/*.rb'].each { |file| require file }
