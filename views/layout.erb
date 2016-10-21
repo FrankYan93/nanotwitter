@@ -10,7 +10,6 @@
 <% cui=-1 %>
 <% end %>
 
-
 <nav class="navbar navbar-default" role="navigation">
     <div class="container-fluid">
         <!-- Brand and toggle get grouped for better mobile display -->
@@ -50,25 +49,28 @@
             <ul class="nav navbar-nav navbar-right" id="login">
 
                 <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><%= session[:username] %>
- <span class="caret"></span></a>
-                <ul class="dropdown-menu">
-                  <li><a href="#">Action</a></li>
-                  <li role="separator" class="divider"></li>
-                  <li class="dropdown-header">Nav header</li>
-                  <li>
-                      <a href='/signup'>Log Out</a>
-                  </li>
-                </ul>
-              </li>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><%= session[:username] %>
+                        <span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li>
+                            <a href="#">Action</a>
+                        </li>
+                        <li role="separator" class="divider"></li>
+                        <li class="dropdown-header">Nav header</li>
+                        <li>
+                            <a href='/signup'>Log Out</a>
+                        </li>
+                    </ul>
+                </li>
             </ul>
             <script type="text/javascript">
-              var logoutStatus=(-1=== <%= cui %> );
-              if(logoutStatus){
-                $("#login").hide();
-              }else{
-                $("#nonlogin").hide();
-              }
+                var logoutStatus = (-1 === <%= cui %>);
+                if (logoutStatus) {
+                    $("#login").hide();
+                } else {
+                    $("#nonlogin").hide();
+                }
             </script>
             <ul class="nav navbar-nav navbar-right" id="tweet">
                 <script type="text/javascript">
@@ -82,8 +84,7 @@
                                     putTweet.send();
                                 }
                             } else {
-                                alert("Please login first!");
-                            }
+                              $("#login-first").show();                               }
                         })
                     });
                 </script>
@@ -96,5 +97,14 @@
     </div>
     <!-- /.container-fluid -->
 </nav>
+<br>
+<div class="alert alert-warning" role="alert" id="login-first">
+  <script type="text/javascript">
+    $("#login-first").hide();
+  </script>
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
+    <strong>Warning!</strong>
+    Best check yo self, you're not looking too good.
+</div>
 
 <%= yield %>
