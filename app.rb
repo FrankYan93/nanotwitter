@@ -110,3 +110,7 @@ get '/protected/?' do
     authenticate!
     erb :protected, locals: { title: 'Protected Page' }
 end
+
+get '/warnnonlogin' do
+  erb :warnnonlogin
+end
