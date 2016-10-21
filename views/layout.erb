@@ -48,9 +48,19 @@
                 </li>
             </ul>
             <ul class="nav navbar-nav navbar-right" id="login">
-                <li>
-                    <a href='/signup'>Log Out</a>
-                </li>
+
+                <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><%= session[:username] %>
+ <span class="caret"></span></a>
+                <ul class="dropdown-menu">
+                  <li><a href="#">Action</a></li>
+                  <li role="separator" class="divider"></li>
+                  <li class="dropdown-header">Nav header</li>
+                  <li>
+                      <a href='/signup'>Log Out</a>
+                  </li>
+                </ul>
+              </li>
             </ul>
             <script type="text/javascript">
               var logoutStatus=(-1=== <%= cui %> );
