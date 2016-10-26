@@ -115,6 +115,6 @@ get '/warnnonlogin' do
   erb :warnnonlogin
 end
 
-get '/notificaton' do
+get '/notification' do
   erb :notification
 end
