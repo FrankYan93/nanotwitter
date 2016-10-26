@@ -3,5 +3,9 @@
 </head>
 <h1>"Welcome Home <%= session[:username] %>!"</h1>
 
+  <% x="location='/#{session[:username]}/editProfile'"%>
+
+
+<button type="submit" onclick= <%= x %>> edit profile</button><br><br>
 
 <button type="submit" onclick="location='/signout/?'">"Sign out!"</button><br><br>
