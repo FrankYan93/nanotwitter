@@ -60,6 +60,8 @@ ActiveRecord::Schema.define(version: 9) do
 
   create_table "tweets", force: :cascade do |t|
     t.string   "content"
+    t.string   "username"
+    t.string   "nickname"
     t.datetime "create_time"
     t.integer  "user_id"
     t.boolean  "is_forwarding"

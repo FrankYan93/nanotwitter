@@ -1,3 +1,5 @@
+# example: /api/v1/test/users/create?count=10&tweets=10
+# create 10 user and each tweet 10 tweets
 get '/api/v1/test/users/create' do
   begin_time = Time.now
   count_number = params[:count].to_i||1
@@ -7,6 +9,8 @@ get '/api/v1/test/users/create' do
   "time used = #{end_time-begin_time}"
 end
 
+# exaple: /api/v1/test/user/testuser/tweets?tweets=100
+# make testuser tweet 100 tweets
 get '/api/v1/test/user/:user_name/tweets' do
   begin_time = Time.now
   user_name = params[:user_name]
@@ -21,6 +25,8 @@ get '/api/v1/test/user/:user_name/tweets' do
   "time used = #{end_time-begin_time}"
 end
 
+# example: /api/v1/test/user/10/follow?count=10
+# make the user whose id = 10 follow 10 usets
 get '/api/v1/test/user/:id/follow' do
   begin_time = Time.now
   count_number = params[:count].to_i||0
@@ -33,6 +39,8 @@ get '/api/v1/test/user/:id/follow' do
   "time used = #{end_time-begin_time}"
 end
 
+# Example: /test/user/follow?count=10
+# n (integer) randomly selected users follow ‘n’ (integer) different randomlt seleted users.
 get '/api/v1/test/user/follow' do
   begin_time = Time.now
   count_number = params[:count].to_i||0
@@ -61,6 +69,7 @@ end
 def newUser(username)
   newUser = User.new
   newUser.username = username
+  newUser.nickname = Faker::Name.first_name
   newUser.follower_number = 0
   newUser.following_number = 0
   newUser.nickname = ''
@@ -69,7 +78,10 @@ def newUser(username)
 end
 
 def newTweet(user_id, content)
+  user = User.find(user_id)
   newtweet = Tweet.new
+  newtweet.username = user.username
+  newtweet.nickname = user.nickname
   newtweet.content = content
   newtweet.user_id = user_id
   newtweet.create_time = Time.now

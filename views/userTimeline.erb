@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+  <head>
+		<title><%= @user_name %>'s Timeline</title>
+  </head>
+
+	<body>
+    <div class="container theme-showcase" role="main">
+
+      <% for i in 0..19 %>
+        <% @Nickname = @user_tweets[i][:nickname] %>
+        <% @tweet_time = @user_tweets[i][:create_time] %>
+        <% @tweet_user_name = @user_tweets[i][:username] %>
+        <% @tweet_content = @user_tweets[i][:content] %>
+        <%= erb :singleTweet %>
+      <% end %>
+
+
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+  </body>
+</html>

@@ -42,11 +42,11 @@ end
 def resetTestuser
     user = User.new
     user.username = 'testuser'
+    user.nickname = 'testie'
     newpassword = Password.create('password')
     user.password = newpassword
     user.follower_number = 0
     user.following_number = 0
-    user.nickname = ''
     user.save
 end
 

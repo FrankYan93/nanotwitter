@@ -2,6 +2,8 @@ class CreateTweets < ActiveRecord::Migration
     def change
         create_table :tweets do |t|
             t.string :content
+            t.string :username
+            t.string :nickname
             t.datetime :create_time
             t.integer :user_id
             t.boolean :is_forwarding
