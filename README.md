@@ -12,7 +12,11 @@ Give some code exmaple
 
 ### Running the tests
 **How to run tests**
-balabala
+* ruby test/testUser/testGet.rb
+* ruby test/testUser/testUserCreate.rb
+* ruby test/testUser/testFollowUnfollow.rb
+* ruby test/testUser/testEditProfile.rb
+* ruby test/testTweet/testTweetCreate.rb
 ```
 Give some code exmaple
 ```
