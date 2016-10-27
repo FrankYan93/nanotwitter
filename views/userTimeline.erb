@@ -6,13 +6,15 @@
 
 	<body>
     <div class="container theme-showcase" role="main">
-
-      <% for i in 0..19 %>
-        <% @Nickname = @user_tweets[i][:nickname] %>
-        <% @tweet_time = @user_tweets[i][:create_time] %>
-        <% @tweet_user_name = @user_tweets[i][:username] %>
-        <% @tweet_content = @user_tweets[i][:content] %>
-        <%= erb :singleTweet %>
+      <% unless @user_tweets.size.zero? %>
+      <% maxNumber=[20,@user_tweets.size].max %>
+        <% for i in 0...maxNumber %>
+          <% @Nickname = @user_tweets[i][:nickname] %>
+          <% @tweet_time = @user_tweets[i][:create_time] %>
+          <% @tweet_user_name = @user_tweets[i][:username] %>
+          <% @tweet_content = @user_tweets[i][:content] %>
+          <%= erb :singleTweet %>
+        <% end %>
       <% end %>
 
 
