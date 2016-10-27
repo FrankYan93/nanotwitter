@@ -40,7 +40,11 @@
     </div>
 </div>
 
-
+<% if session[:user_id] %>
+<% cui=session[:user_id] %>
+<% else %>
+<% cui=-1 %>
+<% end %>
 <script type="text/javascript">
     $("#like").click(function () {
         var current_user_id = <%= cui %> - 0;
