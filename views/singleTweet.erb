@@ -1,35 +1,58 @@
 <div class="well" data-toggle="modal" data-target="#myModal">
-      <p>
-        <font size="3" face="verdana" ><strong><%= @Nickname %></strong></font>
+    <p>
+        <font size="3" face="verdana">
+            <strong><%= @Nickname %></strong>
+        </font>
         <font size="2" face="verdana" color=grey>@<%= @tweet_user_name %>*<%= @tweet_time %></font>
-      </p>
+    </p>
 
-      <p>
+    <p>
         <%= @tweet_content %>
-      </p>
-      <p><a class="btn btn-default" href="#" role="button">Reply</a>
-      <a class="btn btn-default" href="#" role="button">Retweet</a>
-      <a class="btn btn-default" href="#" role="button">Like</a></p>
+    </p>
+    <p>
+        <a class="btn btn-default" href="#" role="button">Reply</a>
+        <a class="btn btn-default" href="#" role="button">Retweet</a>
+        <a class="btn btn-default" href="#" role="button">Like</a>
+    </p>
 </div>
-
 
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="myModalLabel">@<%= @tweet_user_name %>*<%= @tweet_time %></h4>
-      </div>
-      <div class="modal-body">
-        <p>
-          <%= @tweet_content %>
-        </p>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-primary">Reply</button>
-        <button type="button" class="btn btn-primary">Retweet</button>
-        <button type="button" class="btn btn-primary">Like</button>
-      </div>
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title" id="myModalLabel">@<%= @tweet_user_name %>*<%= @tweet_time %></h4>
+            </div>
+            <div class="modal-body">
+                <p>
+                    <%= @tweet_content %>
+                </p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary">Reply</button>
+                <button type="button" class="btn btn-primary">Retweet</button>
+                <button type="button" class="btn btn-primary" id="like">Like</button>
+                <button type="button" class="btn btn-primary" id="unlike">unLike</button>
+            </div>
+        </div>
     </div>
-  </div>
 </div>
+
+
+<script type="text/javascript">
+    $("#like").click(function () {
+        var current_user_id = <%= cui %> - 0;
+        var tweet_id = <%= @tweet_id %>;
+        if (current_user_id !== -1) {
+            var putLike = new XMLHttpRequest();
+            putLike.open("PUT", '/api/v1/users/' + current_user_id + '/likes/' + tweet_id, false);
+            putLike.send();
+            this.hide();
+            $("#unlike").show();
+        } else {
+            $("#login-first").show();
+          }
+        });
+</script>
