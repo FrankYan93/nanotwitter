@@ -7,35 +7,52 @@
   <body>
     <div class="container theme-showcase" role="main">
 
-    <h1>"Welcome Home <%= session[:username] %>!"</h1>
+      <h1>"Welcome Home <%= session[:username] %>!"</h1>
 
-    <% x="location='/#{session[:username]}/editProfile'"%>
-    <% y="location='/#{session[:username]}/followers'"%>
-    <% z="location='/#{session[:username]}/followings'"%>
-
-
-  <button type="submit" onclick= <%= x %>> edit profile</button><br><br>
-  <button type="submit" onclick= <%= y %>> followers </button><br><br>
-  <button type="submit" onclick= <%= z %>> followings </button><br><br>
-
-  <button type="submit" onclick="location='/signout/?'">"Sign out!"</button><br><br>
+      <% x="location='/#{session[:username]}/editProfile'"%>
+      <% y="location='/#{session[:username]}/followers'"%>
+      <% z="location='/#{session[:username]}/followings'"%>
 
 
-      <% for i in 0..19 %>
-        <% if @time_line_tweets[i] == nil %>
-          <% break %>
+      <button type="submit" onclick= <%= x %>> edit profile</button><br><br>
+      <button type="submit" onclick= <%= y %>> followers </button><br><br>
+      <button type="submit" onclick= <%= z %>> followings </button><br><br>
+
+      <button type="submit" onclick="location='/signout/?'">"Sign out!"</button><br><br>
+
+
+        <% for i in (0+@n*20)..(19+@n*20) %>
+          <% if @time_line_tweets[i] == nil %>
+            <% break %>
+          <% end %>
+          <% @Nickname = @time_line_tweets[i][:nickname] %>
+          <% @tweet_time = @time_line_tweets[i][:create_time] %>
+          <% @tweet_user_name = @time_line_tweets[i][:username] %>
+          <% @tweet_content = @time_line_tweets[i][:content] %>
+          <%= erb :singleTweet %>
         <% end %>
-        <% @Nickname = @time_line_tweets[i][:nickname] %>
-        <% @tweet_time = @time_line_tweets[i][:create_time] %>
-        <% @tweet_user_name = @time_line_tweets[i][:username] %>
-        <% @tweet_content = @time_line_tweets[i][:content] %>
-        <%= erb :singleTweet %>
-      <% end %>
+
+      <nav aria-label="Page navigation">
+        <ul class="pagination">
+          <li>
+            <a href="/?n=<%= @n-1 %>" aria-label="Previous">
+              <span aria-hidden="true">&laquo;</span>
+            </a>
+          </li>
+          <li><a href="/?n=0">1</a></li>
+          <li><a href="/?n=1">2</a></li>
+          <li><a href="/?n=2">3</a></li>
+          <li><a href="/?n=3">4</a></li>
+          <li><a href="/?n=4">5</a></li>
+          <li>
+            <a href="/?n=<%= @n+1 %>" aria-label="Next">
+              <span aria-hidden="true">&raquo;</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
 
 
-  </div>
-
-
-
+    </div>
   </body>
 </html>
