@@ -1,3 +1,5 @@
+<% redirect'/warnnonlogin' if session[:user_id].nil? %>
+
 <div class="list-group container theme-showcase">
   <li class="list-group-item">
     <a href="#">All</a>
