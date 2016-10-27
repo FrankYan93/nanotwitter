@@ -50,19 +50,17 @@ end
 get '/' do
   #@sessionUserId
   if session[:user_id].nil?
-    erb :index#, :layout => false
+    not_log_in_home
   else
-    erb :home
+    log_in_home
   end
 end
 
 get '/home' do
     if session[:user_id].nil?
-      erb :index
+      not_log_in_home
     else
-    #authenticate!
-      'Welcome Home!'
-      erb :home
+      log_in_home
     end
 end
 
@@ -103,6 +101,7 @@ end
 
 get '/signout/?' do
     session.clear
+    session[:user_id] = nil
     redirect '/'
 end
 

@@ -1,6 +1,24 @@
-<head>
-  <title>nanoTwitter</title>
+<!DOCTYPE html>
+<html>
 
-<h1>There will be non-login timeline below.</h1>
+  <head>
+    <title>nanoTwitter</title>
+  </head>
 
-</div>
+  <body>
+    <div class="container theme-showcase" role="main">
+      <h1>There will be non-login timeline below.</h1>
+      <% for i in 0..19 %>
+        <% if @all_recent_tweets[i] == nil %>
+          <% break %>
+        <% end %>
+        <% @Nickname = @all_recent_tweets[i][:nickname] %>
+        <% @tweet_time = @all_recent_tweets[i][:create_time] %>
+        <% @tweet_user_name = @all_recent_tweets[i][:username] %>
+        <% @tweet_content = @all_recent_tweets[i][:content] %>
+        <%= erb :singleTweet %>
+      <% end %>
+
+    </div>
+  </body>
+</html>

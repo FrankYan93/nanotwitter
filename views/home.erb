@@ -1,15 +1,41 @@
-<head>
-  <title>nanoTwitter-Home</title>
-</head>
-<h1>"Welcome Home <%= session[:username] %>!"</h1>
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>nanoTwitter-Home</title>
+  </head>
 
-  <% x="location='/#{session[:username]}/editProfile'"%>
-  <% y="location='/#{session[:username]}/followers'"%>
-  <% z="location='/#{session[:username]}/followings'"%>
+  <body>
+    <div class="container theme-showcase" role="main">
+
+    <h1>"Welcome Home <%= session[:username] %>!"</h1>
+
+    <% x="location='/#{session[:username]}/editProfile'"%>
+    <% y="location='/#{session[:username]}/followers'"%>
+    <% z="location='/#{session[:username]}/followings'"%>
 
 
-<button type="submit" onclick= <%= x %>> edit profile</button><br><br>
-<button type="submit" onclick= <%= y %>> followers </button><br><br>
-<button type="submit" onclick= <%= z %>> followings </button><br><br>
+  <button type="submit" onclick= <%= x %>> edit profile</button><br><br>
+  <button type="submit" onclick= <%= y %>> followers </button><br><br>
+  <button type="submit" onclick= <%= z %>> followings </button><br><br>
 
-<button type="submit" onclick="location='/signout/?'">"Sign out!"</button><br><br>
+  <button type="submit" onclick="location='/signout/?'">"Sign out!"</button><br><br>
+
+
+      <% for i in 0..19 %>
+        <% if @time_line_tweets[i] == nil %>
+          <% break %>
+        <% end %>
+        <% @Nickname = @time_line_tweets[i][:nickname] %>
+        <% @tweet_time = @time_line_tweets[i][:create_time] %>
+        <% @tweet_user_name = @time_line_tweets[i][:username] %>
+        <% @tweet_content = @time_line_tweets[i][:content] %>
+        <%= erb :singleTweet %>
+      <% end %>
+
+
+  </div>
+
+
+
+  </body>
+</html>
