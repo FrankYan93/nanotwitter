@@ -45,18 +45,25 @@
 <% else %>
 <% cui=-1 %>
 <% end %>
+<% tId=@tweet_id %>
 <script type="text/javascript">
+    $("#like").mouseenter(function(){
+      this.innerHTML="I like it!";
+    });
+    $("#like").mouseleave(function(){
+      this.innerHTML="Like";
+    });
     $("#like").click(function () {
         var current_user_id = <%= cui %> - 0;
-        var tweet_id = <%= @tweet_id %>;
+        var tweet_id = <%= tId %>;
         if (current_user_id !== -1) {
             var putLike = new XMLHttpRequest();
             putLike.open("PUT", '/api/v1/users/' + current_user_id + '/likes/' + tweet_id, false);
             putLike.send();
-            this.hide();
+            $(this).hide();
             $("#unlike").show();
         } else {
             $("#login-first").show();
-          }
+        }
         });
 </script>

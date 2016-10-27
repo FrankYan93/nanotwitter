@@ -16,6 +16,8 @@
         <% @tweet_time = @all_recent_tweets[i][:create_time] %>
         <% @tweet_user_name = @all_recent_tweets[i][:username] %>
         <% @tweet_content = @all_recent_tweets[i][:content] %>
+        <% @tweet_id = @all_recent_tweets[i][:id] %>
+
         <%= erb :singleTweet %>
       <% end %>
 
