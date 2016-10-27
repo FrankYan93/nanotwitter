@@ -80,7 +80,7 @@
                             if (current_user_id !== -1) {
                                 if (result !== null) {
                                     var putTweet = new XMLHttpRequest();
-                                    putTweet.open("PUT", '/api/v1/users/' + current_user_id + '/tweets/' + result, false);
+                                    putTweet.open("PUT", '/api/v1/users/' + current_user_id + '/tweets/' + result, true);
                                     putTweet.send();
                                 }
                             } else {

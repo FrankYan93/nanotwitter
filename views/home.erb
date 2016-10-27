@@ -12,9 +12,10 @@
       <% x="location='/#{session[:username]}/editProfile'"%>
       <% y="location='/#{session[:username]}/followers'"%>
       <% z="location='/#{session[:username]}/followings'"%>
+      <% selftimeline="location='/user/#{session[:username]}'"%>
+      <button class="btn" type="submit" onclick= <%= selftimeline %>> My Timeline</button><br><br>
 
-
-      <button type="submit" onclick= <%= x %>> edit profile</button><br><br>
+      <button class="btn" type="submit" onclick= <%= x %>> edit profile</button><br><br>
       <button type="submit" onclick= <%= y %>> followers </button><br><br>
       <button type="submit" onclick= <%= z %>> followings </button><br><br>
 

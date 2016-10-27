@@ -47,6 +47,20 @@
 <% end %>
 <% tId=@tweet_id %>
 <script type="text/javascript">
+  $("#unlike").hide();
+  $("#unlike").click(function(){
+    var current_user_id = <%= cui %> - 0;
+    var tweet_id = <%= tId %>;
+    if (current_user_id !== -1) {
+        var putLike = new XMLHttpRequest();
+        putLike.open("PUT", '/api/v1/users/' + current_user_id + '/unlike/' + tweet_id, true);
+        putLike.send();
+        $(this).hide();
+        $("#like").show();
+    } else {
+        $("#login-first").show();
+    }
+  });
     $("#like").mouseenter(function(){
       this.innerHTML="I like it!";
     });
@@ -58,7 +72,7 @@
         var tweet_id = <%= tId %>;
         if (current_user_id !== -1) {
             var putLike = new XMLHttpRequest();
-            putLike.open("PUT", '/api/v1/users/' + current_user_id + '/likes/' + tweet_id, false);
+            putLike.open("PUT", '/api/v1/users/' + current_user_id + '/likes/' + tweet_id, true);
             putLike.send();
             $(this).hide();
             $("#unlike").show();
