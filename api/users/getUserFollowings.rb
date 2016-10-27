@@ -1,5 +1,5 @@
 get '/api/v1/users/:user_id/followings/' do
-    hisFollowings params[:user_id]
+    hisFollowings(params[:user_id]).to_json
 end
 
 def hisFollowings theId
@@ -8,5 +8,5 @@ def hisFollowings theId
   followRelations.each do |x|
       results << getUserByID(x.followed_user_id)
   end
-  results.to_json
+  results
 end

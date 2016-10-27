@@ -1,3 +1,7 @@
 get '/api/v1/users/:user_id/forwards' do
-    Tweet.where('user_id=? and is_forwarding=?', params[:user_id], true).to_json
+    userForward(params[:user_id]).to_json
+end
+
+def userForward theId
+  Tweet.where('user_id=? and is_forwarding=?', theId, true)
 end
