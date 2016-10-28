@@ -30,6 +30,12 @@
           <% @birthday = @followings[i][:birthday] %>
           <% @description = @followings[i][:description] %>
           <% @follower_id = @followings[i][:id] %>
+          <% @iffollow = iffollow(session[:id], @followings[i][:id]) %>
+          <% if @iffollow %>
+          <%   @status = "Unfollow" %>
+          <% else %>
+          <%   @status = "Follow" %>
+          <% end %>
           <%= erb :singleUser %>
         <% end %>
 

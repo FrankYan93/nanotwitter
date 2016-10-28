@@ -59,3 +59,11 @@ get "/:username/showhome" do
 
   erb :showhome
 end
+
+def iffollow id, following_id
+  relationship = Followerfollowing.where(user_id: id, following_id: following_id)
+  if relationship == nil
+    return 0
+  else return 1
+  end
+end

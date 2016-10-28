@@ -14,7 +14,9 @@
 
       <button class="btn" type="submit" > <%= @follower_number %> followers  </button>
 
-      <button class="btn" type="submit" > <%= @following_number %> followings  </button><br><br>
+      <button class="btn" type="submit" > <%= @following_number %> followings  </button>
+
+      <br><br>
 
       <% for i in (0+@n*20)..(19+@n*20) %>
         <% if @user_tweets[i] == nil %>
