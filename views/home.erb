@@ -32,6 +32,7 @@
           <% @tweet_time = @time_line_tweets[i][:create_time] %>
           <% @tweet_user_name = @time_line_tweets[i][:username] %>
           <% @tweet_content = @time_line_tweets[i][:content] %>
+          <% @tweet_id = @time_line_tweets[i][:id] %>
           <%= erb :singleTweet %>
         <% end %>
 

@@ -27,7 +27,7 @@ def log_in_home
 
         n = 100
         join_follows_tweets = Followerfollowing.joins('JOIN tweets ON tweets.user_id = followerfollowings.followed_user_id').where(user_id: user_id)
-        @time_line_tweets = join_follows_tweets.merge(Tweet.order(create_time: :desc)).limit(n).select('tweets.nickname,tweets.username,tweets.content,tweets.create_time')
+        @time_line_tweets = join_follows_tweets.merge(Tweet.order(create_time: :desc)).limit(n).select('tweets.id,tweets.nickname,tweets.username,tweets.content,tweets.create_time')
         @n = params[:n].to_i || 0
         erb :home
     end
