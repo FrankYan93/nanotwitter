@@ -17,9 +17,10 @@
         <%= @description %>
     </p>
     <p>
-        <% x="location='/#{@Username}/showhome'"%>
 
+        <% x="location='../#{@Username}/tweets'"%>
         <a class="btn btn-default" href="#" role="button" id="status"><%= @status %></a>
+
 
         <button class="btn" type="submit" onclick= <%= x %>> showhome</button>
 
@@ -53,18 +54,20 @@
 <% tId=@follower_id %>
 <script type="text/javascript">
   var st="<%= @status %>";
+
   var current_user_id = <%= cui %> - 0;
   var follower_id = <%= tId %>;
 
   $("#status").click(function(){
     if (( st==="Following" ) && (current_user_id !== -1)) {
+
         var putFollow = new XMLHttpRequest();
         putFollow.open("PUT", '/api/v1/users/' + current_user_id + '/unfollow/' + follower_id, true);
         putFollow.send();
         st="Not following";
         <% @status = "Not following" %>
 
-    } else if ((st==="Not following")&&(current_user_id !== -1)) {
+    } else if ((st === "Not following")&&(current_user_id !== -1)) {
       var putFollow = new XMLHttpRequest();
       putFollow.open("PUT", '/api/v1/users/' + current_user_id + '/follow/' + follower_id, true);
       putFollow.send();

@@ -23,6 +23,7 @@ end
 
 get "/:username/followers" do
   currentUser=User.find_by(username: params[:username])
+  @user_name = params[:username]
 
   @follower_number = currentUser.follower_number
   @following_number = currentUser.following_number
@@ -38,18 +39,15 @@ get "/:username/followings" do
 
   currentUser=User.find_by(username: params[:username])
 
-
+  @user_name = params[:username]
   @follower_number = currentUser.follower_number
   @following_number = currentUser.following_number
 
   @followings = hisFollowings(currentUser.id)
   @unfollowings = []
   @count_number = 10
-  for j in 1..@count_number
-      following_id = rand(User.count)
-      @unfollowings << User.find_by(id: following_id)
-  end
-
+  users = User.not_follow_by(currentUser.id)
+  @unfollowings = shuffle users.to_a, @count_number 
   erb :userfollowings
 end
 
