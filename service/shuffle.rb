@@ -1,3 +1,5 @@
+
+#input an array, return randam k elements in an array.
 def shuffle(arr,k)
   rd=Random.new
   n=arr.size
