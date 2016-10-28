@@ -59,6 +59,7 @@
         $("#like").show();
     } else {
         $("#login-first").show();
+        $("#myModal").modal('hide');
     }
   });
     $("#like").mouseenter(function(){
@@ -78,6 +79,8 @@
             $("#unlike").show();
         } else {
             $("#login-first").show();
+            $("#myModal").modal('hide');
+
         }
         });
 </script>
