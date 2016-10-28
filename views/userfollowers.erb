@@ -21,9 +21,9 @@
           <% @follower_id = @followers[i][:id] %>
           <% @iffollow = iffollow(session[:id], @followers[i][:id]) %>
           <% if @iffollow %>
-          <%   @status = "Unfollow" %>
+          <%   @status = "Following" %>
           <% else %>
-          <%   @status = "Follow" %>
+          <%   @status = "Not following" %>
           <% end %>
           <%= erb :singleUser %>
         <% end %>
