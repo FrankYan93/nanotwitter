@@ -52,12 +52,12 @@
 <% end %>
 <% tId=@follower_id %>
 <script type="text/javascript">
-  var st=<%= @status %>;
+  var st="<%= @status %>";
   var current_user_id = <%= cui %> - 0;
   var follower_id = <%= tId %>;
 
-  $("#status").click({
-    if ((st==="Following")&&(current_user_id !== -1)) {
+  $("#status").click(function(){
+    if (( st==="Following" ) && (current_user_id !== -1)) {
         var putFollow = new XMLHttpRequest();
         putFollow.open("PUT", '/api/v1/users/' + current_user_id + '/unfollow/' + follower_id, true);
         putFollow.send();
