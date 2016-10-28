@@ -13,13 +13,15 @@
       <% y="location='/#{session[:username]}/followers'"%>
       <% z="location='/#{session[:username]}/followings'"%>
       <% selftimeline="location='/user/#{session[:username]}'"%>
-      <button class="btn" type="submit" onclick= <%= selftimeline %>> My Timeline</button><br><br>
 
-      <button class="btn" type="submit" onclick= <%= x %>> edit profile</button><br><br>
-      <button type="submit" onclick= <%= y %>> followers </button><br><br>
-      <button type="submit" onclick= <%= z %>> followings </button><br><br>
+      <button class="btn" type="submit" onclick= <%= selftimeline %>> My Timeline</button>
 
-      <button type="submit" onclick="location='/signout/?'">"Sign out!"</button><br><br>
+      <button class="btn" type="submit" onclick= <%= x %>> edit profile</button>
+
+
+      <button class="btn" type="submit" onclick= <%= y %>> <%= @follower_number %> followers  </button>
+
+      <button class="btn" type="submit" onclick= <%= z %>> <%= @following_number %> followings  </button><br><br>
 
 
         <% for i in (0+@n*20)..(19+@n*20) %>

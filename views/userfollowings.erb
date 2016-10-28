@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>user followings</title>
+  </head>
+
+  <body>
+    <div class="container theme-showcase" role="main">
+
+      <h1>"Follwings of <%= session[:username] %>!"</h1>
+
+      <% x="location='/#{session[:username]}/editProfile'"%>
+      <% y="location='/#{session[:username]}/followers'"%>
+      <% z="location='/#{session[:username]}/followings'"%>
+      <% selftimeline="location='/user/#{session[:username]}'"%>
+
+      <button class="btn" type="submit" onclick= <%= selftimeline %>> My Timeline</button>
+
+      <button class="btn" type="submit" onclick= <%= x %>> edit profile</button>
+
+
+      <button class="btn" type="submit" onclick= <%= y %>> <%= @follower_number %> followers  </button>
+
+      <button class="btn" type="submit" onclick= <%= z %>> <%= @following_number %> followings  </button><br><br>
+
+
+        <% for i in 0..@following_number-1  %>
+          <% @Username = @followings[i][:username] %>
+          <% @Nickname = @followings[i][:nickname] %>
+          <% @birthday = @followings[i][:birthday] %>
+          <% @description = @followings[i][:description] %>
+          <% @follower_id = @followings[i][:id] %>
+          <%= erb :singleUser %>
+        <% end %>
+
+
+    </div>
+  </body>
+</html>

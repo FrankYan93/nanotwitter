@@ -22,25 +22,27 @@ post "/editProfile" do
 end
 
 get "/:username/followers" do
-  @username = params[:usename]
   currentUser=User.find_by(username: session[:username])
 
-  @password_hash = Password.new (currentUser.password)
+  @follower_number = currentUser.follower_number
+  @following_number = currentUser.following_number
 
-  @birthday = currentUser.birthday
-  @nickname = currentUser.nickname
-  @description = currentUser.description
+  @followers = hisFollowers(session[:user_id])
+
   erb :userfollowers
+
 end
 
+
 get "/:username/followings" do
-  @username = params[:usename]
+
   currentUser=User.find_by(username: session[:username])
 
-  @password_hash = Password.new (currentUser.password)
 
-  @birthday = currentUser.birthday
-  @nickname = currentUser.nickname
-  @description = currentUser.description
+  @follower_number = currentUser.follower_number
+  @following_number = currentUser.following_number
+
+  @followings = hisFollowings(session[:user_id])
+
   erb :userfollowings
 end
