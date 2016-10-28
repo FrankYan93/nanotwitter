@@ -43,6 +43,12 @@ get "/:username/followings" do
   @following_number = currentUser.following_number
 
   @followings = hisFollowings(currentUser.id)
+  @unfollowings = []
+  @count_number = 10
+  for j in 1..@count_number
+      following_id = rand(User.count)
+      @unfollowings << User.find_by(id: following_id)
+  end
 
   erb :userfollowings
 end

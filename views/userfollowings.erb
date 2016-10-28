@@ -39,8 +39,24 @@
           <%= erb :singleUser %>
         <% end %>
 
+        <h2>"Some Users you may interest in!"</h2>
 
-
+        <% for i in 0..@count_number-1  %>
+          <% unless @unfollowings[i].nil? %>
+          <% @Username = @unfollowings[i][:username] %>
+          <% @Nickname = @unfollowings[i][:nickname] %>
+          <% @birthday = @unfollowings[i][:birthday] %>
+          <% @description = @unfollowings[i][:description] %>
+          <% @follower_id = @unfollowings[i][:id] %>
+          <% @iffollow = iffollow(session[:id], @unfollowings[i][:id]) %>
+          <% if @iffollow %>
+          <%   @status = "Unfollow" %>
+          <% else %>
+          <%   @status = "Follow" %>
+          <% end %>
+          <%= erb :singleUser %>
+        <% end %>
+<% end %>
     </div>
   </body>
 </html>
