@@ -60,7 +60,7 @@ get '/home' do
     if session[:user_id].nil?
       not_log_in_home
     else
-      print User.not_follow_by(session[:user_id])[0][:username]
+      #print User.not_follow_by(session[:user_id])[0][:username]
       log_in_home
     end
 end
