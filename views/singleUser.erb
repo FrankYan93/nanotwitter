@@ -1,7 +1,14 @@
+
+
 <div class="well" data-toggle="modal" data-target="#myModal">
+
     <p>
         <font size="3" face="verdana">
-            <strong><%= @Username %></strong>
+
+             <strong>
+               <%= @Username %>
+             </strong>
+
         </font>
         <font size="2" face="verdana" color=grey>@<%= @Nickname %>*<%= @birthday %></font>
     </p>
@@ -10,7 +17,10 @@
         <%= @description %>
     </p>
     <p>
+        <% x="location='/#{@Username}/showhome'"%>
         <a class="btn btn-default" href="#" role="button">Follow</a>
+        <button class="btn" type="submit" onclick= <%= x %>> showhome</button>
+
     </p>
 </div>
 
@@ -44,6 +54,7 @@
 <% tId=@follower_id %>
 <script type="text/javascript">
   $("#Unfollow").hide();
+
   $("#Unfollow").click(function(){
     var current_user_id = <%= cui %> - 0;
     var follower_id = <%= tId %>;
@@ -57,12 +68,7 @@
         $("#login-first").show();
     }
   });
-    $("#Follow").mouseenter(function(){
-      this.innerHTML="I like it!";
-    });
-    $("#Follow").mouseleave(function(){
-      this.innerHTML="Like";
-    });
+
     $("#Follow").click(function () {
         var current_user_id = <%= cui %> - 0;
         var follower_id = <%= tId %>;

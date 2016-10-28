@@ -25,6 +25,7 @@
 
 
         <% for i in 0..@follower_number-1  %>
+          <% unless @followers[i].nil? %>
           <% @Username = @followers[i][:username] %>
           <% @Nickname = @followers[i][:nickname] %>
           <% @birthday = @followers[i][:birthday] %>
@@ -32,7 +33,7 @@
           <% @follower_id = @followers[i][:id] %>
           <%= erb :singleUser %>
         <% end %>
-
+  <% end %>
 
     </div>
   </body>

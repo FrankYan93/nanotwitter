@@ -22,12 +22,12 @@ post "/editProfile" do
 end
 
 get "/:username/followers" do
-  currentUser=User.find_by(username: session[:username])
+  currentUser=User.find_by(username: params[:username])
 
   @follower_number = currentUser.follower_number
   @following_number = currentUser.following_number
 
-  @followers = hisFollowers(session[:user_id])
+  @followers = hisFollowers(currentUser.id)
 
   erb :userfollowers
 
@@ -36,13 +36,26 @@ end
 
 get "/:username/followings" do
 
-  currentUser=User.find_by(username: session[:username])
+  currentUser=User.find_by(username: params[:username])
 
 
   @follower_number = currentUser.follower_number
   @following_number = currentUser.following_number
 
-  @followings = hisFollowings(session[:user_id])
+  @followings = hisFollowings(currentUser.id)
 
   erb :userfollowings
+end
+
+get "/:username/showhome" do
+  @username = params[:username]
+  currentUser = User.find_by(username: @username)
+  @follower_number = currentUser.follower_number
+  @following_number = currentUser.following_number
+
+  n = 100
+  @user_tweets = Tweet.where(user_id: currentUser[:id]).order(create_time: :desc).limit(n)
+  @n = params[:n].to_i || 0
+
+  erb :showhome
 end
