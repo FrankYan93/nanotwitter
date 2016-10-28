@@ -30,9 +30,9 @@ end
 get '/api/v1/test/user/:id/follow' do
   begin_time = Time.now
   count_number = params[:count].to_i||0
-  followed_id = params[:id]
+  user_id = params[:id]
   for i in 1..count_number
-    user_id = rand(User.count)
+    followed_id = rand(User.count)
     follow(user_id, followed_id)
   end
   end_time = Time.now

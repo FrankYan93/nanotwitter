@@ -6,6 +6,13 @@
 
 	<body>
     <div class="container theme-showcase" role="main">
+
+      <h1><%= "#{@user_name}" %>'s home</h1>
+
+      <%= control_bar %>
+
+
+
       <% unless @user_tweets.size.zero? %>
       <% for i in (0+@n*20)..(19+@n*20) %>
         <% if @user_tweets[i] == nil %>

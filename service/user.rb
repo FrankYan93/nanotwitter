@@ -23,6 +23,7 @@ end
 
 get "/:username/followers" do
   currentUser=User.find_by(username: params[:username])
+  @user_name = params[:username]
 
   @follower_number = currentUser.follower_number
   @following_number = currentUser.following_number
@@ -38,7 +39,7 @@ get "/:username/followings" do
 
   currentUser=User.find_by(username: params[:username])
 
-
+  @user_name = params[:username]
   @follower_number = currentUser.follower_number
   @following_number = currentUser.following_number
 

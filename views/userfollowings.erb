@@ -7,21 +7,9 @@
   <body>
     <div class="container theme-showcase" role="main">
 
-      <h1>"Follwings of <%= session[:username] %>!"</h1>
+      <h1>"Follwings of <%= @user_name %>!"</h1>
 
-      <% x="location='/#{session[:username]}/editProfile'"%>
-      <% y="location='/#{session[:username]}/followers'"%>
-      <% z="location='/#{session[:username]}/followings'"%>
-      <% selftimeline="location='/user/#{session[:username]}'"%>
-
-      <button class="btn" type="submit" onclick= <%= selftimeline %>> My Timeline</button>
-
-      <button class="btn" type="submit" onclick= <%= x %>> edit profile</button>
-
-
-      <button class="btn" type="submit" onclick= <%= y %>> <%= @follower_number %> followers  </button>
-
-      <button class="btn" type="submit" onclick= <%= z %>> <%= @following_number %> followings  </button><br><br>
+      <%= control_bar %>
 
 
         <% for i in 0..@following_number-1  %>
