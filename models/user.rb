@@ -33,4 +33,10 @@ class User < ActiveRecord::Base
             return user_record[:id], user_record[:username]
         end
     end
+
+    def self.not_follow_by(theid)
+        includes(:followerfollowings)
+            .references(:followerfollowings)
+            .where.not(followerfollowings: { user_id: theid })
+  end
 end
