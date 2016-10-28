@@ -13,20 +13,18 @@
 
 
         <% for i in 0..@following_number-1  %>
+         <% unless @followings[i].nil? %>
           <% @Username = @followings[i][:username] %>
           <% @Nickname = @followings[i][:nickname] %>
           <% @birthday = @followings[i][:birthday] %>
           <% @description = @followings[i][:description] %>
           <% @follower_id = @followings[i][:id] %>
-          <% @iffollow = iffollow(session[:id], @followings[i][:id]) %>
-          <% if @iffollow %>
           <%   @status = "Following" %>
-          <% else %>
-          <%   @status = "Not following" %>
-          <% end %>
+
           <%= erb :singleUser %>
         <% end %>
-
+      <% end %>
+      
         <h2>"Some Users you may interest in!"</h2>
 
         <% for i in 0..@count_number-1  %>
@@ -36,13 +34,8 @@
           <% @birthday = @unfollowings[i][:birthday] %>
           <% @description = @unfollowings[i][:description] %>
           <% @follower_id = @unfollowings[i][:id] %>
-          <% @iffollow = iffollow(session[:id], @unfollowings[i][:id]) %>
-          <% if @iffollow %>
-          <%   @status = "Following" %>
-          <% else %>
           <%   @status = "Not following" %>
-          <% end %>
-          <% puts @status %>
+
           <%= erb :singleUser %>
         <% end %>
 <% end %>

@@ -46,11 +46,8 @@ get "/:username/followings" do
   @followings = hisFollowings(currentUser.id)
   @unfollowings = []
   @count_number = 10
-  for j in 1..@count_number
-      following_id = rand(User.count)
-      @unfollowings << User.find_by(id: following_id)
-  end
-
+  users = User.not_follow_by(currentUser.id)
+  @unfollowings = shuffle users.to_a, @count_number 
   erb :userfollowings
 end
 
