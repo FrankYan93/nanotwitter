@@ -3,6 +3,8 @@
 </head>
 
 <body>
+  <div class="container theme-showcase" role="main">
+
   <h1>  "Welcome <%= session[:username] %>! Edit your Profle to Let others Know Your Better !" </h1>
   <form class="form-editProfie" action="/editProfile" method="POST">
       <h2 class="form-editProfile-heading">Please edit your profile</h2>
@@ -26,4 +28,5 @@
       <button class="btn btn-lg btn-primary btn-block" type="submit">submit</button>
 
   </form>
+</div>
 </body>
