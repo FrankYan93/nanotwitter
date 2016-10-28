@@ -18,7 +18,9 @@
     </p>
     <p>
         <% x="location='/#{@Username}/showhome'"%>
-        <a class="btn btn-default" href="#" role="button"><%= @status %></a>
+
+        <a class="btn btn-default" href="#" role="button" id="status"><%= @status %></a>
+
         <button class="btn" type="submit" onclick= <%= x %>> showhome</button>
 
     </p>
@@ -50,32 +52,28 @@
 <% end %>
 <% tId=@follower_id %>
 <script type="text/javascript">
+  var st=<%= @status %>;
+  var current_user_id = <%= cui %> - 0;
+  var follower_id = <%= tId %>;
 
-  $("#Unfollow").click({
-    var current_user_id = <%= cui %> - 0;
-    var follower_id = <%= tId %>;
-    if (current_user_id !== -1) {
+  $("#status").click({
+    if ((st==="Following")&&(current_user_id !== -1)) {
         var putFollow = new XMLHttpRequest();
         putFollow.open("PUT", '/api/v1/users/' + current_user_id + '/unfollow/' + follower_id, true);
         putFollow.send();
-        <% @status = "Follow" %>
+        st="Not following";
+        <% @status = "Not following" %>
 
-    } else {
+    } else if ((st==="Not following")&&(current_user_id !== -1)) {
+      var putFollow = new XMLHttpRequest();
+      putFollow.open("PUT", '/api/v1/users/' + current_user_id + '/follow/' + follower_id, true);
+      putFollow.send();
+      st="Following";
+      <% @status = "Following" %>
+    }else {
         $("#login-first").show();
     }
   });
 
-    $("#Follow").click( {
-        var current_user_id = <%= cui %> - 0;
-        var follower_id = <%= tId %>;
-        if (current_user_id !== -1) {
-            var putFollow = new XMLHttpRequest();
-            putFollow.open("PUT", '/api/v1/users/' + current_user_id + '/follow/' + follower_id, true);
-            putFollow.send();
-            <% @status = "Unfollow" %>
 
-        } else {
-            $("#login-first").show();
-        }
-        });
 </script>
