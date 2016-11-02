@@ -1,6 +1,6 @@
 require File.expand_path '../../test_helper.rb', __FILE__
 
-class TestLikeUnlike < MiniTest::Unit::TestCase
+class TestLikeUnlike < MiniTest::Test
   include Rack::Test::Methods
 
   def app
@@ -9,7 +9,7 @@ class TestLikeUnlike < MiniTest::Unit::TestCase
 
   def test_it_put_like_and_unlike
     get '/api/v1/test/reset/all'
-    
+
     put '/api/v1/register/testuser1/testpassword1'
     user1 = JSON.parse(last_response.body)
     user1_id = user1["id"]

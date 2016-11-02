@@ -1,6 +1,6 @@
 require File.expand_path '../../test_helper.rb', __FILE__
 
-class TestFollowUnfollow < MiniTest::Unit::TestCase
+class TestFollowUnfollow < MiniTest::Test
   include Rack::Test::Methods
 
   def app
@@ -8,6 +8,8 @@ class TestFollowUnfollow < MiniTest::Unit::TestCase
   end
 
   def test_it_put_follow_and_unfollow
+    get '/api/v1/test/reset/all'
+    
     put '/api/v1/register/testuser1/testpassword1'
     user1 = JSON.parse(last_response.body)
     user1_id = user1["id"]
