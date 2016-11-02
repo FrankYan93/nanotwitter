@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>user followers</title>
+  </head>
+
+  <body>
+
+    <div class="container theme-showcase" role="main">
+
+        <h1>Follwers of
+            <%= @user_name %></h1>
+
+        <%= control_bar %>
+
+        <% for i in 0..@follower_number-1  %>
+        <% unless @followers[i].nil? %>
+        <% @i = i %>
+        <% @iffollow = iffollow(session[:id], @followers[i][:id]) %>
+        <% if @iffollow %>
+        <% @status = "Following" %>
+        <% else %>
+        <% @status = "Not following" %>
+        <% end %>
+        <%   @users = @followers %>
+        <%= erb :singleUser %>
+        <% end %>
+        <% end %>
+
+    </div>
+
+  </body>
+</html>
+<script type="text/javascript">
+$(".status").hover(function(){
+  if(this.innerHTML==="Following"){
+    $(this).html("Unfollow");
+  }else{
+    $(this).html("Follow");
+  }
+},function(){
+  if(this.innerHTML==="Unfollow"){
+    $(this).html("Following");
+  }else{
+    $(this).html("Not following");
+  }
+});
+  $(".status").click(function(){
+    var st=this.innerHTML;
+    if(st === "Unfollow"){
+      var putFollow = new XMLHttpRequest();
+      putFollow.open("PUT", '/api/v1/users/' + '<%= session[:user_id] %>' + '/unfollow/' + this.id, true);
+      putFollow.send();
+      $(this).html("Follow");
+    }else{
+      var putFollow = new XMLHttpRequest();
+      putFollow.open("PUT", '/api/v1/users/' + '<%= session[:user_id] %>' + '/follow/' + this.id, true);
+      putFollow.send();
+      $(this).html("Unfollow");
+    }
+  });
+</script>
