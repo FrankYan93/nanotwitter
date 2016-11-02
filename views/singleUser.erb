@@ -13,7 +13,7 @@
     <p>
         <% x="location='../#{@followings[@i][:username]}/tweets'"%>
 
-          <a class="btn btn-default" href="#" role="button" id="status<%= @i %>"><%= @status%></a>
+          <a class="btn btn-default status" href="#" role="button" id="<%= @followings[@i][:id] %>"><%= @status%></a>
 
         <button class="btn" type="submit" onclick=<%= x %>>
             showhome</button>
