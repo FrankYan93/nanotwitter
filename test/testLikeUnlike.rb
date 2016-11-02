@@ -7,7 +7,7 @@ class TestLikeUnlike < MiniTest::Test
     Sinatra::Application
   end
 
-  def test_it_put_like_and_unlike
+  sdef test_it_put_like_and_unlike
     get '/api/v1/test/reset/all'
 
     put '/api/v1/register/testuser3/testpassword1'
