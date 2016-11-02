@@ -11,24 +11,53 @@
 
       <%= control_bar %>
 
-
         <% for i in 0..@follower_number-1  %>
           <% unless @followers[i].nil? %>
-          <% @Username = @followers[i][:username] %>
+          <!-- <% @Username = @followers[i][:username] %>
           <% @Nickname = @followers[i][:nickname] %>
           <% @birthday = @followers[i][:birthday] %>
           <% @description = @followers[i][:description] %>
-          <% @follower_id = @followers[i][:id] %>
+          <% @follower_id = @followers[i][:id] %> -->
+          <%   @i = i %>
           <% @iffollow = iffollow(session[:id], @followers[i][:id]) %>
           <% if @iffollow %>
           <%   @status = "Following" %>
           <% else %>
           <%   @status = "Not following" %>
           <% end %>
-          <%= erb :singleUser %>
+          <%= erb :singleUser_follower %>
         <% end %>
   <% end %>
 
     </div>
   </body>
 </html>
+<script type="text/javascript">
+$(".status").hover(function(){
+  if(this.innerHTML==="Following"){
+    $(this).html("Unfollow him");
+  }else{
+    $(this).html("Follow him");
+  }
+},function(){
+  if(this.innerHTML==="Unfollow him"){
+    $(this).html("Following");
+  }else{
+    $(this).html("Not following");
+  }
+});
+  $(".status").click(function(){
+    var st=this.innerHTML;
+    if(st === "Unfollow him"){
+      var putFollow = new XMLHttpRequest();
+      putFollow.open("PUT", '/api/v1/users/' + '<%= session[:user_id] %>' + '/unfollow/' + this.id, true);
+      putFollow.send();
+      $(this).parent().parent().hide();
+    }else{
+      var putFollow = new XMLHttpRequest();
+      putFollow.open("PUT", '/api/v1/users/' + '<%= session[:user_id] %>' + '/follow/' + this.id, true);
+      putFollow.send();
+      $(this).parent().parent().hide();
+    }
+  });
+</script>
