@@ -35,8 +35,14 @@ class User < ActiveRecord::Base
     end
 
     def self.not_follow_by(theid)
-        includes(:followerfollowings)
-            .references(:followerfollowings)
-            .where.not(followerfollowings: { user_id: theid })
+        theUserRelation=Followerfollowing.find_by(user_id: theid)
+        #print theUserRelation
+        if theUserRelation.to_a.size.zero?
+          all
+        else
+          includes(:followerfollowings)
+              .references(:followerfollowings)
+              .where.not(id: theUserRelation.pluck(:followed_user_id))
+        end
   end
 end
