@@ -8,6 +8,7 @@ class TestTweetCreate < MiniTest::Unit::TestCase
   end
 
  def setup
+  get '/api/v1/test/reset/all'
 #create 3 test users
   put '/api/v1/register/testuser1/testpassword1'
   @user1 =  User.find_by(username: "testuser1")

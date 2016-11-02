@@ -1,6 +1,6 @@
 require File.expand_path '../../test_helper.rb', __FILE__
 
-class TestTweetCreate < MiniTest::Unit::TestCase
+class TestFollowUnfollow < MiniTest::Unit::TestCase
   include Rack::Test::Methods
 
   def app
@@ -29,6 +29,13 @@ class TestTweetCreate < MiniTest::Unit::TestCase
 
     put "/api/v1/users/#{user1_id}/unfollow/#{user2_id}"
     assert_equal last_response.body, ""
+
+    user = User.find_by(id: user1_id)
+    assert_equal user["following_number"], 0
+
+    user = User.find_by(id: user2_id)
+    assert_equal user["follower_number"], 0
+
 
     user1 = User.find_by(username: "testuser1")
     user2 = User.find_by(username: "testuser2")

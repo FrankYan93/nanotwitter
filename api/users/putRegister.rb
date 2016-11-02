@@ -3,6 +3,7 @@ put '/api/v1/register/:username/:password' do
 end
 
 def heRegister params
+  if User.find_by(username: params[:username]).nil?
   newUser = User.new
   newpassword = Password.create(params[:password])
   newUser.username = params[:username]
@@ -12,4 +13,7 @@ def heRegister params
   newUser.nickname = ''
   newUser.save
   newUser
+  else
+  return "username is existed, please try another one"
+  end
 end

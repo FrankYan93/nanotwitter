@@ -48,6 +48,8 @@ This project is licensed under xxx License
 ## Tips
 
 1. To run the test, conduct "rake db:test:prepare" and "rake db:test:load"
+   Then type "rake" in the terminal to run all the test
+
 2. Reset database: "heroku pg:reset DATABASE_URL"
 
 heroku run rake db:migrate

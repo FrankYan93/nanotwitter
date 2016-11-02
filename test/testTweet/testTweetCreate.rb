@@ -8,6 +8,11 @@ class TestTweetCreate < MiniTest::Unit::TestCase
   end
 
   def test_it_create_tweet
+    user = User.find_by(username: "testtweet0")
+    unless user.nil?
+      user.destroy
+    end
+
     put '/api/v1/register/testtweet0/tweetpassword0'
     user = JSON.parse(last_response.body)
     user_id = user["id"]
@@ -16,6 +21,7 @@ class TestTweetCreate < MiniTest::Unit::TestCase
     tweet = JSON.parse(last_response.body)
     assert_equal tweet["content"], "tall"
     assert_equal tweet["user_id"], user_id
+    assert_equal tweet["nickname"], ""
 
     user = User.find_by(username: "testtweet0")
     tweet = Tweet.find_by(content: "tall")

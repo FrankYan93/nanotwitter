@@ -1,6 +1,6 @@
 require File.expand_path '../../test_helper.rb', __FILE__
 
-class TestTweetCreate < MiniTest::Unit::TestCase
+class TestEditProfile < MiniTest::Unit::TestCase
   include Rack::Test::Methods
 
   def app
@@ -8,6 +8,10 @@ class TestTweetCreate < MiniTest::Unit::TestCase
   end
 
   def test_it_edit_profile
+    user = User.find_by(username: "testuser")
+    unless user.nil?
+      user.destroy
+    end   
     put '/api/v1/register/testuser/testpassword'
     user = JSON.parse(last_response.body)
     user_id = user["id"]
