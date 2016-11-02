@@ -10,11 +10,11 @@ class TestLikeUnlike < MiniTest::Test
   def test_it_put_like_and_unlike
     get '/api/v1/test/reset/all'
 
-    put '/api/v1/register/testuser1/testpassword1'
+    put '/api/v1/register/testuser3/testpassword1'
     user1 = JSON.parse(last_response.body)
     user1_id = user1["id"]
 
-    put '/api/v1/register/testuser2/testpassword2'
+    put '/api/v1/register/testuser4/testpassword2'
     user2 = JSON.parse(last_response.body)
     user2_id = user2["id"]
 
@@ -23,7 +23,6 @@ class TestLikeUnlike < MiniTest::Test
     tweet_id = tweet["id"]
 
     put "/api/v1/users/#{user1_id}/likes/#{tweet_id}"
-
 
     tweet = Tweet.find_by(id: tweet_id)
     assert_equal tweet["like_numbers"], 1
