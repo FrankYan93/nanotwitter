@@ -2,6 +2,59 @@
 <html>
   <head>
     <title>user followings</title>
+    <% if session[:user_id] %>
+    <% cui=session[:user_id] %>
+    <% else %>
+    <% cui=-1 %>
+    <% end %>
+    <% followerId=@follower_id %>
+    <% followingId=@following_id %>
+    <script type="text/javascript">
+        var st = "<%= @status %>";
+        var current_user_id = <%= cui %> - 0;
+        <% unless followerId.nil? %>
+          var follower_id = <%= followerId %>;
+        <% else %>
+          var following_id = <%= followingId %>;
+        <% end %>
+        if (current_user_id === -1){
+                $("#login-first").show();
+            } else {
+                if (st === "Following") {
+                    $("#status_not_following").hide();
+                    $("#status_following").show();
+                } else {
+                    $("#status_following").hide();
+                    $("#status_not_following").show();
+                }
+                $("#status_following").click(function () {
+                    var putFollow = new XMLHttpRequest();
+                    putFollow.open("PUT", '/api/v1/users/' + current_user_id + '/unfollow/' + follower_id, true);
+                    putFollow.send();
+                    st = "Not following";
+                    $(this).hide();
+                    $("#status_not_following").show();
+                });
+                $("#status_following").mouseenter(function(){
+                  $(this).html("Unfollow him");
+                }).mouseleave(function(){
+                  $(this).html("Following");
+                });
+                $("#status_not_following").mouseenter(function(){
+                  $(this).html("Follow him");
+                }).mouseleave(function(){
+                  $(this).html("Not following");
+                });
+                $("#status_not_following").click(function () {
+                    var putFollow = new XMLHttpRequest();
+                    putFollow.open("PUT", '/api/v1/users/' + current_user_id + '/follow/' + follower_id, true);
+                    putFollow.send();
+                    st = "Following";
+                    $(this).hide();
+                    $("#status_following").show();
+                });
+            }
+    </script>
   </head>
 
   <body>
@@ -14,13 +67,13 @@
 
         <% for i in 0..@following_number-1  %>
          <% unless @followings[i].nil? %>
-          <% @Username = @followings[i][:username] %>
+          <!-- <% @Username = @followings[i][:username] %>
           <% @Nickname = @followings[i][:nickname] %>
           <% @birthday = @followings[i][:birthday] %>
           <% @description = @followings[i][:description] %>
-          <% @following_id = @followings[i][:id] %>
+          <% @following_id = @followings[i][:id] %> -->
+          <%   @i = i %>
           <%   @status = "Following" %>
-
           <%= erb :singleUser %>
         <% end %>
       <% end %>
@@ -34,8 +87,8 @@
           <% @birthday = @unfollowings[i][:birthday] %>
           <% @description = @unfollowings[i][:description] %>
           <% @following_id = @unfollowings[i][:id] %>
+          <%   @i = i %>
           <%   @status = "Not following" %>
-
           <%= erb :singleUser %>
         <% end %>
 <% end %>

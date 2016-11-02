@@ -40,7 +40,7 @@ class User < ActiveRecord::Base
         else
           includes(:followerfollowings)
               .references(:followerfollowings)
-              .where.not(id: theUserRelation.pluck(:followed_user_id))
+              .where.not(id: theUserRelation.pluck(:followed_user_id).push(theid))
         end
   end
 end
