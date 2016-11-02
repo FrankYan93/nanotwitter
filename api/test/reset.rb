@@ -100,7 +100,7 @@ def deleteAsFollower(username)
     Followerfollowing.where(user_id: testuser[:id]).find_each do |follow|
         followed_user = User.find_by id: follow[:followed_user_id]
         followed_user[:follower_number] -= 1
-        follows.destroy
+        follow.destroy
     end
 end
 
@@ -109,6 +109,6 @@ def deleteAsFollowing(username)
     Followerfollowing.where(followed_user_id: testuser[:id]).find_each do |follow|
         following_user = User.find_by id: follow[:user_id]
         following_user[:following_number] -= 1
-        follows.destroy
+        follow.destroy
     end
 end

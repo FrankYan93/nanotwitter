@@ -1,5 +1,5 @@
 # build everything from scratch
-# /api/v1/test/setup/all?count=100&tweets=100&testtweet=20&testfollow=20&follows = 20
+# /api/v1/test/setup/all?count=100&tweets=100&testtweet=20&testfollow=20&follows=20
 get '/api/v1/test/setup/all' do
     "begin setup"
     begin_time = Time.now
@@ -23,8 +23,10 @@ get '/api/v1/test/setup/all' do
         deleteAsFollower('testuser')
         deleteAsFollowing('testuser')
     end
-    resetTestuser
-    testuser = User.find_by username: 'testuser'
+    testuser.follower_number = 0
+    testuser.following_number = 0
+    testuser.save
+
 
     # create user and tweets
     createUsersTweets(count_number, tweet_number)
@@ -36,19 +38,19 @@ get '/api/v1/test/setup/all' do
       end
 
     # make testuser follow users
-    follow(testuser[:id], testuser[:id]+1)
+    # follow(testuser[:id], testuser[:id]+1)
     random_follow(testuser[:id],testuser_follow)
 
     # random follow
-    for i in 1..follow_number
+
         users = shuffle User.all.to_a, follow_number
-        for j in 1..follow_number
+        for i in 0..follow_number-1
             if users[i] == nil
               break
             end
             random_follow(users[i][:id], follow_number)
         end
-    end
+
 
     end_time = Time.now
     "setup all.\ntime used = #{end_time - begin_time}"
@@ -58,9 +60,12 @@ end
 def random_follow(id, count)
     not_followed_users = User.not_follow_by(id)
     users_to_follow = shuffle not_followed_users.to_a, count
-    for i in 1..count
+    times = 0
+    for i in 0..count-1
         break if users_to_follow[i].nil?
         followed_id = users_to_follow[i][:id]
         follow(id, followed_id)
+        times += 1
     end
+    puts times
 end

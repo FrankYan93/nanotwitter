@@ -30,14 +30,7 @@ end
 get '/api/v1/test/user/:id/follow' do
     begin_time = Time.now
     count_number = params[:count].to_i || 0
-    user_id = params[:id]
-    not_followed_users = User.not_follow_by(user_id)
-    users_to_follow = shuffle not_followed_users.to_a, count_number
-    for i in 1..count_number
-        break if users_to_follow[i].nil?
-        followed_id = users_to_follow[i][:id]
-        follow(user_id, followed_id)
-    end
+    random_follow(params[:id],testuser_follow)
     end_time = Time.now
     "make user #{user_id} follow #{count_number} users.\ntime used = #{end_time - begin_time}"
 end
@@ -46,12 +39,14 @@ end
 # n (integer) randomly selected users follow ‘n’ (integer) different randomlt seleted users.
 get '/api/v1/test/user/follow' do
     begin_time = Time.now
-    count_number = params[:count].to_i || 0
-    for i in 1..count_number
-        user_id = rand(User.count)
-        for j in 1..count_number
-            followed_id = rand(User.count)
-            follow(user_id, followed_id)
+    follow_number = (params[:count] || 20).to_i
+    for i in 0..follow_number-1
+        users = shuffle User.all.to_a, follow_number
+        for j in 0..follow_number-1
+            if users[i] == nil
+              break
+            end
+            random_follow(users[i][:id], follow_number)
         end
     end
     end_time = Time.now
@@ -94,6 +89,10 @@ def follow(user_id, followed_id)
     user = User.find_by(id: user_id)
     followed_user = User.find_by(id: followed_id)
     return if user.nil? || followed_user.nil?
+
+    follow = Followerfollowing.where(user_id: user_id, followed_user_id: followed_id)
+    return unless follow.empty?
+
     user['following_number'] += 1
     followed_user['follower_number'] += 1
     user.save
