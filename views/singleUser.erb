@@ -1,33 +1,25 @@
-
-
 <div class="well">
-
     <p>
         <font size="3" face="verdana">
-
-             <strong>
-               <%= @Username %>
-             </strong>
-
+            <strong>
+                <%= @Username %>
+            </strong>
         </font>
         <font size="2" face="verdana" color=grey>@<%= @Nickname %>*<%= @birthday %></font>
     </p>
-
     <p>
         <%= @description %>
     </p>
     <p>
-
         <% x="location='../#{@Username}/tweets'"%>
-        <a class="btn btn-default" href="#" role="button" id="status"><%= @status %></a>
 
+          <a class="btn btn-default" href="#" role="button" id="status_following"><%= @status%></a>
 
-        <button class="btn" type="submit" onclick= <%= x %>> showhome</button>
-
+        <button class="btn" type="submit" onclick=<%= x %>>
+            showhome</button>
     </p>
 </div>
-
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+<!-- <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -44,39 +36,58 @@
 
         </div>
     </div>
-</div>
-
+</div> -->
 <% if session[:user_id] %>
 <% cui=session[:user_id] %>
 <% else %>
 <% cui=-1 %>
 <% end %>
-<% tId=@follower_id %>
+<% followerId=@follower_id %>
+<% followingId=@following_id %>
+
 <script type="text/javascript">
-  var st="<%= @status %>";
-
-  var current_user_id = <%= cui %> - 0;
-  var follower_id = <%= tId %>;
-
-  $("#status").click(function(){
-    if (( st==="Following" ) && (current_user_id !== -1)) {
-
-        var putFollow = new XMLHttpRequest();
-        putFollow.open("PUT", '/api/v1/users/' + current_user_id + '/unfollow/' + follower_id, true);
-        putFollow.send();
-        st="Not following";
-        <% @status = "Not following" %>
-
-    } else if ((st === "Not following")&&(current_user_id !== -1)) {
-      var putFollow = new XMLHttpRequest();
-      putFollow.open("PUT", '/api/v1/users/' + current_user_id + '/follow/' + follower_id, true);
-      putFollow.send();
-      st="Following";
-      <% @status = "Following" %>
-    }else {
-        $("#login-first").show();
-    }
-  });
-
-
+    var st = "<%= @status %>";
+    var current_user_id = <%= cui %> - 0;
+    <% unless followerId.nil? %>
+      var follower_id = <%= followerId %>;
+    <% else %>
+      var following_id = <%= followingId %>;
+    <% end %>
+    if (current_user_id === -1){
+            $("#login-first").show();
+        } else {
+            if (st === "Following") {
+                $("#status_not_following").hide();
+                $("#status_following").show();
+            } else {
+                $("#status_following").hide();
+                $("#status_not_following").show();
+            }
+            $("#status_following").click(function () {
+                var putFollow = new XMLHttpRequest();
+                putFollow.open("PUT", '/api/v1/users/' + current_user_id + '/unfollow/' + follower_id, true);
+                putFollow.send();
+                st = "Not following";
+                $(this).hide();
+                $("#status_not_following").show();
+            });
+            $("#status_following").mouseenter(function(){
+              $(this).html("Unfollow him");
+            }).mouseleave(function(){
+              $(this).html("Following");
+            });
+            $("#status_not_following").mouseenter(function(){
+              $(this).html("Follow him");
+            }).mouseleave(function(){
+              $(this).html("Not following");
+            });
+            $("#status_not_following").click(function () {
+                var putFollow = new XMLHttpRequest();
+                putFollow.open("PUT", '/api/v1/users/' + current_user_id + '/follow/' + follower_id, true);
+                putFollow.send();
+                st = "Following";
+                $(this).hide();
+                $("#status_following").show();
+            });
+        }
 </script>

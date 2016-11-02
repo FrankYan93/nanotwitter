@@ -18,13 +18,13 @@
           <% @Nickname = @followings[i][:nickname] %>
           <% @birthday = @followings[i][:birthday] %>
           <% @description = @followings[i][:description] %>
-          <% @follower_id = @followings[i][:id] %>
+          <% @following_id = @followings[i][:id] %>
           <%   @status = "Following" %>
 
           <%= erb :singleUser %>
         <% end %>
       <% end %>
-      
+
         <h2>"Some Users you may interest in!"</h2>
 
         <% for i in 0..@count_number-1  %>
@@ -33,7 +33,7 @@
           <% @Nickname = @unfollowings[i][:nickname] %>
           <% @birthday = @unfollowings[i][:birthday] %>
           <% @description = @unfollowings[i][:description] %>
-          <% @follower_id = @unfollowings[i][:id] %>
+          <% @following_id = @unfollowings[i][:id] %>
           <%   @status = "Not following" %>
 
           <%= erb :singleUser %>
