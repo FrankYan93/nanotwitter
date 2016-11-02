@@ -8,7 +8,7 @@ def heUnfollow params
   a=User.find(params[:user_id])
   a[:following_number]-=1
   a.save
-  b=User.find(params[:followed_user_id])
+  b=User.find(params[:following_id])
   b[:follower_number]-=1
   b.save
 end

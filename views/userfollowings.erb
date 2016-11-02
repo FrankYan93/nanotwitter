@@ -2,14 +2,6 @@
 <html>
   <head>
     <title>user followings</title>
-    <!-- <% if session[:user_id] %>
-    <% cui=session[:user_id] %>
-    <% else %>
-    <% cui=-1 %>
-    <% end %>
-    <% followerId=@follower_id %>
-    <% followingId=@following_id %> -->
-
   </head>
 
   <body>
@@ -18,7 +10,6 @@
       <h1>Follwings of <%= @user_name %></h1>
 
       <%= control_bar %>
-
 
         <% for i in 0..@following_number-1  %>
          <% unless @followings[i].nil? %>
@@ -45,12 +36,12 @@
 <script type="text/javascript">
 $(".status").hover(function(){
   if(this.innerHTML==="Following"){
-    $(this).html("Unfollow him");
+    $(this).html("Unfollow");
   }else{
-    $(this).html("Follow him");
+    $(this).html("Follow");
   }
 },function(){
-  if(this.innerHTML==="Unfollow him"){
+  if(this.innerHTML==="Unfollow"){
     $(this).html("Following");
   }else{
     $(this).html("Not following");
@@ -58,10 +49,11 @@ $(".status").hover(function(){
 });
   $(".status").click(function(){
     var st=this.innerHTML;
-    if(st === "Unfollow him"){
+    if(st === "Unfollow"){
       var putFollow = new XMLHttpRequest();
       putFollow.open("PUT", '/api/v1/users/' + '<%= session[:user_id] %>' + '/unfollow/' + this.id, true);
       putFollow.send();
+      //$("#following_number").html()
       $(this).parent().parent().hide();
     }else{
       var putFollow = new XMLHttpRequest();
