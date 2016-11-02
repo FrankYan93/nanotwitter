@@ -78,47 +78,4 @@ $(".status").hover(function(){
       $(this).parent().parent().hide();
     }
   });
-    // var current_user_id = <%= cui %> - 0;
-    // <% unless followerId.nil? %>
-    //   var follower_id = <%= followerId %>;
-    // <% else %>
-    //   var following_id = <%= followingId %>;
-    // <% end %>
-    // if (current_user_id === -1){
-    //         $("#login-first").show();
-    //     } else {
-    //         if (st === "Following") {
-    //             $("#status_not_following").hide();
-    //             $("#status_following").show();
-    //         } else {
-    //             $("#status_following").hide();
-    //             $("#status_not_following").show();
-    //         }
-    //         $("#status_following").click(function () {
-    //             var putFollow = new XMLHttpRequest();
-    //             putFollow.open("PUT", '/api/v1/users/' + current_user_id + '/unfollow/' + follower_id, true);
-    //             putFollow.send();
-    //             st = "Not following";
-    //             $(this).hide();
-    //             $("#status_not_following").show();
-    //         });
-    //         $("#status_following").mouseenter(function(){
-    //           $(this).html("Unfollow him");
-    //         }).mouseleave(function(){
-    //           $(this).html("Following");
-    //         });
-    //         $("#status_not_following").mouseenter(function(){
-    //           $(this).html("Follow him");
-    //         }).mouseleave(function(){
-    //           $(this).html("Not following");
-    //         });
-    //         $("#status_not_following").click(function () {
-    //             var putFollow = new XMLHttpRequest();
-    //             putFollow.open("PUT", '/api/v1/users/' + current_user_id + '/follow/' + follower_id, true);
-    //             putFollow.send();
-    //             st = "Following";
-    //             $(this).hide();
-    //             $("#status_following").show();
-    //         });
-    //     }
 </script>
