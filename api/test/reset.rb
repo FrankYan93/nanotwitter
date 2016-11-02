@@ -1,6 +1,7 @@
 require 'csv'
 require 'time'
 
+# delete all data and create a testuser
 get '/api/v1/test/reset/all' do
     deleteAll
     resetTestuser
@@ -8,6 +9,7 @@ get '/api/v1/test/reset/all' do
     "user size = #{user_size}"
 end
 
+# create data based on seeds
 get '/api/v1/test/reset/standard' do
     deleteAll
     setUser
@@ -16,6 +18,7 @@ get '/api/v1/test/reset/standard' do
     resetTestuser
 end
 
+# reset all about testuser
 get '/api/v1/test/reset/testuser' do
     testuser = User.find_by username: 'testuser'
     unless testuser.nil?
@@ -26,6 +29,8 @@ get '/api/v1/test/reset/testuser' do
     resetTestuser
     "test user is reseted"
 end
+
+
 
 def deleteAll
     User.destroy_all
