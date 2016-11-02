@@ -52,12 +52,12 @@ $(".status").hover(function(){
       var putFollow = new XMLHttpRequest();
       putFollow.open("PUT", '/api/v1/users/' + '<%= session[:user_id] %>' + '/unfollow/' + this.id, true);
       putFollow.send();
-      $(this).parent().parent().hide();
+      $(this).html("Follow him");
     }else{
       var putFollow = new XMLHttpRequest();
       putFollow.open("PUT", '/api/v1/users/' + '<%= session[:user_id] %>' + '/follow/' + this.id, true);
       putFollow.send();
-      $(this).parent().parent().hide();
+      $(this).html("Unfollow him");
     }
   });
 </script>
