@@ -35,12 +35,12 @@
 <script type="text/javascript">
 $(".status").hover(function(){
   if(this.innerHTML==="Following"){
-    $(this).html("Unfollow him");
+    $(this).html("Unfollow");
   }else{
-    $(this).html("Follow him");
+    $(this).html("Follow");
   }
 },function(){
-  if(this.innerHTML==="Unfollow him"){
+  if(this.innerHTML==="Unfollow"){
     $(this).html("Following");
   }else{
     $(this).html("Not following");
@@ -48,16 +48,16 @@ $(".status").hover(function(){
 });
   $(".status").click(function(){
     var st=this.innerHTML;
-    if(st === "Unfollow him"){
+    if(st === "Unfollow"){
       var putFollow = new XMLHttpRequest();
       putFollow.open("PUT", '/api/v1/users/' + '<%= session[:user_id] %>' + '/unfollow/' + this.id, true);
       putFollow.send();
-      $(this).html("Follow him");
+      $(this).html("Follow");
     }else{
       var putFollow = new XMLHttpRequest();
       putFollow.open("PUT", '/api/v1/users/' + '<%= session[:user_id] %>' + '/follow/' + this.id, true);
       putFollow.send();
-      $(this).html("Unfollow him");
+      $(this).html("Unfollow");
     }
   });
 </script>
