@@ -25,16 +25,13 @@
 
 
         <% for i in (0+@n*20)..(19+@n*20) %>
-          <% if @time_line_tweets[i] == nil %>
-            <% break %>
-          <% end %>
-          <% @Nickname = @time_line_tweets[i][:nickname] %>
-          <% @tweet_time = @time_line_tweets[i][:create_time] %>
-          <% @tweet_user_name = @time_line_tweets[i][:username] %>
-          <% @tweet_content = @time_line_tweets[i][:content] %>
-          <% @tweet_id = @time_line_tweets[i][:id] %>
+        <% if @all_tweets[i] == nil %>
+          <% break %>
+        <% end %>
+          <% @tweet = @all_tweets[i] %>
           <%= erb :singleTweet %>
         <% end %>
+
 
       <nav aria-label="Page navigation">
         <ul class="pagination">

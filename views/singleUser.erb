@@ -2,17 +2,17 @@
     <p>
         <font size="3" face="verdana">
             <strong>
-                <%= @followings[@i][:username] %>
+                <%= @users[@i][:username] %>
             </strong>
         </font>
-        <font size="2" face="verdana" color=grey>@<%= @Nickname %>*<%= @followings[@i][:birthday] %></font>
+        <font size="2" face="verdana" color=grey><%= @users[@i][:nickname] %>*<%= @users[@i][:birthday] %></font>
     </p>
     <p>
-        <%= @followings[@i][:description] %>
+        <%= @users[@i][:description] %>
     </p>
     <p>
-        <% x="location='../#{@followings[@i][:username]}/tweets'"%>
-          <a class="btn btn-default status" href="#" role="button" id="<%= @followings[@i][:id] %>"><%= @status%></a>
+        <% x="location='../#{@users[@i][:username]}/tweets'"%>
+          <a class="btn btn-default status" href="#" role="button" id="<%= @users[@i][:id] %>"><%= @status%></a>
         <button class="btn" type="submit" onclick=<%= x %>>
             showhome</button>
     </p>

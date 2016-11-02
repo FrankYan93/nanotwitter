@@ -13,19 +13,14 @@
 
 
 
-      <% unless @user_tweets.size.zero? %>
       <% for i in (0+@n*20)..(19+@n*20) %>
-        <% if @user_tweets[i] == nil %>
+        <% if @all_tweets[i] == nil %>
           <% break %>
         <% end %>
-          <% @Nickname = @user_tweets[i][:nickname] %>
-          <% @tweet_time = @user_tweets[i][:create_time] %>
-          <% @tweet_user_name = @user_tweets[i][:username] %>
-          <% @tweet_content = @user_tweets[i][:content] %>
-          <% @tweet_id = @user_tweets[i][:id] %>
+          <% @tweet = @all_tweets[i] %>
           <%= erb :singleTweet %>
         <% end %>
-      <% end %>
+      
 
 
       <nav aria-label="Page navigation">

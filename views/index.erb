@@ -7,19 +7,16 @@
 
   <body>
     <div class="container theme-showcase" role="main">
-      <h1>There will be non-login timeline below.</h1>
+      <h1>Recent tweets</h1>
+
       <% for i in (0+@n*20)..(19+@n*20) %>
-        <% if @all_recent_tweets[i] == nil %>
+        <% if @all_tweets[i] == nil %>
           <% break %>
         <% end %>
-        <% @Nickname = @all_recent_tweets[i][:nickname] %>
-        <% @tweet_time = @all_recent_tweets[i][:create_time] %>
-        <% @tweet_user_name = @all_recent_tweets[i][:username] %>
-        <% @tweet_content = @all_recent_tweets[i][:content] %>
-        <% @tweet_id = @all_recent_tweets[i][:id] %>
+          <% @tweet = @all_tweets[i] %>
+          <%= erb :singleTweet %>
+        <% end %>
 
-        <%= erb :singleTweet %>
-      <% end %>
 
 
       <nav aria-label="Page navigation">
