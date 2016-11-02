@@ -12,28 +12,8 @@
     </p>
     <p>
         <% x="location='../#{@followings[@i][:username]}/tweets'"%>
-
           <a class="btn btn-default status" href="#" role="button" id="<%= @followings[@i][:id] %>"><%= @status%></a>
-
         <button class="btn" type="submit" onclick=<%= x %>>
             showhome</button>
     </p>
 </div>
-<!-- <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-                <h4 class="modal-title" id="myModalLabel">@<%= @Nickname %>*<%= @birthday %></h4>
-            </div>
-            <div class="modal-body">
-                <p>
-                    <%= @description %>
-                </p>
-            </div>
-
-        </div>
-    </div>
-</div> -->
