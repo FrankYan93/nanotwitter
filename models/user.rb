@@ -9,7 +9,6 @@ class User < ActiveRecord::Base
     has_many :notifications
     has_many :likes
     has_many :mentions
-
     include BCrypt
     attr_reader :name
     attr_reader :last_signin
@@ -35,9 +34,8 @@ class User < ActiveRecord::Base
     end
 
     def self.not_follow_by(theid)
-        theUserRelation=Followerfollowing.find_by(user_id: theid)
-        #print theUserRelation
-        if theUserRelation.to_a.size.zero?
+        theUserRelation=Followerfollowing.where(user_id: theid)
+        if theUserRelation.empty?
           all
         else
           includes(:followerfollowings)
