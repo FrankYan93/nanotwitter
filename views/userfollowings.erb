@@ -34,6 +34,8 @@
   </body>
 </html>
 <script type="text/javascript">
+var following_number=<%= @following_number %>;
+var follower_number=<%= @follower_number %>;
 $(".status").hover(function(){
   if(this.innerHTML==="Following"){
     $(this).html("Unfollow");
@@ -53,12 +55,15 @@ $(".status").hover(function(){
       var putFollow = new XMLHttpRequest();
       putFollow.open("PUT", '/api/v1/users/' + '<%= session[:user_id] %>' + '/unfollow/' + this.id, true);
       putFollow.send();
-      //$("#following_number").html()
+      following_number-=1;
+      $("#following_number").html(following_number+' followings  ');
       $(this).parent().parent().hide();
     }else{
       var putFollow = new XMLHttpRequest();
       putFollow.open("PUT", '/api/v1/users/' + '<%= session[:user_id] %>' + '/follow/' + this.id, true);
       putFollow.send();
+      following_number+=1;
+      $("#following_number").html(following_number+' followings  ');
       $(this).parent().parent().hide();
     }
   });
