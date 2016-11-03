@@ -60,6 +60,23 @@ get '/:username/showhome' do
     erb :showhome
 end
 
+get '/showProfile' do
+  if session[:user_id].nil?
+    not_log_in_home
+  else
+  @username = params[:usename]
+  currentUser = User.find_by(username: session[:username])
+
+  @password_hash = Password.new currentUser.password
+
+  @birthday = currentUser.birthday
+  @nickname = currentUser.nickname
+  @description = currentUser.description
+
+  erb :showProfile
+  end
+end
+
 def iffollow(id, following_id)
     relationship = Followerfollowing.where({user_id: id, followed_user_id: following_id})
     if relationship.size.zero?

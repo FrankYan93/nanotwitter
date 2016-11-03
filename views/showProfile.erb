@@ -1,0 +1,31 @@
+<head>
+  <title>nanoTwitter-editProfile</title>
+</head>
+
+<body>
+  <div class="container theme-showcase" role="main">
+
+  <h1>  "Welcome <%= session[:username] %>! your Profle " </h1>
+  <form class="form-editProfie" action="/editProfile" method="POST">
+      <h2 class="form-editProfile-heading">Please edit your profile</h2>
+
+      <div class="form-group">
+      <label for="changePassword">Password</label>
+      <input type="password" name="password" id="inputPassword" class="form-control" placeholder= "<%= @password %>" required=""></div>
+
+      <div class="form-group">
+      <label for="changebirthday">Birthday</label>
+      <input type="birthday" name="birthday" id="inputBirthday" class="form-control" placeholder="<%= @birthday%>" required=""></div>
+
+      <div class="form-group">
+      <label for="changeNickname">Nickname</label>
+      <input type="nickname" name="nickname" id="inputNickname" class="form-control" placeholder="<%= @nickname%>" required=""></div>
+
+      <div class="form-group">
+      <label for="changeDescription">Description</label>
+      <input type="description" name="description" id="inputDescription" class="form-control" placeholder="<%= @description%>" required=""></div>
+
+
+  </form>
+</div>
+</body>
