@@ -1,8 +1,7 @@
+$rakedb=true
 require './app'
 require 'sinatra/activerecord/rake'
 require 'zlib'
-
-$rakedb=false
 
 namespace :db do
     task :load_config do
