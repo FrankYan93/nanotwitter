@@ -14,6 +14,7 @@ Dir[File.dirname(__FILE__) + '/api/tweets/*.rb'].each { |file| require file }
 Dir[File.dirname(__FILE__) + '/api/test/*.rb'].each { |file| require file }
 Dir[File.dirname(__FILE__) + '/service/*.rb'].each { |file| require file }
 
+require_relative 'config/initializers/redis.rb'
 configure :production do
     require 'newrelic_rpm'
 end

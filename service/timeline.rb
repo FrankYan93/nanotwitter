@@ -38,7 +38,7 @@ def not_log_in_home
       log_in_home
     else
       @n = params[:n].to_i || 0
-      @all_tweets = Tweet.all.order(create_time: :desc).limit(100)
+      #@all_tweets = Tweet.all.order(create_time: :desc).limit(100)
       erb :index
     end
 end
