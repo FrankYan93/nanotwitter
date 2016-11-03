@@ -6,14 +6,16 @@ require 'byebug'
 require 'time'
 require 'faker'
 
-#require apis
+# require apis
 Dir[File.dirname(__FILE__) + '/models/*.rb'].each { |file| require file }
 Dir[File.dirname(__FILE__) + '/api/users/*.rb'].each { |file| require file }
 Dir[File.dirname(__FILE__) + '/api/tweets/*.rb'].each { |file| require file }
 Dir[File.dirname(__FILE__) + '/api/test/*.rb'].each { |file| require file }
 Dir[File.dirname(__FILE__) + '/service/*.rb'].each { |file| require file }
 
-
+configure :production do
+    require 'newrelic_rpm'
+end
 enable :sessions
 
 include BCrypt
@@ -46,27 +48,26 @@ def redirect_to_original_request
     redirect original_request
 end
 
-
 get '/' do
-  #@sessionUserId
-  if session[:user_id].nil?
-    not_log_in_home
-  else
-    log_in_home
-  end
+    # @sessionUserId
+    if session[:user_id].nil?
+        not_log_in_home
+    else
+        log_in_home
+    end
 end
 
 get '/home' do
     if session[:user_id].nil?
-      not_log_in_home
+        not_log_in_home
     else
-      #print User.not_follow_by(session[:user_id])[0][:username]
-      log_in_home
+        # print User.not_follow_by(session[:user_id])[0][:username]
+        log_in_home
     end
 end
 
 get '/signup' do
-  erb :signUp
+    erb :signUp
 end
 
 post '/signup' do
@@ -96,7 +97,7 @@ post '/signin/?' do
         session[:user_id] = current_user_id
         session[:username] = current_username
         redirect '/home'
-        #redirect_to_original_request
+        # redirect_to_original_request
     end
 end
 
