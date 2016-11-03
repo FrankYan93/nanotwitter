@@ -107,7 +107,6 @@ end
 
 get '/signout/?' do
     session.clear
-    session[:user_id] = nil
     redirect '/'
 end
 

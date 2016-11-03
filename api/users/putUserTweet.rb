@@ -15,6 +15,9 @@ def hisNewTweet(params)
     if $redis.llen('nonlogin_timeline') > $maxRecentNum
         $redis.rpop('nonlogin_timeline')
     end
-    Thread.new{insertIntoAllFollower params['user_id'],newtweet}#do it concurrently?
+    Thread.new{
+      insertIntoAllFollower params['user_id'],newtweet
+      ActiveRecord::Base.connection.close
+    }#do it concurrently?
     newtweet
 end
