@@ -78,7 +78,7 @@ post '/signup' do
         redirect to('/home')
     else
         @errorString = ' ------ Username existed! Please try another name!'
-        erb :index
+        erb :signUp
     end
 end
 
