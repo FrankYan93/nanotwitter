@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>nanoTwitter-SearchTweet</title>
+  </head>
+
+  <body>
+    <div class="container theme-showcase" role="main">
+
+        <h1>Search Result of <%= @word %>!</h1>
+        <% if @users.nil? %>
+        <%= "No Result Found" %>
+        <% else %>
+        <% for i in 0..@users.size-1 %>
+        <% @iffollow = iffollow(session[:id], @users[i][:id]) %>
+        <% if @iffollow %>
+        <% @status = "Following" %>
+        <% else %>
+        <% @status = "Not following" %>
+        <% end %>
+        <% @i = i %>
+        <%= erb :singleUser %>
+        <% end %>
+        <% end %>
+
+
+
+    </div>
+  </body>
+</html>
+<script type="text/javascript">
+
+$(".status").hover(function(){
+  if(this.innerHTML==="Following"){
+    $(this).html("Unfollow");
+  }else{
+    $(this).html("Follow");
+  }
+},function(){
+  if(this.innerHTML==="Unfollow"){
+    $(this).html("Following");
+  }else{
+    $(this).html("Not following");
+  }
+});
+  $(".status").click(function(){
+    var st=this.innerHTML;
+    if(st === "Unfollow"){
+      var putFollow = new XMLHttpRequest();
+      putFollow.open("PUT", '/api/v1/users/' + '<%= session[:user_id] %>' + '/unfollow/' + this.id, true);
+      putFollow.send();
+
+
+      $(this).parent().parent().parent().hide();
+    }else{
+      var putFollow = new XMLHttpRequest();
+      putFollow.open("PUT", '/api/v1/users/' + '<%= session[:user_id] %>' + '/follow/' + this.id, true);
+      putFollow.send();
+
+
+      $(this).parent().parent().parent().hide();
+    }
+  });
+</script>
