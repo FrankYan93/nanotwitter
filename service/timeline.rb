@@ -25,9 +25,7 @@ def log_in_home
         @follower_number = currentUser.follower_number
         @following_number = currentUser.following_number
 
-        n = 100
-        join_follows_tweets = Followerfollowing.joins('JOIN tweets ON tweets.user_id = followerfollowings.followed_user_id').where(user_id: user_id)
-        @all_tweets = join_follows_tweets.merge(Tweet.order(create_time: :desc)).limit(n).select('tweets.id,tweets.nickname,tweets.username,tweets.content,tweets.create_time')
+        updateUserRedis
         @n = params[:n].to_i || 0
         erb :home
     end

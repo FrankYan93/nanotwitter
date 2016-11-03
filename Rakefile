@@ -1,5 +1,7 @@
 $rakedb=true
 require './app'
+$rakedb=false
+
 require 'sinatra/activerecord/rake'
 require 'zlib'
 
