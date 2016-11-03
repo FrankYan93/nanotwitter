@@ -1,2 +1,2 @@
-$redis = Redis.new(url: ENV["REDIS_URL"], timeout: 3600)
+$redis = Redis.new(url: ENV["REDIS_URL"])
 $maxRecentNum=100

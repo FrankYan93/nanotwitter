@@ -20,6 +20,8 @@ configure :production do
 end
 enable :sessions
 
+require_relative 'cache_redis.rb' if ($redis.llen('nonlogin_timeline').zero?)&&(!$rakedb)
+
 include BCrypt
 
 def authenticate!
