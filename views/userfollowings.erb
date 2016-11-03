@@ -57,14 +57,14 @@ $(".status").hover(function(){
       putFollow.send();
       following_number-=1;
       $("#following_number").html(following_number+' followings  ');
-      $(this).parent().parent().hide();
+      $(this).parent().parent().parent().hide();
     }else{
       var putFollow = new XMLHttpRequest();
       putFollow.open("PUT", '/api/v1/users/' + '<%= session[:user_id] %>' + '/follow/' + this.id, true);
       putFollow.send();
       following_number+=1;
       $("#following_number").html(following_number+' followings  ');
-      $(this).parent().parent().hide();
+      $(this).parent().parent().parent().hide();
     }
   });
 </script>

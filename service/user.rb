@@ -17,7 +17,7 @@ post '/editProfile' do
     currentUser.nickname = params[:nickname] unless params[:nickname].nil?
     currentUser.description = params[:description] unless params[:description].nil?
     currentUser.save
-    erb :home
+    log_in_home 
 end
 
 get '/:username/followers' do
