@@ -1,0 +1,32 @@
+<head>
+  <title>nanoTwitter-showProfile</title>
+</head>
+
+<body>
+  <div class="container">
+      <div class="row">
+          <div class="col-xs-12 col-sm-6 col-md-6">
+              <div class="well well-sm">
+                  <div class="row">
+                      <div class="col-sm-6 col-md-4">
+                          <img src="http://data.bbs.manmankan.com/forum/201401/06/200928nlh3ovhnnzcc3cco.gif" alt="" class="img-rounded img-responsive" />
+                      </div>
+                      <div class="col-sm-6 col-md-8">
+                          <h2>
+                               <%= @username %> </h2>
+                          <h4>
+                              Nickname: <%= @nickname  %>  </h4>
+                          <p>
+                              <i class="glyphicon glyphicon-globe"></i>Description: <%= @description %>
+                              <br />
+
+                              <i class="glyphicon glyphicon-gift"></i>Birthday: <%= @birthday %></p>
+
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+
+</body>
