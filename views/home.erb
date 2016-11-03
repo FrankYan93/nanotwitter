@@ -25,10 +25,10 @@
 
 
         <% for i in (0+@n*20)..(19+@n*20) %>
-        <% if $redis.lindex(session[:username],i).nil? %>
+        <% if $redis.lindex(session[:user_id],i).nil? %>
           <% break %>
         <% end %>
-          <% @tweet = JSON.parse($redis.lindex(session[:username],i)) %>
+          <% @tweet = JSON.parse($redis.lindex(session[:user_id],i)) %>
           <% @i=i %>
           <%= erb :singleTweet %>
         <% end %>
