@@ -2,16 +2,16 @@
 <html>
 <body>
 
-<div class="well" data-toggle="modal" data-target="#myModal">
+<div class="well" data-toggle="modal" data-target="#myModal<%= @i %>">
     <p>
         <font size="3" face="verdana">
-            <strong><%= @tweet[:nickname] %></strong>
+            <strong><%= @tweet['nickname'] %></strong>
         </font>
-        <font size="2" face="verdana" color=grey>@<%= @tweet[:username] %>*<%= @tweet[:create_time] %></font>
+        <font size="2" face="verdana" color=grey>@<%= @tweet['username'] %>*<%= @tweet['create_time'] %></font>
     </p>
 
     <p>
-        <%= @tweet[:content] %>
+        <%= @tweet['content'] %>
     </p>
     <p>
         <a class="btn btn-default" href="#" role="button">Reply</a>
@@ -20,25 +20,25 @@
     </p>
 </div>
 
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+<div class="modal fade" id="myModal<%= @i %>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
-                <h4 class="modal-title" id="myModalLabel">@<%= @tweet_user_name %>*<%= @tweet_time %></h4>
+                <h4 class="modal-title" id="myModalLabel">@<%= @tweet['username'] %>*<%= @tweet['create_time'] %></h4>
             </div>
             <div class="modal-body">
                 <p>
-                    <%= @tweet_content %>
+                    <%= @tweet['content'] %>
                 </p>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-primary">Reply</button>
                 <button type="button" class="btn btn-primary">Retweet</button>
-                <button type="button" class="btn btn-primary" id="like">Like</button>
-                <button type="button" class="btn btn-primary" id="unlike">unLike</button>
+                <button type="button" class="btn btn-primary" id="like<%= @i %>">Like</button>
+                <button type="button" class="btn btn-primary" id="unlike<%= @i %>">unLike</button>
             </div>
         </div>
     </div>
@@ -49,11 +49,11 @@
 <% else %>
 <% cui=-1 %>
 <% end %>
-<% tId=@tweet[:id] %>
+<% tId=@tweet['id'] %>
 
 <script type="text/javascript">
-  $("#unlike").hide();
-  $("#unlike").click(function(){
+  $("#unlike<%= @i %>").hide();
+  $("#unlike<%= @i %>").click(function(){
     var current_user_id = <%= cui %> - 0;
     var tweet_id = <%= tId %>;
     if (current_user_id !== -1) {
@@ -61,19 +61,19 @@
         putLike.open("PUT", '/api/v1/users/' + current_user_id + '/unlike/' + tweet_id, true);
         putLike.send();
         $(this).hide();
-        $("#like").show();
+        $("#like<%= @i %>").show();
     } else {
         $("#login-first").show();
-        $("#myModal").modal('hide');
+        $("#myModal<%= @i %>").modal('hide');
     }
   });
-    $("#like").mouseenter(function(){
+    $("#like<%= @i %>").mouseenter(function(){
       this.innerHTML="I like it!";
     });
-    $("#like").mouseleave(function(){
+    $("#like<%= @i %>").mouseleave(function(){
       this.innerHTML="Like";
     });
-    $("#like").click(function () {
+    $("#like<%= @i %>").click(function () {
         var current_user_id = <%= cui %> - 0;
         var tweet_id = <%= tId %>;
         if (current_user_id !== -1) {
@@ -81,10 +81,10 @@
             putLike.open("PUT", '/api/v1/users/' + current_user_id + '/likes/' + tweet_id, true);
             putLike.send();
             $(this).hide();
-            $("#unlike").show();
+            $("#unlike<%= @i %>").show();
         } else {
             $("#login-first").show();
-            $("#myModal").modal('hide');
+            $("#myModal<%= @i %>").modal('hide');
 
         }
         });

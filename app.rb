@@ -5,16 +5,22 @@ require 'active_record'
 require 'byebug'
 require 'time'
 require 'faker'
+require 'redis'
 
-#require apis
+# require apis
 Dir[File.dirname(__FILE__) + '/models/*.rb'].each { |file| require file }
 Dir[File.dirname(__FILE__) + '/api/users/*.rb'].each { |file| require file }
 Dir[File.dirname(__FILE__) + '/api/tweets/*.rb'].each { |file| require file }
 Dir[File.dirname(__FILE__) + '/api/test/*.rb'].each { |file| require file }
 Dir[File.dirname(__FILE__) + '/service/*.rb'].each { |file| require file }
 
-
+require_relative 'config/initializers/redis.rb'
+configure :production do
+    require 'newrelic_rpm'
+end
 enable :sessions
+
+require_relative 'cache_redis.rb' if ($redis.llen('nonlogin_timeline').zero?)&&(!$rakedb)
 
 include BCrypt
 
@@ -46,27 +52,26 @@ def redirect_to_original_request
     redirect original_request
 end
 
-
 get '/' do
-  #@sessionUserId
-  if session[:user_id].nil?
-    not_log_in_home
-  else
-    log_in_home
-  end
+    # @sessionUserId
+    if session[:user_id].nil?
+        not_log_in_home
+    else
+        log_in_home
+    end
 end
 
 get '/home' do
     if session[:user_id].nil?
-      not_log_in_home
+        not_log_in_home
     else
-      #print User.not_follow_by(session[:user_id])[0][:username]
-      log_in_home
+        # print User.not_follow_by(session[:user_id])[0][:username]
+        log_in_home
     end
 end
 
 get '/signup' do
-  erb :signUp
+    erb :signUp
 end
 
 post '/signup' do
@@ -78,7 +83,7 @@ post '/signup' do
         redirect to('/home')
     else
         @errorString = ' ------ Username existed! Please try another name!'
-        erb :index
+        erb :signUp
     end
 end
 
@@ -96,7 +101,7 @@ post '/signin/?' do
         session[:user_id] = current_user_id
         session[:username] = current_username
         redirect '/home'
-        #redirect_to_original_request
+        # redirect_to_original_request
     end
 end
 

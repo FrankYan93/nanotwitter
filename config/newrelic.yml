@@ -5,18 +5,18 @@
 #
 # Generated November 03, 2016
 #
-# This configuration file is custom generated for nanoTwitter_1
+# This configuration file is custom generated for app58078665@heroku.com
 #
 # For full documentation of agent configuration options, please refer to
 # https://docs.newrelic.com/docs/agents/ruby-agent/installation-configuration/ruby-agent-configuration
 
 common: &default_settings
   # Required license key associated with your New Relic account.
-  license_key: 51f9e7f206735bdcf9bd3c4a4a46d1c9826fe689
+  license_key: 5ddee28a2fd0a10592cc373a9e087d7e359f2d03
 
   # Your application name. Renaming here affects where data displays in New
   # Relic.  For more details, see https://docs.newrelic.com/docs/apm/new-relic-apm/maintenance/renaming-applications
-  app_name: nanoTwitter
+  app_name: My Application
 
   # To disable the agent regardless of other settings, uncomment the following:
   # agent_enabled: false
@@ -30,7 +30,7 @@ common: &default_settings
 # If your application has other named environments, configure them here.
 development:
   <<: *default_settings
-  app_name: nanoTwitter (Development)
+  app_name: My Application (Development)
 
   # NOTE: There is substantial overhead when running in developer mode.
   # Do not use for production or load testing.
@@ -43,7 +43,7 @@ test:
 
 staging:
   <<: *default_settings
-  app_name: nanoTwitter (Staging)
+  app_name: My Application (Staging)
 
 production:
   <<: *default_settings

@@ -1,41 +1,35 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>user followings</title>
+    <title>nanoTwitter-SearchTweet</title>
   </head>
 
   <body>
     <div class="container theme-showcase" role="main">
 
-      <h1>Follwings of <%= @user_name %></h1>
-
-      <%= control_bar %>
-
-        <% for i in 0..@following_number-1  %>
-         <% unless @followings[i].nil? %>
-          <%   @i = i %>
-          <%   @status = "Following" %>
-          <%   @users = @followings %>
-          <%= erb :singleUser %>
+        <h1>Search Result of <%= @word %>!</h1>
+        <% if @users.nil? %>
+        <%= "No Result Found" %>
+        <% else %>
+        <% for i in 0..@users.size-1 %>
+        <% @iffollow = iffollow(session[:id], @users[i][:id]) %>
+        <% if @iffollow %>
+        <% @status = "Following" %>
+        <% else %>
+        <% @status = "Not following" %>
         <% end %>
-      <% end %>
-
-        <h2>"Some Users you may interest in!"</h2>
-
-        <% for i in 0..@count_number-1  %>
-          <% unless @unfollowings[i].nil? %>
-          <%   @i = i %>
-          <%   @status = "Not following" %>
-          <%   @users = @unfollowings %>
-          <%= erb :singleUser %>
+        <% @i = i %>
+        <%= erb :singleUser %>
         <% end %>
-<% end %>
+        <% end %>
+
+
+
     </div>
   </body>
 </html>
 <script type="text/javascript">
-var following_number=<%= @following_number %>;
-var follower_number=<%= @follower_number %>;
+
 $(".status").hover(function(){
   if(this.innerHTML==="Following"){
     $(this).html("Unfollow");
@@ -55,15 +49,15 @@ $(".status").hover(function(){
       var putFollow = new XMLHttpRequest();
       putFollow.open("PUT", '/api/v1/users/' + '<%= session[:user_id] %>' + '/unfollow/' + this.id, true);
       putFollow.send();
-      following_number-=1;
-      $("#following_number").html(following_number+' followings  ');
+
+
       $(this).parent().parent().parent().hide();
     }else{
       var putFollow = new XMLHttpRequest();
       putFollow.open("PUT", '/api/v1/users/' + '<%= session[:user_id] %>' + '/follow/' + this.id, true);
       putFollow.send();
-      following_number+=1;
-      $("#following_number").html(following_number+' followings  ');
+
+
       $(this).parent().parent().parent().hide();
     }
   });

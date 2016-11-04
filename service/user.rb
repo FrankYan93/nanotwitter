@@ -17,7 +17,7 @@ post '/editProfile' do
     currentUser.nickname = params[:nickname] unless params[:nickname].nil?
     currentUser.description = params[:description] unless params[:description].nil?
     currentUser.save
-    erb :home
+    log_in_home 
 end
 
 get '/:username/followers' do
@@ -58,6 +58,23 @@ get '/:username/showhome' do
     @n = params[:n].to_i || 0
 
     erb :showhome
+end
+
+get '/showProfile' do
+  if session[:user_id].nil?
+    not_log_in_home
+  else
+  @username = params[:usename]
+  currentUser = User.find_by(username: session[:username])
+
+  @password_hash = Password.new currentUser.password
+
+  @birthday = currentUser.birthday
+  @nickname = currentUser.nickname
+  @description = currentUser.description
+
+  erb :showProfile
+  end
 end
 
 def iffollow(id, following_id)
