@@ -3,7 +3,6 @@
   <head>
     <title>nanoTwitter-SearchTweet</title>
   </head>
-<% cui=session[:user_id] %>
   <body>
     <div class="container theme-showcase" role="main">
 
@@ -29,7 +28,7 @@
   </body>
 </html>
 <script type="text/javascript">
-  var cui=<%= cui %>+0;
+  var cui=<%= session[:user_id] %>+0;
   $(".status").hover(function(){
     if(this.innerHTML==="Following"){
       $(this).html("Unfollow");
