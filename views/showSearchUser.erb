@@ -3,7 +3,7 @@
   <head>
     <title>nanoTwitter-SearchTweet</title>
   </head>
-
+<% cui=session[:user_id] %>
   <body>
     <div class="container theme-showcase" role="main">
 
@@ -29,36 +29,42 @@
   </body>
 </html>
 <script type="text/javascript">
-
-$(".status").hover(function(){
-  if(this.innerHTML==="Following"){
-    $(this).html("Unfollow");
-  }else{
-    $(this).html("Follow");
-  }
-},function(){
-  if(this.innerHTML==="Unfollow"){
-    $(this).html("Following");
-  }else{
-    $(this).html("Not following");
-  }
-});
-  $(".status").click(function(){
-    var st=this.innerHTML;
-    if(st === "Unfollow"){
-      var putFollow = new XMLHttpRequest();
-      putFollow.open("PUT", '/api/v1/users/' + '<%= session[:user_id] %>' + '/unfollow/' + this.id, true);
-      putFollow.send();
-
-
-      $(this).parent().parent().parent().hide();
+  var cui=<%= cui %>+0;
+  $(".status").hover(function(){
+    if(this.innerHTML==="Following"){
+      $(this).html("Unfollow");
     }else{
-      var putFollow = new XMLHttpRequest();
-      putFollow.open("PUT", '/api/v1/users/' + '<%= session[:user_id] %>' + '/follow/' + this.id, true);
-      putFollow.send();
-
-
-      $(this).parent().parent().parent().hide();
+      $(this).html("Follow");
+    }
+  },function(){
+    if(this.innerHTML==="Unfollow"){
+      $(this).html("Following");
+    }else{
+      $(this).html("Not following");
     }
   });
+  $(".status").click(function(){
+    if(cui==0){
+      $("#login-first").show();
+    }else{
+      $(".status").click(function(){
+        var st=this.innerHTML;
+        if(st === "Unfollow"){
+          var putFollow = new XMLHttpRequest();
+          putFollow.open("PUT", '/api/v1/users/' + '<%= session[:user_id] %>' + '/unfollow/' + this.id, true);
+          putFollow.send();
+          $(this).html("Follow");
+          //following_number-=1;
+          //$("#following_number").html(following_number+' followings  ');
+        }else{
+          var putFollow = new XMLHttpRequest();
+          putFollow.open("PUT", '/api/v1/users/' + '<%= session[:user_id] %>' + '/follow/' + this.id, true);
+          putFollow.send();
+          $(this).html("Unfollow");
+          //following_number+=1;
+          //$("#following_number").html(following_number+' followings  ');
+        }
+  });
+}
+});
 </script>
