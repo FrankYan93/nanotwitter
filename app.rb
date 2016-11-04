@@ -54,6 +54,7 @@ end
 
 get '/' do
     # @sessionUserId
+    #byebug
     if session[:user_id].nil?
         not_log_in_home
     else
