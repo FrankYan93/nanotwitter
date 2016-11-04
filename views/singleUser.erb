@@ -18,7 +18,7 @@
                             <i class="glyphicon glyphicon-gift"></i>Birthday: <%= @users[@i][:birthday]%></p>
 
                           <% x="location='../#{@users[@i][:username]}/tweets'"%>
-                          <a class="btn btn-primary status" href="#" role="button" id="<%= @users[@i][:id] %>"><%= @status%></a>
+                          <a class="btn btn-primary status" role="button" id="<%= @users[@i][:id] %>"><%= @status%></a>
 
                           <button class="btn btn-primary" type="submit" onclick=<%= x %>>Showhome</button>
 

@@ -49,17 +49,17 @@
       $(".status").click(function(){
         var st=this.innerHTML;
         if(st === "Unfollow"){
+          $(this).html("Follow");
           var putFollow = new XMLHttpRequest();
           putFollow.open("PUT", '/api/v1/users/' + '<%= session[:user_id] %>' + '/unfollow/' + this.id, true);
           putFollow.send();
-          $(this).html("Follow");
           //following_number-=1;
           //$("#following_number").html(following_number+' followings  ');
         }else{
           var putFollow = new XMLHttpRequest();
+          $(this).html("Unfollow");
           putFollow.open("PUT", '/api/v1/users/' + '<%= session[:user_id] %>' + '/follow/' + this.id, true);
           putFollow.send();
-          $(this).html("Unfollow");
           //following_number+=1;
           //$("#following_number").html(following_number+' followings  ');
         }
