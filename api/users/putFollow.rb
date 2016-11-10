@@ -8,6 +8,7 @@ def a_follow_b(params)
   followRelation.followed_user_id = params[:following_id]
   followRelation.follow_date = Time.now
   followRelation.save
+  
   user = User.find_by(id: params[:user_id])
   followed_user = User.find_by(id: params[:following_id])
 

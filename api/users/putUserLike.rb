@@ -13,6 +13,6 @@ def heLike params
       newlike.tweet.like_numbers += 1
   end
   newlike.tweet.save
-  # 调用 notification to tweet_id 对应的user
+  # invoke notification to corresponding tweet_id 
   newlike
 end

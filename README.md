@@ -12,6 +12,7 @@ Give some code exmaple
 
 ### Running the tests
 **How to run tests**
+* rake (run all minitests)
 * ruby test/testUser/testGet.rb
 * ruby test/testUser/testUserCreate.rb
 * ruby test/testUser/testFollowUnfollow.rb
@@ -52,4 +53,6 @@ This project is licensed under xxx License
 
 2. Reset database: "heroku pg:reset DATABASE_URL"
 
-heroku run rake db:migrate
+3. We must flushall redis after test api used, and restart app.
+
+4. heroku run rake db:migrate

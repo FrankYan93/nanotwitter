@@ -11,13 +11,13 @@ def hisNewTweet(params)
     newtweet.user_id = params['user_id']
     newtweet.create_time = Time.now
     newtweet.save!
+    #update nonloging_timeline
     $redis.lpush('nonlogin_timeline', newtweet.to_json)
     if $redis.llen('nonlogin_timeline') > $maxRecentNum
         $redis.rpop('nonlogin_timeline')
     end
-    Thread.new{
-      insertIntoAllFollower params['user_id'],newtweet
-      ActiveRecord::Base.connection.close
-    }#do it concurrently?
+    #update follower's redis
+    insertIntoAllFollower params['user_id'],newtweet
+    #return this tweet record
     newtweet
 end
