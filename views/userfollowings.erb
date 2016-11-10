@@ -11,7 +11,7 @@
 
       <%= control_bar %>
 
-        <% for i in 0..@following_number-1  %>
+        <% for i in 1..@following_number-1  %>
          <% unless @followings[i].nil? %>
           <%   @i = i %>
           <%   @status = "Following" %>

@@ -21,7 +21,7 @@ configure :production do
 end
 enable :sessions
 
-require_relative 'cache_redis.rb' if ($redis.llen('nonlogin_timeline').zero?)&&(!$rakedb)
+require_relative 'cache_redis.rb' if $redis.llen('nonlogin_timeline').zero? && !$rakedb
 
 include BCrypt
 
@@ -41,9 +41,15 @@ def create
     user.follower_number = 0
     user.following_number = 0
     user.nickname = ''
+
     user.save
     session[:user_id] = user.id
     session[:username] = username
+
+    theparam = {}
+    theparam[:user_id] = user[:id]
+    theparam[:following_id] = user[:id]
+    a_follow_b(theparam)
 end
 
 def redirect_to_original_request
@@ -55,7 +61,7 @@ end
 
 get '/' do
     # @sessionUserId
-    #byebug
+    # byebug
     if session[:user_id].nil?
         not_log_in_home
     else

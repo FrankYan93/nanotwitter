@@ -13,7 +13,7 @@
 
         <%= control_bar %>
 
-        <% for i in 0..@follower_number-1  %>
+        <% for i in 1..@follower_number-1  %>
         <% unless @followers[i].nil? %>
         <% @i = i %>
         <% @iffollow = iffollow(session[:id], @followers[i][:id]) %>
