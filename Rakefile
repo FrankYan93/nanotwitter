@@ -4,6 +4,7 @@ $rakedb=false
 
 require 'sinatra/activerecord/rake'
 require 'zlib'
+require 'resque/tasks'
 
 namespace :db do
     task :load_config do
