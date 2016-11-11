@@ -1,3 +1,4 @@
+#require_relative '../app.rb'
 def updateUserRedis
   userId=session[:user_id]
   return 1 unless $redis.ttl(userId)==-2
@@ -9,3 +10,18 @@ def updateUserRedis
     $redis.rpush(userId,x.to_json)
   }
 end
+
+def updatePersonalTweets
+  userId=session[:user_id]
+  return 1 unless $redis.ttl(userId.to_s+'_tweet')==-2
+  #update empty personal tweets list
+  tmp=userRecentTweets(userId)
+  for i in 0..19#the number is same as n-1 in getusertweets api
+    # print tmp[i].to_json
+    # puts
+    break if tmp[i].nil?
+    $redis.lpush(userId.to_s+'_tweet',tmp[i].to_json)
+  end
+end
+#updatePersonalTweets
+#puts $redis.lindex('128_tweet',0)

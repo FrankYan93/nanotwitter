@@ -108,6 +108,7 @@ post '/signin/?' do
     else
         session[:user_id] = current_user_id
         session[:username] = current_username
+        updatePersonalTweets
         redirect '/home'
         # redirect_to_original_request
     end
