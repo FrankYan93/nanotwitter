@@ -5,7 +5,6 @@ require 'active_record'
 require 'byebug'
 require 'time'
 require 'faker'
-require 'redis'
 
 # require apis
 Dir[File.dirname(__FILE__) + '/models/*.rb'].each { |file| require file }
@@ -14,13 +13,10 @@ Dir[File.dirname(__FILE__) + '/api/tweets/*.rb'].each { |file| require file }
 Dir[File.dirname(__FILE__) + '/api/test/*.rb'].each { |file| require file }
 Dir[File.dirname(__FILE__) + '/service/*.rb'].each { |file| require file }
 
-require_relative 'config/initializers/redis.rb'
 configure :production do
     require 'newrelic_rpm'
 end
 enable :sessions
-
-require_relative 'cache_redis.rb' if ($redis.llen('nonlogin_timeline').zero?)&&(!$rakedb)
 
 include BCrypt
 

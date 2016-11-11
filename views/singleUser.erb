@@ -12,10 +12,10 @@
                         <h4>
                             @<%= @users[@i][:nickname]%>  </h4>
                         <p>
-                            <i class="glyphicon glyphicon-globe"></i>Description: <%= @users[@i][:description]%>
+                            <i class="glyphicon glyphicon-globe"></i><%= @users[@i][:description]%>
                             <br />
 
-                            <i class="glyphicon glyphicon-gift"></i>Birthday: <%= @users[@i][:birthday]%></p>
+                            <i class="glyphicon glyphicon-gift"></i><%= @users[@i][:birthday]%></p>
 
                           <% x="location='../#{@users[@i][:username]}/tweets'"%>
                           <a class="btn btn-primary status" href="#" role="button" id="<%= @users[@i][:id] %>"><%= @status%></a>
