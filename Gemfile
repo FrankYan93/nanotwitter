@@ -13,5 +13,6 @@ gem 'rake' , '>=0.9.2'
 gem 'faker'
 gem 'newrelic_rpm'
 gem 'redis'
+gem "hiredis"
 gem 'resque'
 #gem 'resque-web'
