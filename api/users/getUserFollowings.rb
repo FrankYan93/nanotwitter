@@ -3,7 +3,7 @@ get '/api/v1/users/:user_id/followings/' do
 end
 
 def hisFollowings theId
-  followRelations = Followerfollowing.where(user_id: theId)
+  followRelations = Followerfollowing.where(user_id: theId).where.not(followed_user_id: theId)
   results = []
   followRelations.each do |x|
       results << getUserByID(x.followed_user_id)

@@ -16,5 +16,6 @@ gem 'newrelic_rpm'
 gem 'puma'
 
 gem 'redis'
+gem "hiredis"
 gem 'resque'
 #gem 'resque-web'
