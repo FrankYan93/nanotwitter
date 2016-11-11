@@ -13,7 +13,7 @@
 
         <%= control_bar %>
 
-        <% for i in 0..@follower_number-1  %>
+        <% for i in 1..@follower_number-1  %>
         <% unless @followers[i].nil? %>
         <% @i = i %>
         <% @iffollow = iffollow(session[:id], @followers[i][:id]) %>
@@ -50,19 +50,19 @@ $(".status").hover(function(){
   $(".status").click(function(){
     var st=this.innerHTML;
     if(st === "Unfollow"){
-      var putFollow = new XMLHttpRequest();
-      putFollow.open("PUT", '/api/v1/users/' + '<%= session[:user_id] %>' + '/unfollow/' + this.id, true);
-      putFollow.send();
-      $(this).html("Follow");
       following_number-=1;
       $("#following_number").html(following_number+' followings  ');
-    }else{
       var putFollow = new XMLHttpRequest();
-      putFollow.open("PUT", '/api/v1/users/' + '<%= session[:user_id] %>' + '/follow/' + this.id, true);
+      $(this).html("Follow");
+      putFollow.open("PUT", '/api/v1/users/' + '<%= session[:user_id] %>' + '/unfollow/' + this.id, true);
       putFollow.send();
-      $(this).html("Unfollow");
+    }else{
       following_number+=1;
       $("#following_number").html(following_number+' followings  ');
+      var putFollow = new XMLHttpRequest();
+      $(this).html("Unfollow");
+      putFollow.open("PUT", '/api/v1/users/' + '<%= session[:user_id] %>' + '/follow/' + this.id, true);
+      putFollow.send();
     }
   });
 </script>

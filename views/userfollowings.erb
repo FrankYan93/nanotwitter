@@ -11,7 +11,7 @@
 
       <%= control_bar %>
 
-        <% for i in 0..@following_number-1  %>
+        <% for i in 1..@following_number-1  %>
          <% unless @followings[i].nil? %>
           <%   @i = i %>
           <%   @status = "Following" %>
@@ -52,18 +52,26 @@ $(".status").hover(function(){
   $(".status").click(function(){
     var st=this.innerHTML;
     if(st === "Unfollow"){
+      following_number-=1;
+      $("#following_number").html(following_number+' followings  ');
       var putFollow = new XMLHttpRequest();
       putFollow.open("PUT", '/api/v1/users/' + '<%= session[:user_id] %>' + '/unfollow/' + this.id, true);
       putFollow.send();
+
       following_number-=1;
       $("#following_number").html(following_number+' followings  ');
+
       $(this).parent().parent().parent().hide();
     }else{
+      following_number+=1;
+      $("#following_number").html(following_number+' followings  ');
       var putFollow = new XMLHttpRequest();
       putFollow.open("PUT", '/api/v1/users/' + '<%= session[:user_id] %>' + '/follow/' + this.id, true);
       putFollow.send();
+
       following_number+=1;
       $("#following_number").html(following_number+' followings  ');
+
       $(this).parent().parent().parent().hide();
     }
   });

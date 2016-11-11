@@ -4,7 +4,9 @@
             <div class="well well-sm">
                 <div class="row">
                     <div class="col-sm-6 col-md-4">
-                        <img src="http://data.bbs.manmankan.com/forum/201401/06/200928nlh3ovhnnzcc3cco.gif" alt="" class="img-rounded img-responsive" />
+
+                        <img src="https://case.edu/medicine/admissions/media/school-of-medicine/admissions/classprofile.png" alt="" class="img-rounded img-responsive" />
+
                     </div>
                     <div class="col-sm-6 col-md-8">
                         <h2>
@@ -12,13 +14,16 @@
                         <h4>
                             @<%= @users[@i][:nickname]%>  </h4>
                         <p>
-                            <i class="glyphicon glyphicon-globe"></i><%= @users[@i][:description]%>
+
+
+                            <i class="glyphicon glyphicon-globe"></i>Description: <%= @users[@i][:description]%>
                             <br />
 
-                            <i class="glyphicon glyphicon-gift"></i><%= @users[@i][:birthday]%></p>
+                            <i class="glyphicon glyphicon-gift"></i>Birthday: <%= @users[@i][:birthday]%></p>
 
                           <% x="location='../#{@users[@i][:username]}/tweets'"%>
-                          <a class="btn btn-primary status" href="#" role="button" id="<%= @users[@i][:id] %>"><%= @status%></a>
+                          <a class="btn btn-primary status" role="button" id="<%= @users[@i][:id] %>"><%= @status%></a>
+
 
                           <button class="btn btn-primary" type="submit" onclick=<%= x %>>Showhome</button>
 

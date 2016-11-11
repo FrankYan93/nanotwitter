@@ -12,4 +12,9 @@ gem 'bcrypt'
 gem 'rake' , '>=0.9.2'
 gem 'faker'
 gem 'newrelic_rpm'
+
 gem 'puma'
+
+gem 'redis'
+gem 'resque'
+#gem 'resque-web'

@@ -25,6 +25,9 @@ get '/api/v1/test/setup/all' do
     end
     testuser.follower_number = 0
     testuser.following_number = 0
+    theparam={}
+    theparam[:user_id],theparam[:following_id]=testuser[:id],testuser[:id]
+    a_follow_b(theparam)
     testuser.save
 
 
