@@ -30,6 +30,8 @@ get '/api/v1/test/setup/all' do
     theparam={}
     theparam[:user_id],theparam[:following_id]=testuser[:id],testuser[:id]
     a_follow_b(theparam)
+    testuser.follower_number -= 1
+    testuser.following_number -= 1
     testuser.save
 
 
