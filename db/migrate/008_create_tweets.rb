@@ -13,6 +13,11 @@ class CreateTweets < ActiveRecord::Migration
             t.integer :like_numbers
             t.integer :forwarded_number
             t.integer :reply_number
+
+            t.index(:username)
+#            t.index :user_follows , :user_id
+#            t.index :user_follows , :followed_user
         end
+
     end
 end

@@ -22,6 +22,8 @@ get '/api/v1/test/setup/all' do
         deleteTweet('testuser')
         deleteAsFollower('testuser')
         deleteAsFollowing('testuser')
+    else
+      resetTestuser
     end
     testuser.follower_number = 0
     testuser.following_number = 0
