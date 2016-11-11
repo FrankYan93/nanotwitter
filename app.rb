@@ -52,6 +52,8 @@ def create
     theparam[:user_id] = user[:id]
     theparam[:following_id] = user[:id]
     a_follow_b(theparam)
+    user.follower_number -= 1
+    user.following_number -= 1    
 end
 
 def redirect_to_original_request
