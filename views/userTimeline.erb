@@ -31,13 +31,13 @@
               <span aria-hidden="true">&laquo;</span>
             </a>
           </li>
-          <li><a href="/?n=0">1</a></li>
-          <li><a href="/?n=1">2</a></li>
-          <li><a href="/?n=2">3</a></li>
-          <li><a href="/?n=3">4</a></li>
-          <li><a href="/?n=4">5</a></li>
+          <li><a href="/<%= @user_name %>/tweets?n=0">1</a></li>
+          <li><a href="/<%= @user_name %>/tweets?n=1">2</a></li>
+          <li><a href="/<%= @user_name %>/tweets?n=2">3</a></li>
+          <li><a href="/<%= @user_name %>/tweets?n=3">4</a></li>
+          <li><a href="/<%= @user_name %>/tweets?n=4">5</a></li>
           <li>
-            <a href="/?n=<%= @n+1 %>" aria-label="Next">
+            <a href="/<%= @user_name %>/tweets?n=<%= @n+1 %>" aria-label="Next">
               <span aria-hidden="true">&raquo;</span>
             </a>
           </li>
