@@ -4,12 +4,11 @@ end
 
 def userLikeTweet params
   return false if params[:user_id]==-1
-  theLike=Like.where(user_id: params[:user_id],tweet_id: params[:tweet_id])
-  if theLike.size.zero?
-    #puts 'false'
-    false
-  else
-    #puts 'true'
+  updateLike params[:user_id]
+
+  if $redis.sismember("#{params[:user_id]}_like",params[:tweet_id])
     true
+  else
+    false
   end
 end

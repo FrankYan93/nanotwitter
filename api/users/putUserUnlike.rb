@@ -10,4 +10,5 @@ def heUnlike params
      tweet.save
    end
   unLike.destroy
+  $redis.srem("#{params['user_id']}_like",params['tweet_id'])
 end

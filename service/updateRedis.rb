@@ -26,3 +26,12 @@ def updatePersonalTweets(userId,n)
 end
 #updatePersonalTweets
 #puts $redis.lindex('128_tweet',0)
+
+def updateLike userId
+  label=userId.to_s+'_like'
+  return 1 unless $redis.ttl(label)==-2
+  hislikes=userLike userId
+  hislikes.each{|x|
+    $redis.sadd(label,x[:tweet_id])
+  }
+end

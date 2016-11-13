@@ -7,8 +7,9 @@ def heLike params
   newlike.user_id = params['user_id']
   newlike.tweet_id = params['tweet_id']
   newlike.save!
+  $redis.sadd("#{params['user_id']}_like",params['tweet_id'])
   if newlike.tweet.nil?
-      puts 'this tweet does not exist!'
+      puts "This tweet does not exist!\nIt should not happen!"
   else
     if newlike.tweet[:like_numbers].nil?
       newlike.tweet[:like_numbers] = 1
