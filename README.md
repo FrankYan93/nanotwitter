@@ -33,6 +33,10 @@ Give some code exmaple
 * Bootstrap
 * Bootbox
 * Rake
+* Redis
+* RabbitMQ
+* Resque
+* Rack
 * ...
 
 ## Versioning
