@@ -40,8 +40,8 @@ def create
     user = User.new
     user.username = username
     user.password = newpassword
-    user.follower_number = 0
-    user.following_number = 0
+    user.follower_number = -1
+    user.following_number = -1
     user.nickname = ''
 
     user.save
@@ -52,8 +52,6 @@ def create
     theparam[:user_id] = user[:id]
     theparam[:following_id] = user[:id]
     a_follow_b(theparam)
-    user.follower_number -= 1
-    user.following_number -= 1    
 end
 
 def redirect_to_original_request
@@ -114,6 +112,7 @@ post '/signin/?' do
     else
         session[:user_id] = current_user_id
         session[:username] = current_username
+        #@currentUser=User.find_by(username: params[:username])
         redirect '/home'
         # redirect_to_original_request
     end
