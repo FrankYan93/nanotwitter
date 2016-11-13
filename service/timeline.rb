@@ -27,7 +27,7 @@ def log_in_home
         currentUser = User.find_by(id: session[:user_id])
         @follower_number = currentUser.follower_number
         @following_number = currentUser.following_number
-        updateUserRedis
+        updateUserRedis session[:user_id]
         @n = params[:n].to_i || 0
         erb :home
     end

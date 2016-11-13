@@ -1,6 +1,6 @@
 #require_relative '../app.rb'
-def updateUserRedis
-  userId=session[:user_id]
+def updateUserRedis userId
+  #userId=session[:user_id]
   return 1 unless $redis.ttl(userId)==-2
   $redis.expire(userId,3600)
   n = 100
@@ -21,7 +21,7 @@ def updatePersonalTweets(userId,n)
     # puts
     break if tmp[i].nil?
     $redis.lpush(label,tmp[i].to_json)
-    $redis.rpop(label) if $redis.llen(label)>n 
+    $redis.rpop(label) if $redis.llen(label)>n
   end
 end
 #updatePersonalTweets

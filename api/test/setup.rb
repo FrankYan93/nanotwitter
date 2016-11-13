@@ -60,6 +60,9 @@ get '/api/v1/test/setup/all' do
 
 
     end_time = Time.now
+    require_relative '../../cache_redis.rb'
+    updateUserRedis testuser[:id]
+    updatePersonalTweets(testuser[:id],100)
     "setup all.\ntime used = #{end_time - begin_time}"
 end
 
