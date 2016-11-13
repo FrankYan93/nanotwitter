@@ -12,14 +12,16 @@ def updateUserRedis
 end
 
 def updatePersonalTweets(userId,n)
-  return 1 unless $redis.ttl(userId.to_s+'_tweet')==-2
+  label=userId.to_s+'_tweet'
+  return 1 unless $redis.ttl(label)==-2
   #update empty personal tweets list
   tmp=userRecentTweets(userId,n)
   for i in 0...n#the number is same as n-1 in getusertweets api
     # print tmp[i].to_json
     # puts
     break if tmp[i].nil?
-    $redis.lpush(userId.to_s+'_tweet',tmp[i].to_json)
+    $redis.lpush(label,tmp[i].to_json)
+    $redis.rpop(label) if $redis.llen(label)>n 
   end
 end
 #updatePersonalTweets
