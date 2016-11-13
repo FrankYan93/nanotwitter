@@ -52,7 +52,12 @@
 <% tId=@tweet['id'] %>
 
 <script type="text/javascript">
-  $("#unlike<%= @i %>").hide();
+  <% theparams={user_id: cui,tweet_id: tId} %>
+  <% if userLikeTweet theparams %>
+    $("#like<%= @i %>").hide();
+  <% else %>
+    $("#unlike<%= @i %>").hide();
+  <% end %>
   $("#unlike<%= @i %>").click(function(){
     var current_user_id = <%= cui %> - 0;
     var tweet_id = <%= tId %>;
@@ -72,6 +77,11 @@
     });
     $("#like<%= @i %>").mouseleave(function(){
       this.innerHTML="Like";
+    });
+    $("#unlike<%= @i %>").hover(function(){
+      this.innerHTML="I don't like it!";
+    },function(){
+      this.innerHTML="unLike";
     });
     $("#like<%= @i %>").click(function () {
         var current_user_id = <%= cui %> - 0;
