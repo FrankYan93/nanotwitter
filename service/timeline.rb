@@ -7,11 +7,14 @@ get '/:username/tweets' do
     else
         @follower_number = user.follower_number
         @following_number = user.following_number
-        #if his tweet redis expire update!
-        updatePersonalTweets
-        label=user[:id].to_s+'_tweet'
         n = 100
-        @all_tweets = Tweet.where(user_id: user[:id]).order(create_time: :desc).limit(n)
+        label=user[:id].to_s+'_tweet'
+
+        #print $redis.lrange(label,0,-1),"\n"
+        #if his tweet redis expire update!
+        updatePersonalTweets(user[:id],n)
+
+        @all_tweets = $redis.lrange(label,0,-1)#Tweet.where(user_id: user[:id]).order(create_time: :desc).limit(n)
         @n = params[:n].to_i || 0
         erb :userTimeline
     end

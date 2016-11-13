@@ -17,7 +17,7 @@
         <% if @all_tweets[i] == nil %>
           <% break %>
         <% end %>
-          <% @tweet = @all_tweets[i] %>
+          <% @tweet = JSON.parse @all_tweets[i] %>
           <% @i=i %>
           <%= erb :singleTweet %>
         <% end %>

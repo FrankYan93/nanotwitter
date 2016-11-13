@@ -11,12 +11,11 @@ def updateUserRedis
   }
 end
 
-def updatePersonalTweets
-  userId=session[:user_id]
+def updatePersonalTweets(userId,n)
   return 1 unless $redis.ttl(userId.to_s+'_tweet')==-2
   #update empty personal tweets list
-  tmp=userRecentTweets(userId)
-  for i in 0..19#the number is same as n-1 in getusertweets api
+  tmp=userRecentTweets(userId,n)
+  for i in 0...n#the number is same as n-1 in getusertweets api
     # print tmp[i].to_json
     # puts
     break if tmp[i].nil?

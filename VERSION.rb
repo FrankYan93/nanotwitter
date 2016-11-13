@@ -1,2 +1,2 @@
 # nanoTwitter
-nT 0.2
+nT 0.6
