@@ -18,4 +18,5 @@ gem 'puma'
 gem 'redis'
 gem "hiredis"
 gem 'resque'
+gem 'bunny'
 #gem 'resque-web'

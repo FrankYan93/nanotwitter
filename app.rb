@@ -7,6 +7,7 @@ require 'time'
 require 'faker'
 require 'redis'
 require 'resque'
+require 'bunny'
 
 # require apis
 Dir[File.dirname(__FILE__) + '/models/*.rb'].each { |file| require file }
