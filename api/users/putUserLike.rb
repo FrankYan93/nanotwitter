@@ -6,6 +6,7 @@ def heLike params
   newlike = Like.new
   newlike.user_id = params['user_id']
   newlike.tweet_id = params['tweet_id']
+  newlike.create_time = Time.now
   newlike.save!
   $redis.sadd("#{params['user_id']}_like",params['tweet_id'])
   if newlike.tweet.nil?

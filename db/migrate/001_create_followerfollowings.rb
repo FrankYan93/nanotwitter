@@ -4,6 +4,8 @@ class CreateFollowerfollowings < ActiveRecord::Migration
       t.integer :user_id
       t.integer :followed_user_id
       t.datetime   :follow_date
+
+      t.index(:user_id)
     end
   end
 end
