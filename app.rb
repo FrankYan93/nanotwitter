@@ -9,7 +9,7 @@ require 'redis'
 require 'resque'
 require 'bunny'
 require 'thread'
-
+require 'net/http'
 # require apis
 Dir[File.dirname(__FILE__) + '/models/*.rb'].each { |file| require file }
 Dir[File.dirname(__FILE__) + '/api/users/*.rb'].each { |file| require file }
