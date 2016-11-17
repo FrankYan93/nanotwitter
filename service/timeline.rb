@@ -50,6 +50,7 @@ def control_bar
     @y = "location='/#{@page_user_name}/followers'"
     @z = "location='/#{@page_user_name}/followings'"
     @user_tweets = "location='/#{@page_user_name}/tweets'"
+    @user_likestweets = "location='/#{@page_user_name}/likes/tweets'"
 
     if @page_user_name == session[:username]
         erb :my_control_bar
