@@ -19,6 +19,7 @@ ActiveRecord::Schema.define(version: 9) do
     t.integer  "user_id"
     t.integer  "followed_user_id"
     t.datetime "follow_date"
+    t.index ["user_id"], name: "index_followerfollowings_on_user_id", using: :btree
   end
 
   create_table "hashtags", force: :cascade do |t|

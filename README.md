@@ -70,8 +70,11 @@ This project is licensed under xxx License
 2. Reset database: "heroku pg:reset DATABASE_URL"
 
 3. We must flushall redis after test api used, and restart app.
+   run "heroku redis:cli"  "flushall" "Ok"
 
 4. heroku run rake db:migrate
+   heroku run rake db:seed
+
 
 # Steps in local:
 
