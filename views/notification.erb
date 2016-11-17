@@ -1,4 +1,5 @@
 <% redirect'/warnnonlogin' if session[:user_id].nil? %>
+<%= control_bar %>
 
 <div class="list-group container theme-showcase">
   <li class="list-group-item">
@@ -6,6 +7,7 @@
     <a href="#">Mentions</a>
     <a href="#" style="float:right">Settings</a>
   </li>
+
   <a href="#" class="list-group-item list-group-item-action active">
     <h5 class="list-group-item-heading">List group item heading</h5>
     <p class="list-group-item-text">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p>
@@ -18,4 +20,5 @@
     <h5 class="list-group-item-heading">List group item heading</h5>
     <p class="list-group-item-text">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p>
   </a>
+  
 </div>
