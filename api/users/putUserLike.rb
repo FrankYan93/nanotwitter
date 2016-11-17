@@ -1,4 +1,6 @@
 put '/api/v1/users/:user_id/likes/:tweet_id' do
+    params["username"]=User.find(params[:user_id]).username
+    rpcClient params
     heLike(params).to_json
 end
 
@@ -19,6 +21,5 @@ def heLike params
     end
     newlike.tweet.save
   end
-  # invoke notification to corresponding tweet_id
   newlike
 end

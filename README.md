@@ -83,7 +83,7 @@ This project is licensed under xxx License
   <links from="" github="">
   </links>
 
-2. install redis in local and run reids by "redis-server" links: <http://download.redis.io/releases/redis-3.2.5.tar.gz> follow readme to install redis first
+2. install redis in local and run redis by "redis-server" links: <http://download.redis.io/releases/redis-3.2.5.tar.gz> follow readme to install redis first
 
 3. install RabbitMQ server by "brew update", "brew install rabbitmq", should first install brew first. Run rabbitmq by "rabbitmq-server" if you have some problem to start, try "sudo chown $(whoami) /usr/local/share/man/man3" and "sudo chown $(whoami) /usr/local/share/man/man5"
 4. install all gems by "bundle install"
