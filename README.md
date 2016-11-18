@@ -4,7 +4,9 @@ NanoTwitter is a app with basic function of twitter. You can follow other users,
 
 # Getting Started
 
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
+Notification service repo: https://github.com/FrankYan93/nanoNotification
+We must visit https://nano-notification.herokuapp.com/start to start our web service for notification.
+Main website: https://nano-twitter-dratini.herokuapp.com
 
 ## Installing
 

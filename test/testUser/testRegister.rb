@@ -30,7 +30,7 @@ class TestRegister < MiniTest::Test
     put '/api/v1/register/testuser/testpassword'
     user = last_response.body
 
-    assert_equal user, "username is existed, please try another one".to_json
+    assert_equal user, "username is existed, please try another one"
 
     user = User.find_by(username: "testuser")
     user.destroy
