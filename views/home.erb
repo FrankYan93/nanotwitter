@@ -5,26 +5,29 @@
   </head>
 
   <body>
+
     <div class="container theme-showcase" role="main">
 
-      <h1>"Welcome Home <%= session[:username] %>!"</h1>
+      <h1> <%= session[:username] %>! Welcome To Your Homepage </h1>
 
-      <% x="location='/#{session[:username]}/editProfile'"%>
-      <% y="location='/#{session[:username]}/followers'"%>
-      <% z="location='/#{session[:username]}/followings'"%>
-      <% selftimeline="location='/#{session[:username]}/tweets'"%>
+     <div class="col-sm-6 col-md-2">
+        <img src="https://case.edu/medicine/admissions/media/school-of-medicine/admissions/classprofile.png" alt="" class="img-rounded img-responsive" />
+      </div>
+      <div class="col-sm-6 col-md-8">
+       <h2> Username: <%= @user[:username] %> </h2>
+       <h4> Nickname: <%= @user[:nickname] %> </h4>
+       <p>
+         <i class="glyphicon glyphicon-globe"></i>Description: <%= @user[:description] %>
+         <br>
+         <i class="glyphicon glyphicon-gift"></i>Birthday: <%= @user[:birthday] %>
+       </p>
+     </div>
 
-      <button class="btn" type="submit" onclick= <%= selftimeline %>> My Timeline</button>
+     <br><br><br><br><br><br><br><br>
 
-      <button class="btn" type="submit" onclick= <%= x %>> edit profile</button>
+    <%= control_bar session[:username] %>
 
-
-      <button class="btn" type="submit" onclick= <%= y %>> <%= @follower_number %> followers  </button>
-
-      <button class="btn" type="submit" onclick= <%= z %>> <%= @following_number %> followings  </button><br><br>
-
-
-        <% for i in (0+@n*20)..(19+@n*20) %>
+        <% for i in (0+@n*10)..(9+@n*10) %>
         <% if $redis.lindex(session[:user_id],i).nil? %>
           <% break %>
         <% end %>

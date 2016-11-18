@@ -1,8 +1,9 @@
-<button class="btn" type="submit" onclick= <%= @user_tweets %>> Tweets</button>
+<button class="btn" type="submit" onclick= <%= @user_tweets %>> My Tweets</button>
 
-<button class="btn" type="submit" onclick= <%= @x %>> edit profile</button>
+<button class="btn" type="submit" onclick= <%= @x %>> Edit Profile</button>
 
+<button class="btn" type="submit" onclick= <%= @user_likestweets %>> Likes </button>
 
-<button id="follower_number" class="btn" type="submit" onclick= <%= @y %>> <%= @follower_number %> followers  </button>
+<button class="btn" type="submit" onclick= <%= @y %>> <%= @user[:follower_number] %> Followers  </button>
 
-<button id="following_number" class="btn" type="submit" onclick= <%= @z %>> <%= @following_number %> followings  </button><br><br>
+<button class="btn" type="submit" onclick= <%= @z %>> <%= @user[:following_number] %> Followings  </button><br><br>

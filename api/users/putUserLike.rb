@@ -1,4 +1,7 @@
 put '/api/v1/users/:user_id/likes/:tweet_id' do
+    params["username"]=User.find(params[:user_id]).username
+    params["owner_id"]=Tweet.find(params[:tweet_id]).user_id
+    rpcClient params if params["test"].nil?
     heLike(params).to_json
 end
 
@@ -6,6 +9,7 @@ def heLike params
   newlike = Like.new
   newlike.user_id = params['user_id']
   newlike.tweet_id = params['tweet_id']
+  newlike.create_time = Time.now
   newlike.save!
   $redis.sadd("#{params['user_id']}_like",params['tweet_id'])
   if newlike.tweet.nil?
@@ -18,6 +22,5 @@ def heLike params
     end
     newlike.tweet.save
   end
-  # invoke notification to corresponding tweet_id
   newlike
 end

@@ -22,7 +22,7 @@ class TestLikeUnlike < MiniTest::Test
     tweet =  JSON.parse(last_response.body)
     tweet_id = tweet["id"]
 
-    put "/api/v1/users/#{user1_id}/likes/#{tweet_id}"
+    put "/api/v1/users/#{user1_id}/likes/#{tweet_id}?test=yes"
 
     tweet = Tweet.find_by(id: tweet_id)
     assert_equal tweet["like_numbers"], 1

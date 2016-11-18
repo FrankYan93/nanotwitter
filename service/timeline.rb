@@ -5,8 +5,7 @@ get '/:username/tweets' do
     if user.nil?
         "user dosen't exit!"
     else
-        @follower_number = user.follower_number
-        @following_number = user.following_number
+        @user = user
         n = 100
         label=user[:id].to_s+'_tweet'
 
@@ -25,8 +24,7 @@ def log_in_home
         not_log_in_home
     else
         currentUser = User.find_by(id: session[:user_id])
-        @follower_number = currentUser.follower_number
-        @following_number = currentUser.following_number
+        @user = currentUser
         updateUserRedis session[:user_id]
         @n = params[:n].to_i || 0
         erb :home
@@ -44,12 +42,13 @@ def not_log_in_home
     end
 end
 
-def control_bar
-    @page_user_name = params[:username]
+def control_bar user_name
+    @page_user_name = user_name
     @x = "location='/#{@page_user_name}/editProfile'"
     @y = "location='/#{@page_user_name}/followers'"
     @z = "location='/#{@page_user_name}/followings'"
     @user_tweets = "location='/#{@page_user_name}/tweets'"
+    @user_likestweets = "location='/#{@page_user_name}/likes/tweets'"
 
     if @page_user_name == session[:username]
         erb :my_control_bar

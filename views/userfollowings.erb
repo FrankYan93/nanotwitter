@@ -9,9 +9,9 @@
 
       <h1>Follwings of <%= @user_name %></h1>
 
-      <%= control_bar %>
+      <%= control_bar @user_name %>
 
-        <% for i in 0..@following_number-1  %>
+        <% for i in 0..@user[:following_number]-1  %>
          <% unless @followings[i].nil? %>
           <%   @i = i %>
           <%   @status = "Following" %>
@@ -57,10 +57,6 @@ $(".status").hover(function(){
       var putFollow = new XMLHttpRequest();
       putFollow.open("PUT", '/api/v1/users/' + '<%= session[:user_id] %>' + '/unfollow/' + this.id, true);
       putFollow.send();
-
-      following_number-=1;
-      $("#following_number").html(following_number+' followings  ');
-
       $(this).parent().parent().parent().hide();
     }else{
       following_number+=1;
@@ -68,10 +64,6 @@ $(".status").hover(function(){
       var putFollow = new XMLHttpRequest();
       putFollow.open("PUT", '/api/v1/users/' + '<%= session[:user_id] %>' + '/follow/' + this.id, true);
       putFollow.send();
-
-      following_number+=1;
-      $("#following_number").html(following_number+' followings  ');
-
       $(this).parent().parent().parent().hide();
     }
   });

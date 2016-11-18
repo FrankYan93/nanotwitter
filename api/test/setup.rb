@@ -10,6 +10,7 @@ get '/api/v1/test/setup/all' do
     follow_number = (params[:follows] || 20).to_i
 
     # reset testuser
+
     setTestuser
 
     # create user and tweets

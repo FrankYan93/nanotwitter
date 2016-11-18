@@ -36,10 +36,10 @@ class TestTweetCreate < MiniTest::Test
   put "/api/v1/users/#{@user3_id}/tweets/test31"
 
 #create follow relations of 1->2, 1->3, 2->3, 3->1
-  put "/api/v1/users/#{@user1_id}/follow/#{@user2_id}"
-  put "/api/v1/users/#{@user1_id}/follow/#{@user3_id}"
-  put "/api/v1/users/#{@user2_id}/follow/#{@user3_id}"
-  put "/api/v1/users/#{@user3_id}/follow/#{@user1_id}"
+  put "/api/v1/users/#{@user1_id}/follow/#{@user2_id}?test=yes"
+  put "/api/v1/users/#{@user1_id}/follow/#{@user3_id}?test=yes"
+  put "/api/v1/users/#{@user2_id}/follow/#{@user3_id}?test=yes"
+  put "/api/v1/users/#{@user3_id}/follow/#{@user1_id}?test=yes"
 
 end
 

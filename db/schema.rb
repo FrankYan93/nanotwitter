@@ -19,6 +19,7 @@ ActiveRecord::Schema.define(version: 9) do
     t.integer  "user_id"
     t.integer  "followed_user_id"
     t.datetime "follow_date"
+    t.index ["user_id"], name: "index_followerfollowings_on_user_id", using: :btree
   end
 
   create_table "hashtags", force: :cascade do |t|
@@ -28,6 +29,7 @@ ActiveRecord::Schema.define(version: 9) do
   create_table "likes", force: :cascade do |t|
     t.integer "user_id"
     t.integer "tweet_id"
+    t.date    "create_time"
   end
 
   create_table "mentions", force: :cascade do |t|
@@ -71,6 +73,7 @@ ActiveRecord::Schema.define(version: 9) do
     t.integer  "like_numbers"
     t.integer  "forwarded_number"
     t.integer  "reply_number"
+    t.index ["username"], name: "index_tweets_on_username", using: :btree
   end
 
   create_table "users", force: :cascade do |t|

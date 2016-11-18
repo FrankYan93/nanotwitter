@@ -9,7 +9,7 @@ class TestFollowUnfollow < MiniTest::Test
 
   def test_it_put_follow_and_unfollow
     get '/api/v1/test/reset/all'
-    
+
     put '/api/v1/register/testuser1/testpassword1'
     user1 = JSON.parse(last_response.body)
     user1_id = user1["id"]
@@ -18,7 +18,7 @@ class TestFollowUnfollow < MiniTest::Test
     user2 = JSON.parse(last_response.body)
     user2_id = user2["id"]
 
-    put "/api/v1/users/#{user1_id}/follow/#{user2_id}"
+    put "/api/v1/users/#{user1_id}/follow/#{user2_id}?test=yes"
     relation =  JSON.parse(last_response.body)
     assert_equal relation["user_id"], user1_id
     assert_equal relation["followed_user_id"], user2_id
