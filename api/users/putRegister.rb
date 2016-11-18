@@ -8,10 +8,14 @@ def heRegister params
     newpassword = Password.create(params[:password])
     newUser.username = params[:username]
     newUser.password = newpassword
-    newUser.follower_number = 0
-    newUser.following_number = 0
+    newUser.follower_number = -1
+    newUser.following_number = -1
     newUser.nickname = ''
     newUser.save
+    theparam = {}
+    theparam[:user_id] = newUser[:id]
+    theparam[:following_id] = newUser[:id]
+    a_follow_b(theparam)
     newUser
   else
     "username is existed, please try another one"
