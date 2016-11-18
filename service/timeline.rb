@@ -68,3 +68,16 @@ def time_line
       erb :singleTweet
     end
 end
+
+def determine_status id
+   if session[:user_id].nil?
+     @status = "unable to follow"
+   else
+     @iffollow = iffollow(session[:user_id], id)
+     if @iffollow
+      @status = "Following"
+     else
+      @status = "Not following"
+     end
+   end
+end

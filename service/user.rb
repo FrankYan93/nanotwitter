@@ -50,16 +50,16 @@ get '/showProfile' do
   else
   @username = params[:usename]
   @user = User.find_by(username: session[:username])
-  
+
   erb :showProfile
   end
 end
 
 def iffollow(id, following_id)
-    relationship = Followerfollowing.where({user_id: id, followed_user_id: following_id})
-    if relationship.size.zero?
-        false
+    relationship = Followerfollowing.find_by({user_id: id, followed_user_id: following_id})
+    if relationship.nil?
+        return false
     else
-        true
+        return true
     end
 end

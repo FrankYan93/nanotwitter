@@ -7,7 +7,7 @@
 	<body>
     <div class="container theme-showcase" role="main">
 
-      <h1> <%= "#{session[:username]}" %>! Welcome To <%= "#{@user_name}" %>'s home</h1>
+      <h1> <%= "#{session[:username]}" %> Welcome To <%= "#{@user_name}" %>'s home</h1>
 
 
       <div class="col-sm-6 col-md-2">
@@ -25,6 +25,8 @@
 
       <br><br><br><br><br><br><br><br>
 
+
+      <% determine_status @user[:id]%>
       <%= control_bar @user_name %>
 
       <% for i in (0+@n*10)..(9+@n*10) %>

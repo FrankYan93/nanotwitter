@@ -2,13 +2,13 @@
 <html>
 <body>
 
-<a href="<%= "/#{@tweet['username']}/tweets"%>"> <div class="well"  data-toggle="modal" data-target="#myModal<%= @i %>">
-    <p>
+ <div class="well"  data-toggle="modal" data-target="#myModal<%= @i %>">
+    <a href="<%= "/#{@tweet['username']}/tweets"%>"><p>
         <font size="3" face="verdana">
             <strong><%= @tweet['nickname'] %></strong>
         </font>
         <font size="2" face="verdana" color=grey>@<%= @tweet['username'] %>*<%= @tweet['create_time'] %></font>
-    </p>
+    </p></a>
 
     <p>
         <%= @tweet['content'] %>
@@ -18,7 +18,7 @@
         <a class="btn btn-default" href="#" role="button">Retweet</a>
         <a class="btn btn-default" href="#" role="button">Like</a>
     </p>
-</div> </a>
+</div>
 
 <div class="modal fade" id="myModal<%= @i %>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog" role="document">
