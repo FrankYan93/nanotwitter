@@ -9,44 +9,20 @@ get '/api/v1/test/setup/all' do
     testuser_follow = (params[:testfollow] || 20).to_i
     follow_number = (params[:follows] || 20).to_i
 
-    puts count_number
-    puts tweet_number
-    puts testuser_follow
-    puts testuser_tweets
-    puts follow_number
-
     # reset testuser
-    testuser = User.find_by username: 'testuser'
-    if testuser.nil?
-        testuser=resetTestuser
-    else
-        deleteTweet('testuser')
-        deleteAsFollower('testuser')
-        deleteAsFollowing('testuser')
-    end
-    testuser.follower_number = -1
-    testuser.following_number = -1
-    testuser.save
-    theparam = {}
-    theparam[:user_id] = testuser[:id]
-    theparam[:following_id] = testuser[:id]
-    a_follow_b(theparam)
+
+    setTestuser
 
     # create user and tweets
     createUsersTweets(count_number, tweet_number)
 
     # make testuser tweet
-    for j in 1..testuser_tweets
-        text = Faker::Hacker.say_something_smart
-        newTweet(testuser[:id], text)
-      end
+    testuserTweet
 
     # make testuser follow users
-    # follow(testuser[:id], testuser[:id]+1)
     random_follow(testuser[:id], testuser_follow)
 
     # random follow
-
     users = shuffle User.all.to_a, follow_number
     for i in 0..follow_number - 1
         break if users[i].nil?
@@ -71,4 +47,29 @@ def random_follow(id, count)
         times += 1
     end
     puts times
+end
+
+def setTestuser
+  testuser = User.find_by username: 'testuser'
+  if testuser.nil?
+      resetTestuser
+  else
+      deleteTweet('testuser')
+      deleteAsFollower('testuser')
+      deleteAsFollowing('testuser')
+  end
+  testuser.follower_number = -1
+  testuser.following_number = -1
+  testuser.save
+  theparam = {}
+  theparam[:user_id] = testuser[:id]
+  theparam[:following_id] = testuser[:id]
+  a_follow_b(theparam)
+end
+
+def testuserTweet
+  for j in 1..testuser_tweets
+      text = Faker::Hacker.say_something_smart
+      newTweet(testuser[:id], text)
+  end
 end
