@@ -14,14 +14,15 @@
                       </div>
                       <div class="col-sm-6 col-md-8">
                           <h2>
-                               <%= @username %> </h2>
+                              Username: 
+                               <%= @user[:username] %> </h2>
                           <h4>
-                              Nickname: <%= @nickname  %>  </h4>
+                              Nickname: <%= @user[:nickname]  %>  </h4>
                           <p>
-                              <i class="glyphicon glyphicon-globe"></i>Description: <%= @description %>
+                              <i class="glyphicon glyphicon-globe"></i>Description: <%= @user[:description] %>
                               <br />
 
-                              <i class="glyphicon glyphicon-gift"></i>Birthday: <%= @birthday %></p>
+                              <i class="glyphicon glyphicon-gift"></i>Birthday: <%= @user[:birthday] %></p>
 
                       </div>
                   </div>

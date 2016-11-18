@@ -18,8 +18,8 @@ def heRegister params
     theparam[:user_id] = newUser[:id]
     theparam[:following_id] = newUser[:id]
     a_follow_b(theparam)
-
     User.find(theparam[:user_id])
+
   else
     error 400,"username is existed, please try another one"
   end
