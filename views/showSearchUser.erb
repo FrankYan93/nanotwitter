@@ -7,22 +7,22 @@
     <div class="container theme-showcase" role="main">
 
         <h1>Search Result of <%= @word %>!</h1>
-        <% if @users.nil? %>
-        <%= "No Result Found" %>
+        <% if @users.to_a.size ==0  %>
+        <h2> Oops, No Result Found </h2>
         <% else %>
-        <% for i in 0..@users.size-1 %>
-        <% @iffollow = iffollow(session[:id], @users[i][:id]) %>
-        <% if @iffollow %>
-        <% @status = "Following" %>
-        <% else %>
-        <% @status = "Not following" %>
-        <% end %>
+        <% for i in 0+@n*10..9+@n*10 %>
+        <%if @users[i].nil? %>
+        <%break%>
+        <%else%>
+        <% determine_status @users[i][:id]%>
         <% @i = i %>
         <%= erb :singleUser %>
         <% end %>
         <% end %>
+        <%end%>
 
-
+        <% @link ="/searchUser?word=#{@word}&&s" %>
+        <%= erb :control_pages%>
 
     </div>
   </body>

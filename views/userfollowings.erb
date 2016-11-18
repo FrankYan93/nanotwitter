@@ -1,70 +1,71 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>user followings</title>
-  </head>
+    <head>
+        <title>user followings</title>
+    </head>
 
-  <body>
-    <div class="container theme-showcase" role="main">
+    <body>
+        <div class="container theme-showcase" role="main">
 
-      <h1>Follwings of <%= @user_name %></h1>
+            <h1>Follwings of
+                <%= @user_name %></h1>
 
-      <%= control_bar @user_name %>
+            <%= control_bar @user_name %>
 
-        <% for i in 0..@user[:following_number]-1  %>
-         <% unless @followings[i].nil? %>
-          <%   @i = i %>
-          <%   @status = "Following" %>
-          <%   @users = @followings %>
-          <%= erb :singleUser %>
-        <% end %>
-      <% end %>
+            <% for i in 0..@user[:following_number]-1  %>
+            <% unless @followings[i].nil? %>
+            <%   @i = i %>
+            <%   @status = "Following" %>
+            <%   @users = @followings %>
+            <%= erb :singleUser %>
+            <% end %>
+            <% end %>
 
-        <h2>"Some Users you may interest in!"</h2>
+            <h2>"Some Users you may interest in!"</h2>
 
-        <% for i in 0..@count_number-1  %>
-          <% unless @unfollowings[i].nil? %>
-          <%   @i = i %>
-          <%   @status = "Not following" %>
-          <%   @users = @unfollowings %>
-          <%= erb :singleUser %>
-        <% end %>
-<% end %>
-    </div>
-  </body>
+            <% for i in 0..@count_number-1  %>
+            <% unless @unfollowings[i].nil? %>
+            <%   @i = i %>
+            <%   @status = "Not following" %>
+            <%   @users = @unfollowings %>
+            <%= erb :singleUser %>
+            <% end %>
+            <% end %>
+        </div>
+    </body>
 </html>
 <script type="text/javascript">
-var following_number=<%= @following_number %>;
-var follower_number=<%= @follower_number %>;
-$(".status").hover(function(){
-  if(this.innerHTML==="Following"){
-    $(this).html("Unfollow");
-  }else{
-    $(this).html("Follow");
-  }
-},function(){
-  if(this.innerHTML==="Unfollow"){
-    $(this).html("Following");
-  }else{
-    $(this).html("Not following");
-  }
-});
-  $(".status").click(function(){
-    var st=this.innerHTML;
-    if(st === "Unfollow"){
-      following_number-=1;
-      $("#following_number").html(following_number+' followings  ');
-      var putFollow = new XMLHttpRequest();
-      putFollow.open("PUT", '/api/v1/users/' + '<%= session[:user_id] %>' + '/unfollow/' + this.id, true);
-      putFollow.send();
-      $(this).parent().parent().parent().hide();
-    }else{
-      following_number+=1;
-      $("#following_number").html(following_number+' followings  ');
-      var putFollow = new XMLHttpRequest();
-      putFollow.open("PUT", '/api/v1/users/' + '<%= session[:user_id] %>' + '/follow/' + this.id, true);
-      putFollow.send();
-      $(this).parent().parent().parent().hide();
-    }
-  });
+    var following_number = <%= @following_number %>;
+    var follower_number = <%= @follower_number %>;
+    $(".status").hover(function () {
+        if (this.innerHTML === "Following") {
+            $(this).html("Unfollow");
+        } else {
+            $(this).html("Follow");
+        }
+    }, function () {
+        if (this.innerHTML === "Unfollow") {
+            $(this).html("Following");
+        } else {
+            $(this).html("Not following");
+        }
+    });
+    $(".status").click(function () {
+        var st = this.innerHTML;
+        if (st === "Unfollow") {
+            following_number -= 1;
+            $("#following_number").html(following_number + ' followings  ');
+            var putFollow = new XMLHttpRequest();
+            putFollow.open("PUT", '/api/v1/users/<%= session[:user_id] %>/unfollow/' + this.id, true);
+            putFollow.send();
+            $(this).parent().parent().parent().hide();
+        } else {
+            following_number += 1;
+            $("#following_number").html(following_number + ' followings  ');
+            var putFollow = new XMLHttpRequest();
+            putFollow.open("PUT", '/api/v1/users/<%= session[:user_id] %>/follow/' + this.id, true);
+            putFollow.send();
+            $(this).parent().parent().parent().hide();
+        }
+    });
 </script>

@@ -45,21 +45,16 @@ get '/:username/followings' do
 end
 
 get '/showProfile' do
-  if session[:user_id].nil?
-    not_log_in_home
-  else
-  @username = params[:usename]
-  @user = User.find_by(username: session[:username])
+    if session[:user_id].nil?
+        not_log_in_home
+    else
+        @username = params[:usename]
+        @user = User.find_by(username: session[:username])
 
-  erb :showProfile
-  end
+        erb :showProfile
+    end
 end
 
 def iffollow(id, following_id)
-    relationship = Followerfollowing.find_by({user_id: id, followed_user_id: following_id})
-    if relationship.nil?
-        return false
-    else
-        return true
-    end
+    !Followerfollowing.find_by(user_id: id, followed_user_id: following_id).nil?
 end

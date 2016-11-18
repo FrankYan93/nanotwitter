@@ -1,69 +1,56 @@
 <!DOCTYPE html>
 <html>
-  <head>
-		<title><%= @user_name %>'s Timeline</title>
-  </head>
+    <head>
+        <title><%= @user_name %>'s Timeline</title>
+    </head>
 
-	<body>
-    <div class="container theme-showcase" role="main">
+    <body>
+        <div class="container theme-showcase" role="main">
 
-      <h1> <%= "#{session[:username]}" %> Welcome To <%= "#{@user_name}" %>'s home</h1>
+            <h1>
+                <%= "#{session[:username]}" %>
+                Welcome To
+                <%= "#{@user_name}" %>'s home</h1>
 
+            <div class="col-sm-6 col-md-2">
+                <img src="https://case.edu/medicine/admissions/media/school-of-medicine/admissions/classprofile.png" alt="" class="img-rounded img-responsive"/>
+            </div>
+            <div class="col-sm-6 col-md-8">
+                <h2>
+                    Username:
+                    <%= @user[:username] %>
+                </h2>
+                <h4>
+                    Nickname:
+                    <%= @user[:nickname] %>
+                </h4>
+                <p>
+                    <i class="glyphicon glyphicon-globe"></i>Description:
+                    <%= @user[:description] %>
+                    <br>
+                    <i class="glyphicon glyphicon-gift"></i>Birthday:
+                    <%= @user[:birthday] %>
+                </p>
+            </div>
 
-      <div class="col-sm-6 col-md-2">
-       <img src="https://case.edu/medicine/admissions/media/school-of-medicine/admissions/classprofile.png" alt="" class="img-rounded img-responsive" />
-      </div>
-       <div class="col-sm-6 col-md-8">
-       <h2> Username: <%= @user[:username] %> </h2>
-       <h4> Nickname: <%= @user[:nickname] %> </h4>
-       <p>
-       <i class="glyphicon glyphicon-globe"></i>Description: <%= @user[:description] %>
-       <br>
-       <i class="glyphicon glyphicon-gift"></i>Birthday: <%= @user[:birthday] %>
-       </p>
-       </div>
+            <br><br><br><br><br><br><br><br>
 
-      <br><br><br><br><br><br><br><br>
+            <% determine_status @user[:id]%>
+            <%= control_bar @user_name %>
 
+            <% for i in (0+@n*10)..(9+@n*10) %>
+            <% if @all_tweets[i] == nil %>
+            <% break %>
+            <% end %>
+            <% @tweet = JSON.parse @all_tweets[i] %>
+            <% @i=i %>
+            <%= erb :singleTweet %>
+            <% end %>
 
-      <% determine_status @user[:id]%>
-      <%= control_bar @user_name %>
+            <% @link ="/#{@user_name}/tweets?" %>
+            <%= erb :control_pages%>
 
-      <% for i in (0+@n*10)..(9+@n*10) %>
-        <% if @all_tweets[i] == nil %>
-          <% break %>
-        <% end %>
-          <% @tweet = JSON.parse @all_tweets[i] %>
-          <% @i=i %>
-          <%= erb :singleTweet %>
-        <% end %>
+        </div>
 
-
-
-      <nav aria-label="Page navigation">
-        <ul class="pagination">
-          <li>
-            <a href="/<%= @user_name %>/tweets?n=<%= @n-1 %>" aria-label="Previous">
-              <span aria-hidden="true">&laquo;</span>
-            </a>
-          </li>
-          <li><a href="/<%= @user_name %>/tweets?n=0">1</a></li>
-          <li><a href="/<%= @user_name %>/tweets?n=1">2</a></li>
-          <li><a href="/<%= @user_name %>/tweets?n=2">3</a></li>
-          <li><a href="/<%= @user_name %>/tweets?n=3">4</a></li>
-          <li><a href="/<%= @user_name %>/tweets?n=4">5</a></li>
-          <li>
-            <a href="/<%= @user_name %>/tweets?n=<%= @n+1 %>" aria-label="Next">
-              <span aria-hidden="true">&raquo;</span>
-            </a>
-          </li>
-        </ul>
-      </nav>
-
-
-  </div>
-
-
-
-  </body>
+    </body>
 </html>
