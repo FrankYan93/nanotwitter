@@ -9,19 +9,14 @@
     <div class="container theme-showcase" role="main">
 
         <h1>Follwers of  <%= @user_name %></h1>
-
+        <% determine_status @user[:id]%>
         <%= control_bar @user_name %>
 
         <% for i in 0..@user[:follower_number]-1  %>
         <% unless @followers[i].nil? %>
+        <% determine_status @followers[i][:id]%>
         <% @i = i %>
-        <% @iffollow = iffollow(session[:id], @followers[i][:id]) %>
-        <% if @iffollow %>
-        <% @status = "Following" %>
-        <% else %>
-        <% @status = "Not following" %>
-        <% end %>
-        <%   @users = @followers %>
+        <% @users = @followers %>
         <%= erb :singleUser %>
         <% end %>
         <% end %>
@@ -31,8 +26,8 @@
   </body>
 </html>
 <script type="text/javascript">
-var following_number=<%= @following_number %>;
-var follower_number=<%= @follower_number %>;
+var following_number=<%= @user.following_number %>;
+var follower_number=<%= @user.follower_number %>;
 $(".status").hover(function(){
   if(this.innerHTML==="Following"){
     $(this).html("Unfollow");
