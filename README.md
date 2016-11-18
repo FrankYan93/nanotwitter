@@ -65,17 +65,22 @@ This project is licensed under xxx License
 
 # Tips
 
-1. To run the test, conduct "rake db:test:prepare" and "rake db:test:load" Then type "rake" in the terminal to run all the test
+1. To run the test, conduct `rake db:test:prepare` and `rake db:test:load`
+   Then type `rake` in the terminal to run all the test
 
-2. Reset database: "heroku pg:reset DATABASE_URL"
 
-3. We must flushall redis after test api used, and restart app.
-   run "heroku redis:cli"  "flushall" "Ok"
+2. Reset database: `heroku pg:reset DATABASE_URL`
 
-4. heroku run rake db:migrate
-   heroku run rake db:seed
 
-5. https://nano-notification.herokuapp.com/start will start the rabbitmq notification service
+3. We must flush all redis after test api used, and restart app.
+run `heroku redis:cli`  `flushall` `Ok`
+
+4. heroku run `rake db:migrate`
+heroku run `rake db:seed`
+
+5. `lsof -i :4567` to see which process is running in port 4567
+
+6. https://nano-notification.herokuapp.com/start will start the rabbitmq notification service
 
 
 # Steps in local:
@@ -85,13 +90,13 @@ This project is licensed under xxx License
   <links from="" github="">
   </links>
 
-2. install redis in local and run redis by "redis-server" links: <http://download.redis.io/releases/redis-3.2.5.tar.gz> follow readme to install redis first
+2. install redis in local and run redis by `redis-server` links: <http://download.redis.io/releases/redis-3.2.5.tar.gz> follow readme to install redis first
 
-3. install RabbitMQ server by "brew update", "brew install rabbitmq", should first install brew first. Run rabbitmq by "rabbitmq-server" if you have some problem to start, try "sudo chown $(whoami) /usr/local/share/man/man3" and "sudo chown $(whoami) /usr/local/share/man/man5"
-4. install all gems by "bundle install"
+3. install RabbitMQ server by `brew update`, `brew install rabbitmq`, should first install brew first. Run rabbitmq by `rabbitmq-server` if you have some problem to start, try `sudo chown $(whoami) /usr/local/share/man/man3` and `sudo chown $(whoami) /usr/local/share/man/man5`
+4. install all gems by `bundle install`
 5. install postgreSQL and open it
-6. run "rake db:migrate"
-7. run "ruby app.rb" to start the service
-8. open "0.0.0.0:4567" in the web browser
+6. run `rake db:migrate`
+7. run `ruby app.rb` to start the service
+8. open `0.0.0.0:4567` in the web browser
 9. reset data using test api
 10. done!
