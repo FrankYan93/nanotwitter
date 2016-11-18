@@ -9,61 +9,55 @@
 
         <div class="container theme-showcase" role="main">
 
-            <h1>Follwers of
-                <%= @user_name %></h1>
+        <h1>Follwers of  <%= @user_name %></h1>
+        <% determine_status @user[:id]%>
+        <%= control_bar @user_name %>
 
-            <%= control_bar @user_name %>
-
-            <% for i in 0..@user[:follower_number]-1  %>
-            <% unless @followers[i].nil? %>
-            <% @i = i %>
-            <% @iffollow = iffollow(session[:id], @followers[i][:id]) %>
-            <% if @iffollow %>
-            <% @status = "Following" %>
-        <% else %>
-            <% @status = "Not following" %>
-            <% end %>
-            <%   @users = @followers %>
-            <%= erb :singleUser %>
-            <% end %>
-            <% end %>
+        <% for i in 0..@user[:follower_number]-1  %>
+        <% unless @followers[i].nil? %>
+        <% determine_status @followers[i][:id]%>
+        <% @i = i %>
+        <% @users = @followers %>
+        <%= erb :singleUser %>
+        <% end %>
+        <% end %>
 
         </div>
 
     </body>
 </html>
 <script type="text/javascript">
-    var following_number = <%= @following_number %>;
-    var follower_number = <%= @follower_number %>;
-    $(".status").hover(function () {
-        if (this.innerHTML === "Following") {
-            $(this).html("Unfollow");
-        } else {
-            $(this).html("Follow");
-        }
-    }, function () {
-        if (this.innerHTML === "Unfollow") {
-            $(this).html("Following");
-        } else {
-            $(this).html("Not following");
-        }
-    });
-    $(".status").click(function () {
-        var st = this.innerHTML;
-        if (st === "Unfollow") {
-            following_number -= 1;
-            $("#following_number").html(following_number + ' followings  ');
-            var putFollow = new XMLHttpRequest();
-            $(this).html("Follow");
-            putFollow.open("PUT", '/api/v1/users/<%= session[:user_id] %>/unfollow/' + this.id, true);
-            putFollow.send();
-        } else {
-            following_number += 1;
-            $("#following_number").html(following_number + ' followings  ');
-            var putFollow = new XMLHttpRequest();
-            $(this).html("Unfollow");
-            putFollow.open("PUT", '/api/v1/users/<%= session[:user_id] %>/follow/' + this.id, true);
-            putFollow.send();
-        }
-    });
+var following_number=<%= @user.following_number %>;
+var follower_number=<%= @user.follower_number %>;
+$(".status").hover(function(){
+  if(this.innerHTML==="Following"){
+    $(this).html("Unfollow");
+  }else{
+    $(this).html("Follow");
+  }
+},function(){
+  if(this.innerHTML==="Unfollow"){
+    $(this).html("Following");
+  }else{
+    $(this).html("Not following");
+  }
+});
+  $(".status").click(function(){
+    var st=this.innerHTML;
+    if(st === "Unfollow"){
+      following_number-=1;
+      $("#following_number").html(following_number+' followings  ');
+      var putFollow = new XMLHttpRequest();
+      $(this).html("Follow");
+      putFollow.open("PUT", '/api/v1/users/' + '<%= session[:user_id] %>' + '/unfollow/' + this.id, true);
+      putFollow.send();
+    }else{
+      following_number+=1;
+      $("#following_number").html(following_number+' followings  ');
+      var putFollow = new XMLHttpRequest();
+      $(this).html("Unfollow");
+      putFollow.open("PUT", '/api/v1/users/' + '<%= session[:user_id] %>' + '/follow/' + this.id, true);
+      putFollow.send();
+    }
+  });
 </script>
