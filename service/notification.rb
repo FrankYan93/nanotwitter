@@ -7,7 +7,7 @@ get '/notification' do
     redirect '/warnnonlogin'
   else
     z = ENV['NANONOTI']+"/api/v1/users/#{session[:user_id]}/notifications"
-    p z
+    puts z
     uri=URI(z)
     #@responseArray=JSON.parse
     puts Net::HTTP.get(uri)
@@ -15,4 +15,10 @@ get '/notification' do
     @user=User.find(session[:user_id])
     erb :notification
   end
+end
+
+get '/notitest' do
+  z=ENV['NANONOTI']
+  uri=URI(z)
+  Net::HTTP.get(uri)  
 end
