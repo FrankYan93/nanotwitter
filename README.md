@@ -75,6 +75,8 @@ This project is licensed under xxx License
 4. heroku run rake db:migrate
    heroku run rake db:seed
 
+5. https://nano-notification.herokuapp.com/start will start the rabbitmq notification service
+
 
 # Steps in local:
 
