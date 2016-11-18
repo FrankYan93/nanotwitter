@@ -10,10 +10,10 @@
         <div class="container theme-showcase" role="main">
 
         <h1>Follwers of  <%= @user_name %></h1>
-        <% determine_status @user[:id]%>
+      
         <%= control_bar @user_name %>
 
-        <% for i in 0..@user[:follower_number]-1  %>
+        <% for i in 0+@n*10..9+@n*10  %>
         <% unless @followers[i].nil? %>
         <% determine_status @followers[i][:id]%>
         <% @i = i %>
@@ -21,6 +21,9 @@
         <%= erb :singleUser %>
         <% end %>
         <% end %>
+
+        <% @link ="/#{@user_name}/followers?" %>
+        <%= erb :control_pages%>
 
         </div>
 

@@ -22,10 +22,9 @@ end
 get '/:username/followers' do
     currentUser = User.find_by(username: params[:username])
     @user_name = params[:username]
-
     @user = currentUser
     @followers = hisFollowers(currentUser.id)
-
+    @n = params[:n].to_i || 0
     erb :userfollowers
 end
 
@@ -41,6 +40,8 @@ get '/:username/followings' do
     @count_number = 10
     users = User.not_follow_by(currentUser.id)
     @unfollowings = shuffle users.to_a, @count_number
+
+    @n = params[:n].to_i || 0
     erb :userfollowings
 end
 

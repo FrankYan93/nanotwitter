@@ -44,8 +44,8 @@ end
 def control_bar(user_name)
     @page_user_name = user_name
     @x = "location='/#{@page_user_name}/editProfile'"
-    @y = "location='/#{@page_user_name}/followers'"
-    @z = "location='/#{@page_user_name}/followings'"
+    @y = "location='/#{@page_user_name}/followers?n=0'"
+    @z = "location='/#{@page_user_name}/followings?n=0'"
     @user_tweets = "location='/#{@page_user_name}/tweets'"
     @user_likestweets = "location='/#{@page_user_name}/likes/tweets'"
 

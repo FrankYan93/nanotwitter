@@ -6,6 +6,8 @@
 
 <button class="btn" type="submit" onclick= <%= @z %>> <%= @user[:following_number] %> followings  </button>
 
+<% determine_status @user[:id]%>
+  
 <button class="btn btn-primary status"  id="<%= @user[:id] %>" ><%= @status%></button>
 
  <br><br>
