@@ -49,14 +49,8 @@ get '/showProfile' do
     not_log_in_home
   else
   @username = params[:usename]
-  currentUser = User.find_by(username: session[:username])
-
-  @password_hash = Password.new currentUser.password
-
-  @birthday = currentUser.birthday
-  @nickname = currentUser.nickname
-  @description = currentUser.description
-
+  @user = User.find_by(username: session[:username])
+  
   erb :showProfile
   end
 end

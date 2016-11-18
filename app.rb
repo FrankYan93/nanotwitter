@@ -35,7 +35,7 @@ def authenticate!
         redirect '/signin'
     end
 end
-# 
+#
 # def create
 #     newpassword = Password.create(params[:password])
 #     username = params[:username]
@@ -64,24 +64,11 @@ def redirect_to_original_request
 end
 
 get '/' do
-    # @sessionUserId
-
-    # byebug
-
-    if session[:user_id].nil?
-        not_log_in_home
-    else
-        log_in_home
-    end
+    check_log_in;
 end
 
 get '/home' do
-    if session[:user_id].nil?
-        not_log_in_home
-    else
-        # print User.not_follow_by(session[:user_id])[0][:username]
-        log_in_home
-    end
+    check_log_in;
 end
 
 get '/signup' do
@@ -137,4 +124,12 @@ end
 get '/protected/?' do
     authenticate!
     erb :protected, locals: { title: 'Protected Page' }
+end
+
+def check_log_in
+  if session[:user_id].nil?
+      not_log_in_home
+  else
+      log_in_home
+  end
 end
