@@ -18,7 +18,7 @@ get '/api/v1/test/setup/all' do
     # reset testuser
     testuser = User.find_by username: 'testuser'
     if testuser.nil?
-        resetTestuser
+        testuser=resetTestuser
     else
         deleteTweet('testuser')
         deleteAsFollower('testuser')
