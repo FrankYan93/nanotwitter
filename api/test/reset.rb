@@ -3,17 +3,9 @@ require 'time'
 
 # delete all data and create a testuser
 get '/api/v1/test/reset/all' do
-<<<<<<< HEAD
     deleteAll
     resetTestuser
     user_size = User.count
-=======
-
-      deleteAll
-      resetTestuser
-      user_size = User.count
-
->>>>>>> 0a109785788dee332f2dd9cfc9db54023a250009
 
     "user size = #{user_size}"
 end
