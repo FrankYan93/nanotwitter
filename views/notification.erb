@@ -1,24 +1,45 @@
 <% redirect'/warnnonlogin' if session[:user_id].nil? %>
-<%= control_bar %>
 
-<div class="list-group container theme-showcase">
-  <li class="list-group-item">
-    <a href="#">All</a>
-    <a href="#">Mentions</a>
-    <a href="#" style="float:right">Settings</a>
-  </li>
-  
-  <a href="#" class="list-group-item list-group-item-action active">
-    <h5 class="list-group-item-heading">List group item heading</h5>
-    <p class="list-group-item-text">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p>
-  </a>
-  <a href="#" class="list-group-item list-group-item-action">
-    <h5 class="list-group-item-heading">List group item heading</h5>
-    <p class="list-group-item-text">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p>
-  </a>
-  <a href="#" class="list-group-item list-group-item-action">
-    <h5 class="list-group-item-heading">List group item heading</h5>
-    <p class="list-group-item-text">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p>
-  </a>
+<div class="container theme-showcase" role="main">
+    <h1>Notifications</h1>
+    <%= control_bar %>
+
+    <div class="list-group container theme-showcase">
+        <li class="list-group-item">
+            <a href="#">All</a>
+            <a href="#">Mentions</a>
+            <a href="#" style="float:right">Settings</a>
+        </li>
+        <% @n+=1 if @n<0 %>
+        <% for i in (0+@n*20)..(19+@n*20) %>
+          <% if @responseArray[i] == nil %>
+            <% break %>
+          <% end %>
+            <% @notification = @responseArray[i] %>
+            <% @i=i %>
+            <%= erb :singleNotification %>
+          <% end %>
+
+        <nav aria-label="Page navigation">
+          <ul class="pagination">
+            <li>
+              <a href="/notification?n=<%= @n-1 %>" aria-label="Previous">
+                <span aria-hidden="true">&laquo;</span>
+              </a>
+            </li>
+            <li><a href="/notification?n=0">1</a></li>
+            <li><a href="/notification?n=1">2</a></li>
+            <li><a href="/notification?n=2">3</a></li>
+            <li><a href="/notification?n=3">4</a></li>
+            <li><a href="/notification?n=4">5</a></li>
+            <li>
+              <a href="/notification?n=<%= @n+1 %>" aria-label="Next">
+                <span aria-hidden="true">&raquo;</span>
+              </a>
+            </li>
+          </ul>
+        </nav>
+
+    </div>
 
 </div>
