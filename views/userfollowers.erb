@@ -10,7 +10,7 @@
         <div class="container theme-showcase" role="main">
 
         <h1>Follwers of  <%= @user_name %></h1>
-      
+
         <%= control_bar @user_name %>
 
         <% for i in 0+@n*10..9+@n*10  %>
@@ -29,38 +29,41 @@
 
     </body>
 </html>
+
+<%if @status != "unable to follow"%>
 <script type="text/javascript">
 var following_number=<%= @user.following_number %>;
 var follower_number=<%= @user.follower_number %>;
 $(".status").hover(function(){
-  if(this.innerHTML==="Following"){
-    $(this).html("Unfollow");
+  if(this.innerHTML==="  Following  "){
+    $(this).html("  Unfollow  ");
   }else{
-    $(this).html("Follow");
+    $(this).html("   Follow   ");
   }
 },function(){
-  if(this.innerHTML==="Unfollow"){
-    $(this).html("Following");
+  if(this.innerHTML==="  Unfollow  "){
+    $(this).html("  Following  ");
   }else{
     $(this).html("Not following");
   }
 });
   $(".status").click(function(){
     var st=this.innerHTML;
-    if(st === "Unfollow"){
+    if(st === "  Unfollow  "){
       following_number-=1;
       $("#following_number").html(following_number+' followings  ');
       var putFollow = new XMLHttpRequest();
-      $(this).html("Follow");
+      $(this).html("   Follow   ");
       putFollow.open("PUT", '/api/v1/users/' + '<%= session[:user_id] %>' + '/unfollow/' + this.id, true);
       putFollow.send();
     }else{
       following_number+=1;
       $("#following_number").html(following_number+' followings  ');
       var putFollow = new XMLHttpRequest();
-      $(this).html("Unfollow");
+      $(this).html("  Unfollow  ");
       putFollow.open("PUT", '/api/v1/users/' + '<%= session[:user_id] %>' + '/follow/' + this.id, true);
       putFollow.send();
     }
   });
 </script>
+<%end%>

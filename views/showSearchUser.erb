@@ -27,17 +27,19 @@
     </div>
   </body>
 </html>
+
+<%if @status != "unable to follow"%>
 <script type="text/javascript">
   var cui=<%= session[:user_id] %>+0;
   $(".status").hover(function(){
-    if(this.innerHTML==="Following"){
-      $(this).html("Unfollow");
+    if(this.innerHTML==="  Following  "){
+      $(this).html("  Unfollow  ");
     }else{
-      $(this).html("Follow");
+      $(this).html("   Follow   ");
     }
   },function(){
-    if(this.innerHTML==="Unfollow"){
-      $(this).html("Following");
+    if(this.innerHTML==="  Unfollow  "){
+      $(this).html("  Following  ");
     }else{
       $(this).html("Not following");
     }
@@ -47,8 +49,8 @@
       $("#login-first").show();
     }else{
         var st=this.innerHTML;
-        if(st === "Unfollow"){
-          $(this).html("Follow");
+        if(st === "  Unfollow  "){
+          $(this).html("   Follow   ");
           var putFollow = new XMLHttpRequest();
           putFollow.open("PUT", '/api/v1/users/' + '<%= session[:user_id] %>' + '/unfollow/' + this.id, true);
           putFollow.send();
@@ -56,7 +58,7 @@
           //$("#following_number").html(following_number+' followings  ');
         }else{
           var putFollow = new XMLHttpRequest();
-          $(this).html("Unfollow");
+          $(this).html("  Unfollow  ");
           putFollow.open("PUT", '/api/v1/users/' + '<%= session[:user_id] %>' + '/follow/' + this.id, true);
           putFollow.send();
           //following_number+=1;
@@ -65,3 +67,4 @@
       }
 });
 </script>
+<%end%>

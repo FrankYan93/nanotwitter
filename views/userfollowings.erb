@@ -42,26 +42,26 @@
 </html>
 
 
-
+<%if @status != "unable to follow"%>
 <script type="text/javascript">
 var following_number=<%= @user.following_number %>;
 var follower_number=<%= @user.follower_number %>;
 $(".status").hover(function(){
-  if(this.innerHTML==="Following"){
-    $(this).html("Unfollow");
+  if(this.innerHTML==="  Following  "){
+    $(this).html("  Unfollow  ");
   }else{
-    $(this).html("Follow");
+    $(this).html("   Follow   ");
   }
 },function(){
-  if(this.innerHTML==="Unfollow"){
-    $(this).html("Following");
+  if(this.innerHTML==="  Unfollow  "){
+    $(this).html("  Following  ");
   }else{
     $(this).html("Not following");
   }
 });
   $(".status").click(function(){
     var st=this.innerHTML;
-    if(st === "Unfollow"){
+    if(st === "  Unfollow  "){
       following_number-=1;
       $("#following_number").html(following_number+' followings  ');
       var putFollow = new XMLHttpRequest();
@@ -79,3 +79,4 @@ $(".status").hover(function(){
   });
 
 </script>
+<%end%>

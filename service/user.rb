@@ -59,3 +59,16 @@ end
 def iffollow(id, following_id)
     !Followerfollowing.find_by(user_id: id, followed_user_id: following_id).nil?
 end
+
+def determine_status(id)
+    if session[:user_id].nil?
+        @status = 'unable to follow'
+    else
+        @iffollow = iffollow(session[:user_id], id)
+        @status = if @iffollow
+                      '  Following  '
+                  else
+                      'Not following'
+                  end
+    end
+end
