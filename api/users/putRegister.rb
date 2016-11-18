@@ -18,13 +18,13 @@ def heRegister params
     theparam[:user_id] = newUser[:id]
     theparam[:following_id] = newUser[:id]
     a_follow_b(theparam)
-    
-    newUser.to_json
+
+    User.find(theparam[:user_id])
   else
     error 400,"username is existed, please try another one"
   end
 end
 
 put '/api/v1/users/create/:username/:password' do
-    heRegister(params)
+    heRegister(params).to_json
 end

@@ -11,13 +11,13 @@ get '/api/v1/test/setup/all' do
 
     # reset testuser
 
-    setTestuser
+    testuser=setTestuser
 
     # create user and tweets
     createUsersTweets(count_number, tweet_number)
 
     # make testuser tweet
-    testuserTweet
+    testuserTweet testuser_tweets,testuser[:id]
 
     # make testuser follow users
     random_follow(testuser[:id], testuser_follow)
@@ -52,7 +52,7 @@ end
 def setTestuser
   testuser = User.find_by username: 'testuser'
   if testuser.nil?
-      resetTestuser
+      testuser=resetTestuser
   else
       deleteTweet('testuser')
       deleteAsFollower('testuser')
@@ -65,11 +65,12 @@ def setTestuser
   theparam[:user_id] = testuser[:id]
   theparam[:following_id] = testuser[:id]
   a_follow_b(theparam)
+  testuser
 end
 
-def testuserTweet
+def testuserTweet testuser_tweets,theId
   for j in 1..testuser_tweets
       text = Faker::Hacker.say_something_smart
-      newTweet(testuser[:id], text)
+      newTweet(theId, text)
   end
 end
