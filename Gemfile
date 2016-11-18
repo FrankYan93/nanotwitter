@@ -19,4 +19,6 @@ gem 'redis'
 gem "hiredis"
 gem 'resque'
 gem 'bunny'
+gem 'rspec'
 #gem 'resque-web'
+gem 'typhoeus'

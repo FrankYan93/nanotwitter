@@ -52,11 +52,12 @@ This project is licensed under xxx License
 
 ## Tips
 
-1. To run the test, conduct "rake db:test:prepare" and "rake db:test:load"
-   Then type "rake" in the terminal to run all the test
+1. To run the test, conduct `rake db:test:prepare` and `rake db:test:load`
+   Then type `rake` in the terminal to run all the test
 
-2. Reset database: "heroku pg:reset DATABASE_URL"
+2. Reset database: `heroku pg:reset DATABASE_URL`
 
-3. We must flushall redis after test api used, and restart app.
+3. We must flush all redis after test api used, and restart app.
 
 4. heroku run rake db:migrate
+5. `lsof -i :4567` to see which process is running in port 4567

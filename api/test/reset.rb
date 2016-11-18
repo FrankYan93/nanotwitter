@@ -3,9 +3,12 @@ require 'time'
 
 # delete all data and create a testuser
 get '/api/v1/test/reset/all' do
-    deleteAll
-    resetTestuser
-    user_size = User.count
+    thr = Thread.new {
+      deleteAll
+      resetTestuser
+      user_size = User.count
+     }
+
     "user size = #{user_size}"
 end
 
