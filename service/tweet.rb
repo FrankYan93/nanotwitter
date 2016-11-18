@@ -18,9 +18,9 @@ get '/:username/likes/tweets' do
     if user.nil?
         "user dosen't exit!"
     else
-        @follower_number = user.follower_number
-        @following_number = user.following_number
-        n = 100;
+        @user = user
+
+        n = 50;
         all_likes = Like.where(user_id: user[:id]).order(create_time: :desc).limit(n);
         al_tweets = []
         all_likes.each do |like|

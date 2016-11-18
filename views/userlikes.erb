@@ -9,7 +9,7 @@
 
       <h1><%= "#{@user_name}" %>'s likes of tweets</h1>
 
-      <%= control_bar %>
+      <%= control_bar @user_name %>
 
       <% for i in (0+@n*20)..(19+@n*20) %>
         <% if @all_tweets[i] == nil %>

@@ -7,13 +7,27 @@
 	<body>
     <div class="container theme-showcase" role="main">
 
-      <h1><%= "#{@user_name}" %>'s home</h1>
-
-      <%= control_bar %>
+      <h1> <%= "#{session[:username]}" %>! Welcome To <%= "#{@user_name}" %>'s home</h1>
 
 
+      <div class="col-sm-6 col-md-2">
+       <img src="https://case.edu/medicine/admissions/media/school-of-medicine/admissions/classprofile.png" alt="" class="img-rounded img-responsive" />
+      </div>
+       <div class="col-sm-6 col-md-8">
+       <h2> Username: <%= @user[:username] %> </h2>
+       <h4> Nickname: <%= @user[:nickname] %> </h4>
+       <p>
+       <i class="glyphicon glyphicon-globe"></i>Description: <%= @user[:description] %>
+       <br>
+       <i class="glyphicon glyphicon-gift"></i>Birthday: <%= @user[:birthday] %>
+       </p>
+       </div>
 
-      <% for i in (0+@n*20)..(19+@n*20) %>
+      <br><br><br><br><br><br><br><br>
+
+      <%= control_bar @user_name %>
+
+      <% for i in (0+@n*10)..(9+@n*10) %>
         <% if @all_tweets[i] == nil %>
           <% break %>
         <% end %>
