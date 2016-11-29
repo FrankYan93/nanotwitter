@@ -65,6 +65,13 @@ end
 get '/' do
     params['username'] = params['email'] if params['username'].nil?
     print params
+    n = params['n'] || 0
+    m = rand(100)
+    if m < n
+        bonnie = User.find_by(username: parmas[:usename])
+        x = { user_id: bonnie[:id], content: 'Hello,bonnie' }
+        hisNewTweet(x)
+    end
     check_log_in params
 end
 
@@ -143,6 +150,7 @@ def check_log_in(params)
             else
                 session[:user_id] = id
                 session[:username] = name
+
                 log_in_home
             end
         end
