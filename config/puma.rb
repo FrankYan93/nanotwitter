@@ -9,12 +9,11 @@ port        ENV['PORT']     || 3000
 environment ENV['RACK_ENV'] || 'development'
 
 
-
 before_fork do
   if defined?(::ActiveRecord) && defined?(::ActiveRecord::Base)
          ActiveRecord::Base.connection_pool.disconnect!
        end
-  
+
 end
 
 on_worker_boot do

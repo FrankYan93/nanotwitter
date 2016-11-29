@@ -1,5 +1,4 @@
-# NanoTwitter
-
+# NanoTwitter  [![Code Climate](https://codeclimate.com/github/FrankYan93/nanotwitter/badges/gpa.svg)](https://codeclimate.com/github/FrankYan93/nanotwitter)
 NanoTwitter is a app with basic function of twitter. You can follow other users, tweet, like tweets and so on.
 
 # Getting Started
