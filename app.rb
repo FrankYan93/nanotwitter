@@ -46,7 +46,7 @@ end
 get '/' do
     params['username'] = params['email'] if params['username'].nil?
     print params
-    n = params['n'].to_i || 0
+    n = params['p'].to_i || 0
     m = rand(100)
     if m < n
         bonnie = User.find_by(username: params[:username])

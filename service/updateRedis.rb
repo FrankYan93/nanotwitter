@@ -1,7 +1,7 @@
 #require_relative '../app.rb'
 def updateUserRedis userId
   #userId=session[:user_id]
-  return 1 unless $redis.ttl(userId)==-2
+  return "no need to update" unless $redis.ttl(userId)==-2
   $redis.expire(userId,3600)
   n = 100
   join_follows_tweets = Followerfollowing.joins('JOIN tweets ON tweets.user_id = followerfollowings.followed_user_id').where(user_id: session[:user_id])
@@ -9,6 +9,7 @@ def updateUserRedis userId
   all_tweets.each{|x|
     $redis.rpush(userId,x.to_json)
   }
+  "update success"
 end
 
 def updatePersonalTweets(userId,n)
