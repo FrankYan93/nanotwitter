@@ -10,50 +10,31 @@ require 'resque'
 require 'bunny'
 require 'thread'
 require 'net/http'
-# require apis
+# require apis, services, models
 Dir[File.dirname(__FILE__) + '/models/*.rb'].each { |file| require file }
 Dir[File.dirname(__FILE__) + '/api/users/*.rb'].each { |file| require file }
 Dir[File.dirname(__FILE__) + '/api/tweets/*.rb'].each { |file| require file }
 Dir[File.dirname(__FILE__) + '/api/test/*.rb'].each { |file| require file }
 Dir[File.dirname(__FILE__) + '/service/*.rb'].each { |file| require file }
-
+#initialize redis
 require_relative 'config/initializers/redis.rb'
-
+#config new relic
 configure :production do
     require 'newrelic_rpm'
 end
-enable :sessions
 
+enable :sessions
+#flush redis if necessary
 require_relative 'cache_redis.rb' if $redis.llen('nonlogin_timeline').zero? && !$rakedb
 
 include BCrypt
-
+#just check session
 def authenticate!
     if session[:user_id].nil?
         session[:original_request] = request.path_info
         redirect '/signin'
     end
 end
-#
-# def create
-#     newpassword = Password.create(params[:password])
-#     username = params[:username]
-#     user = User.new
-#     user.username = username
-#     user.password = newpassword
-#     user.follower_number = -1
-#     user.following_number = -1
-#     user.nickname = ''
-#
-#     user.save
-#     session[:user_id] = user.id
-#     session[:username] = username
-#
-#     theparam = {}
-#     theparam[:user_id] = user[:id]
-#     theparam[:following_id] = user[:id]
-#     a_follow_b(theparam)
-# end
 
 def redirect_to_original_request
     user = session[:user]
@@ -86,16 +67,6 @@ post '/signup' do
         session[:username] = response_reg.username
         redirect to('/home')
     end
-    # username = params['username']
-    # user = User.find_by username: username
-    # @errorString = ''
-    # if user.nil?
-    #     create
-    #     redirect to('/home')
-    # else
-    #     @errorString = ' ------ Username existed! Please try another name!'
-    #     erb :signUp
-    # end
 end
 
 get '/signin/?' do
