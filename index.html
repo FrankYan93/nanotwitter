@@ -1,0 +1,165 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Nanotwitter by FrankYan93</title>
+
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/github-light.css">
+    <meta name="viewport" content="width=device-width">
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <h1>Nanotwitter</h1>
+        <p>a baby version of Twitter designed as a platform for experimentation with scaling issues</p>
+
+        <p class="view"><a href="https://github.com/FrankYan93/nanotwitter">View the Project on GitHub <small>FrankYan93/nanotwitter</small></a></p>
+
+
+        <ul>
+          <li><a href="https://github.com/FrankYan93/nanotwitter/zipball/master">Download <strong>ZIP File</strong></a></li>
+          <li><a href="https://github.com/FrankYan93/nanotwitter/tarball/master">Download <strong>TAR Ball</strong></a></li>
+          <li><a href="https://github.com/FrankYan93/nanotwitter">View On <strong>GitHub</strong></a></li>
+        </ul>
+      </header>
+      <section>
+        <h1>
+<a id="nanotwitter--" class="anchor" href="#nanotwitter--" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>NanoTwitter  <a href="https://codeclimate.com/github/FrankYan93/nanotwitter"><img src="https://codeclimate.com/github/FrankYan93/nanotwitter/badges/gpa.svg" alt="Code Climate"></a>
+</h1>
+
+<p>NanoTwitter is a app with basic function of twitter. You can follow other users, tweet, like tweets and so on.</p>
+
+<h1>
+<a id="getting-started" class="anchor" href="#getting-started" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Getting Started</h1>
+
+<p>Notification service repo: <a href="https://github.com/FrankYan93/nanoNotification">https://github.com/FrankYan93/nanoNotification</a>
+We must visit <a href="https://nano-notification.herokuapp.com/start">https://nano-notification.herokuapp.com/start</a> to start our web service for notification.
+Main website: <a href="https://nano-twitter-dratini.herokuapp.com">https://nano-twitter-dratini.herokuapp.com</a></p>
+
+<h2>
+<a id="installing" class="anchor" href="#installing" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Installing</h2>
+
+<ol>
+<li>download for our website</li>
+<li>
+<p>double click the icon</p>
+
+<pre><code>Give some code exmaple
+</code></pre>
+</li>
+</ol>
+
+<h2>
+<a id="running-the-tests" class="anchor" href="#running-the-tests" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Running the tests</h2>
+
+<p><strong>How to run tests</strong></p>
+
+<ul>
+<li>rake (run all minitests)</li>
+<li>ruby test/testUser/testGet.rb</li>
+<li>ruby test/testUser/testUserCreate.rb</li>
+<li>ruby test/testUser/testFollowUnfollow.rb</li>
+<li>ruby test/testUser/testEditProfile.rb</li>
+<li>
+<p>ruby test/testTweet/testTweetCreate.rb</p>
+
+<pre><code>Give some code exmaple
+</code></pre>
+
+<h3>
+<a id="deployment" class="anchor" href="#deployment" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Deployment</h3>
+</li>
+</ul>
+
+<h1>
+<a id="built-with" class="anchor" href="#built-with" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Built with</h1>
+
+<ul>
+<li>Ruby</li>
+<li>Sinatra</li>
+<li>Activerecord</li>
+<li>PostgreSQL</li>
+<li>Javascript</li>
+<li>JQuery</li>
+<li>Bootstrap</li>
+<li>Bootbox</li>
+<li>Rake</li>
+<li>Redis</li>
+<li>RabbitMQ</li>
+<li>Resque</li>
+<li>Rack</li>
+<li>...</li>
+</ul>
+
+<h1>
+<a id="versioning" class="anchor" href="#versioning" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Versioning</h1>
+
+<h1>
+<a id="authors" class="anchor" href="#authors" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Authors</h1>
+
+<ul>
+<li><strong>Jiadong Yan</strong></li>
+<li><strong>Jiaming Xu</strong></li>
+<li><strong>Xinyi Jiang</strong></li>
+</ul>
+
+<h1>
+<a id="license" class="anchor" href="#license" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>License</h1>
+
+<p>This project is licensed under xxx License</p>
+
+<h1>
+<a id="acknowledgments" class="anchor" href="#acknowledgments" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Acknowledgments</h1>
+
+<h1>
+<a id="tips" class="anchor" href="#tips" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Tips</h1>
+
+<ol>
+<li><p>To run the test, conduct <code>rake db:test:prepare</code> and <code>rake db:test:load</code>
+Then type <code>rake</code> in the terminal to run all the test</p></li>
+<li><p>Reset database: <code>heroku pg:reset DATABASE_URL</code></p></li>
+<li><p>We must flush all redis after test api used, and restart app.
+run <code>heroku redis:cli</code>  <code>flushall</code> <code>Ok</code></p></li>
+<li><p>heroku run <code>rake db:migrate</code>
+heroku run <code>rake db:seed</code></p></li>
+<li><p><code>lsof -i :4567</code> to see which process is running in port 4567</p></li>
+<li><p><a href="https://nano-notification.herokuapp.com/start">https://nano-notification.herokuapp.com/start</a> will start the rabbitmq notification service</p></li>
+</ol>
+
+<h1>
+<a id="steps-in-local" class="anchor" href="#steps-in-local" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Steps in local:</h1>
+
+<ol>
+<li>
+<p>git clone</p>
+
+<p>
+</p>
+</li>
+<li><p>install redis in local and run redis by <code>redis-server</code> links: <a href="http://download.redis.io/releases/redis-3.2.5.tar.gz">http://download.redis.io/releases/redis-3.2.5.tar.gz</a> follow readme to install redis first</p></li>
+<li><p>install RabbitMQ server by <code>brew update</code>, <code>brew install rabbitmq</code>, should first install brew first. Run rabbitmq by <code>rabbitmq-server</code> if you have some problem to start, try <code>sudo chown $(whoami) /usr/local/share/man/man3</code> and <code>sudo chown $(whoami) /usr/local/share/man/man5</code></p></li>
+<li>install all gems by <code>bundle install</code>
+</li>
+<li>install postgreSQL and open it</li>
+<li>run <code>rake db:migrate</code>
+</li>
+<li>run <code>ruby app.rb</code> to start the service</li>
+<li>open <code>0.0.0.0:4567</code> in the web browser</li>
+<li>reset data using test api</li>
+<li>done!</li>
+</ol>
+      </section>
+      <footer>
+        <p>This project is maintained by <a href="https://github.com/FrankYan93">FrankYan93</a></p>
+        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
+      </footer>
+    </div>
+    <script src="javascripts/scale.fix.js"></script>
+    
+  </body>
+</html>
