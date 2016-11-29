@@ -15,14 +15,13 @@ get '/api/v1/test/reset/standard' do
     Thread.new{
       offset=User.maximum(:id)
       deleteAll
-
-      offset=0 if offset.nil?
-      setUser offset
-      setTweet offset
-      #puts offset,offset_tweet
-      setFollows offset
-
       resetTestuser
+      print params["n"]
+      offset=0 if offset.nil?
+      offset+=1
+      setUser offset
+      setTweet(offset,params["n"].to_i)
+      setFollows offset
     }
 end
 
@@ -78,8 +77,12 @@ def setUser offset
     end
 end
 
-def setTweet offset
+def setTweet(offset,n)
     CSV.foreach('./api/test/seeds/tweets.csv') do |row|
+        n-=1
+        puts
+        puts n
+        return nil if n<0
         user_id = row[0].to_i+offset
         user=User.find(user_id)
         tweet = row[1]
