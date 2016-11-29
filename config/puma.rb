@@ -8,7 +8,6 @@ rackup      DefaultRackup
 port        ENV['PORT']     || 3000
 environment ENV['RACK_ENV'] || 'development'
 
-timeout 20
 
 before_fork do
   if defined?(::ActiveRecord) && defined?(::ActiveRecord::Base)
