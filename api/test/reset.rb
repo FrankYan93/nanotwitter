@@ -52,13 +52,9 @@ def resetTestuser
     user.nickname = 'testie'
     newpassword = Password.create('password')
     user.password = newpassword
-    user.follower_number = -1
-    user.following_number = -1
+    user.follower_number = 0
+    user.following_number = 0
     user.save
-    theparam = {}
-    theparam[:user_id] = user[:id]
-    theparam[:following_id] = user[:id]
-    a_follow_b(theparam)
 end
 
 def setUser
