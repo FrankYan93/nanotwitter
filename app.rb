@@ -17,7 +17,6 @@ Dir[File.dirname(__FILE__) + '/api/tweets/*.rb'].each { |file| require file }
 Dir[File.dirname(__FILE__) + '/api/test/*.rb'].each { |file| require file }
 Dir[File.dirname(__FILE__) + '/service/*.rb'].each { |file| require file }
 
-
 require_relative 'config/initializers/redis.rb'
 
 configure :production do
@@ -64,7 +63,7 @@ def redirect_to_original_request
 end
 
 get '/' do
-    params["username"]=params["email"] if params["username"].nil?
+    params['username'] = params['email'] if params['username'].nil?
     print params
     check_log_in params
 end
@@ -78,14 +77,14 @@ get '/signup' do
 end
 
 post '/signup' do
-    response_reg=heRegister params
-    if response_reg.class==String
-      @errorString = ' ------ Username existed! Please try another name!'
-      erb :signUp
+    response_reg = heRegister params
+    if response_reg.class == String
+        @errorString = ' ------ Username existed! Please try another name!'
+        erb :signUp
     else
-      session[:user_id] = response_reg.id
-      session[:username] = response_reg.username
-      redirect to('/home')
+        session[:user_id] = response_reg.id
+        session[:username] = response_reg.username
+        redirect to('/home')
     end
     # username = params['username']
     # user = User.find_by username: username
@@ -103,6 +102,10 @@ get '/signin/?' do
     erb :signin
 end
 
+get 'loaderio-f1055ee771fe308ab55cc3be88736038' do
+    'loaderio-f1055ee771fe308ab55cc3be88736038'
+end
+
 post '/signin/?' do
     current_user_id, current_username = User.authenticate(params)
     @errorMessage = ''
@@ -112,7 +115,7 @@ post '/signin/?' do
     else
         session[:user_id] = current_user_id
         session[:username] = current_username
-        #@currentUser=User.find_by(username: params[:username])
+        # @currentUser=User.find_by(username: params[:username])
         redirect '/home'
         # redirect_to_original_request
     end
@@ -128,22 +131,22 @@ get '/protected/?' do
     erb :protected, locals: { title: 'Protected Page' }
 end
 
-def check_log_in params
-  if session[:user_id].nil?
-      if params[:username].nil?
-        not_log_in_home
-      else
-        id,name=User.authenticate params
-        #puts id,name
-        if id.nil?
-          not_log_in_home
+def check_log_in(params)
+    if session[:user_id].nil?
+        if params[:username].nil?
+            not_log_in_home
         else
-          session[:user_id]=id
-          session[:username]=name
-          log_in_home
+            id, name = User.authenticate params
+            # puts id,name
+            if id.nil?
+                not_log_in_home
+            else
+                session[:user_id] = id
+                session[:username] = name
+                log_in_home
+            end
         end
-      end
-  else
-      log_in_home
-  end
+    else
+        log_in_home
+    end
 end
