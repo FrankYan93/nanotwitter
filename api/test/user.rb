@@ -17,7 +17,7 @@ get '/api/v1/test/user/:user_name/tweets' do
     tweet_number = params[:tweets].to_i || 0
     user = User.find_by username: user_name
     user_id = user.id
-    for j in 1..tweet_number
+    tweet_number.times do
         text = Faker::Hacker.say_something_smart
         newTweet(user_id, text)
     end
@@ -42,7 +42,7 @@ get '/api/v1/test/user/follow' do
     follow_number = (params[:count] || 20).to_i
     for i in 0..follow_number-1
         users = shuffle User.all.to_a, follow_number
-        for j in 0..follow_number-1
+        follow_number.times do
             if users[i] == nil
               break
             end
@@ -54,10 +54,10 @@ get '/api/v1/test/user/follow' do
 end
 
 def createUsersTweets(count_number, tweet_number)
-    for i in 1..count_number
+    count_number.times do
         username = Faker::Name.first_name
         user_id = newUser(username)
-        for j in 1..tweet_number
+        tweet_number.times do
             text = Faker::Hacker.say_something_smart
             newTweet(user_id, text)
         end

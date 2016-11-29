@@ -69,7 +69,7 @@ def setTestuser
 end
 
 def testuserTweet testuser_tweets,theId
-  for j in 1..testuser_tweets
+  testuser_tweets.times do
       text = Faker::Hacker.say_something_smart
       newTweet(theId, text)
   end
