@@ -3,12 +3,11 @@ require 'time'
 
 # delete all data and create a testuser
 get '/api/v1/test/reset/all' do
-  thr = Thread.new{
     deleteAll
     resetTestuser
-}
-user_size = User.count
-"user size = #{user_size}"
+    user_size = User.count
+
+    "user size = #{user_size}"
 end
 
 # create data based on seeds
@@ -52,9 +51,13 @@ def resetTestuser
     user.nickname = 'testie'
     newpassword = Password.create('password')
     user.password = newpassword
-    user.follower_number = 0
-    user.following_number = 0
+    user.follower_number = -1
+    user.following_number = -1
     user.save
+    theparam = {}
+    theparam[:user_id] = user[:id]
+    theparam[:following_id] = user[:id]
+    a_follow_b(theparam)
 end
 
 def setUser
