@@ -65,10 +65,10 @@ end
 get '/' do
     params['username'] = params['email'] if params['username'].nil?
     print params
-    n = params['n'] || 0
+    n = params['n'].to_i || 0
     m = rand(100)
     if m < n
-        bonnie = User.find_by(username: parmas[:usename])
+        bonnie = User.find_by(username: params[:username])
         x = { user_id: bonnie[:id], content: 'Hello,bonnie' }
         hisNewTweet(x)
     end
