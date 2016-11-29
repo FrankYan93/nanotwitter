@@ -44,7 +44,7 @@ class NotificationClient
 end
 
 def rpcClient sendHash
-  conn = Bunny.new(ENV["RABBITMQ_BIGWIG_URL"],automatically_recover: false)
+  conn = Bunny.new(ENV["RABBITMQ_BIGWIG_TX_URL"],automatically_recover: false)
   conn.start
   ch = conn.create_channel
 
