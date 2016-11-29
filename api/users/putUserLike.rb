@@ -1,8 +1,10 @@
 put '/api/v1/users/:user_id/likes/:tweet_id' do
     params["username"]=User.find(params[:user_id]).username
     params["owner_id"]=Tweet.find(params[:tweet_id]).user_id
-    rpcClient params if params["test"].nil?
-    heLike(params).to_json
+    x=heLike(params)
+
+    Thread.new{rpcClient params} if params["test"].nil?
+    x.to_json
 end
 
 def heLike params

@@ -14,15 +14,11 @@ end
 get '/api/v1/test/reset/standard' do
     Thread.new{
       offset=User.maximum(:id)
-      offset_tweet=Tweet.maximum(:id)
       deleteAll
-
 
       offset=0 if offset.nil?
       setUser offset
-
-      offset_tweet=0 if offset_tweet.nil?
-      setTweet offset_tweet
+      setTweet offset
       #puts offset,offset_tweet
       setFollows offset
 

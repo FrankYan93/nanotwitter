@@ -3,7 +3,7 @@ put '/api/v1/users/:user_id/follow/:following_id' do
     params["owner_id"]=params[:following_id]
     x=a_follow_b(params)
     if x
-      rpcClient params if params["test"].nil?
+      Thread.new{rpcClient params} if params["test"].nil?
       x.to_json
     else
       "repeated follow"

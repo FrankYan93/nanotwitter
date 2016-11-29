@@ -5,9 +5,9 @@
  <div class="well"  data-toggle="modal" data-target="#myModal<%= @i %>">
     <a href="<%= "/#{@tweet['username']}/tweets"%>"><p>
         <font size="3" face="verdana">
-            <strong><%= @tweet['nickname'] %></strong>
+            <strong><%= @tweet['nickname']||"seedUser" %></strong>
         </font>
-        <font size="2" face="verdana" color=grey>@<%= @tweet['username'] %>*<%= @tweet['create_time'] %></font>
+        <font size="2" face="verdana" color=grey>@<%= @tweet['username']||"seedNick" %>*<%= @tweet['create_time'] %></font>
     </p></a>
 
     <p>
