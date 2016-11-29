@@ -33,7 +33,6 @@ class NotificationClient
         response
     end
 
-
     protected
 
     def generate_uuid
@@ -44,16 +43,16 @@ class NotificationClient
 end
 
 def rpcClient sendHash
-  conn = Bunny.new(ENV["RABBITMQ_BIGWIG_TX_URL"],automatically_recover: false)
+  conn = Bunny.new(ENV["RABBITMQ_BIGWIG_RX_URL"],automatically_recover: false)
   conn.start
   ch = conn.create_channel
 
-  client = NotificationClient.new(ch, 'rpc_queue')
-  puts " [x] Requesting #{sendHash}"
+    client = NotificationClient.new(ch, 'rpc_queue')
+    puts " [x] Requesting #{sendHash}"
 
-  response = client.call(sendHash.to_json)
-  puts " [.] Got #{response}"
+    response = client.call(sendHash.to_json)
+    puts " [.] Got #{response}"
 
-  ch.close
-  conn.close
+    ch.close
+    conn.close
 end

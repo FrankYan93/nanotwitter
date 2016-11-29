@@ -1,14 +1,12 @@
-def insertIntoAllFollower theId,tweet
-  theFollowers=hisFollowers theId
-  theFollowers.each{|x|
-    next if $redis.ttl(x)==-2
-    n=100
-    #tweet is the whole record
-    $redis.lpush(x,tweet)
-    if $redis.llen(x)>n
-      $redis.rpop x
+def insertIntoAllFollower(theId, tweet)
+    theFollowers = hisFollowers theId
+    theFollowers.each do |x|
+        next if $redis.ttl(x) == -2
+        n = 100
+        # tweet is the whole record
+        $redis.lpush(x, tweet)
+        $redis.rpop x if $redis.llen(x) > n
     end
-  }
 end
 
 get '/:username/likes/tweets' do
@@ -20,11 +18,11 @@ get '/:username/likes/tweets' do
     else
         @user = user
 
-        n = 50;
-        all_likes = Like.where(user_id: user[:id]).order(create_time: :desc).limit(n);
+        n = 50
+        all_likes = Like.where(user_id: user[:id]).order(create_time: :desc).limit(n)
         al_tweets = []
         all_likes.each do |like|
-          al_tweets << Tweet.find_by(id: like.tweet_id).to_json
+            al_tweets << Tweet.find_by(id: like.tweet_id).to_json
         end
         @all_tweets = al_tweets
 
