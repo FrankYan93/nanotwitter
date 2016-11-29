@@ -12,11 +12,22 @@ end
 
 # create data based on seeds
 get '/api/v1/test/reset/standard' do
-    deleteAll
-    setUser
-    setTweet
-    setFollows
-    resetTestuser
+    Thread.new{
+      offset=User.maximum(:id)
+      offset_tweet=Tweet.maximum(:id)
+      deleteAll
+
+
+      offset=0 if offset.nil?
+      setUser offset
+
+      offset_tweet=0 if offset_tweet.nil?
+      setTweet offset_tweet
+      #puts offset,offset_tweet
+      setFollows offset
+
+      resetTestuser
+    }
 end
 
 # reset all about testuser
@@ -60,38 +71,31 @@ def resetTestuser
     a_follow_b(theparam)
 end
 
-def setUser
+def setUser offset
     CSV.foreach('./api/test/seeds/users.csv') do |row|
-        user_id = row[0].to_i
+        user_id = row[0].to_i+offset
         user_name = row[1]
         User.create(username: user_name, follower_number: 0, following_number: 0).update_column(:id, user_id)
     end
 end
 
-def setTweet
+def setTweet offset
     CSV.foreach('./api/test/seeds/tweets.csv') do |row|
-        user_id = row[0].to_i
+        user_id = row[0].to_i+offset
         tweet = row[1]
         time = DateTime.parse(row[2])
         Tweet.create(user_id: user_id, content: tweet, create_time: time, is_forwarding: false, is_mentioning: false, has_hashtag: false, like_numbers: 0, forwarded_number: 0, reply_number: 0)
     end
 end
 
-def setFollows
+def setFollows offset
     CSV.foreach('./api/test/seeds/follows.csv') do |row|
-        user_id = row[0].to_i
-        followed_user_id = row[1].to_i
-        Followerfollowing.create(user_id: user_id, followed_user_id: followed_user_id, follow_date: Time.now)
-        following_user = User.find_by id: user_id
-        unless following_user.nil?
-            following_user[:following_number] += 1
-            following_user.save
-        end
-        followed_user = User.find_by id: followed_user_id
-        unless followed_user.nil?
-            followed_user[:follower_number] += 1
-            followed_user.save
-        end
+        #print row,"\n"
+        user_id = row[0].to_i+offset
+        followed_user_id = row[1].to_i+offset
+        params={user_id: user_id,following_id: followed_user_id}
+        #print params
+        a_follow_b(params)
     end
 end
 

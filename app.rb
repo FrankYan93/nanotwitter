@@ -64,6 +64,7 @@ def redirect_to_original_request
 end
 
 get '/' do
+    params["username"]=params["email"] if params["username"].nil?
     print params
     check_log_in params
 end
