@@ -10,7 +10,7 @@ get '/api/v1/test/setup/all' do
     follow_number = (params[:follows] || 20).to_i
 
     # reset testuser
-
+    thr = Thread.new {
     testuser=setTestuser
 
     # create user and tweets
@@ -29,10 +29,12 @@ get '/api/v1/test/setup/all' do
         random_follow(users[i][:id], follow_number)
     end
 
-    end_time = Time.now
     require_relative '../../cache_redis.rb'
     updateUserRedis testuser[:id]
     updatePersonalTweets(testuser[:id], 100)
+  }
+
+    end_time = Time.now
     "setup all.\ntime used = #{end_time - begin_time}"
 end
 
