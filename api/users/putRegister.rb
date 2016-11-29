@@ -10,7 +10,7 @@ def heRegister params
     newUser.password = newpassword
     newUser.follower_number = -1
     newUser.following_number = -1
-    newUser.nickname = ''
+    newUser.nickname = Faker::Name.first_name
     newUser.save
 
 

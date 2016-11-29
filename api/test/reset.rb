@@ -69,18 +69,22 @@ end
 
 def setUser offset
     CSV.foreach('./api/test/seeds/users.csv') do |row|
-        user_id = row[0].to_i+offset
+        #user_id = row[0].to_i+offset
         user_name = row[1]
-        User.create(username: user_name, follower_number: 0, following_number: 0).update_column(:id, user_id)
+        params={username: user_name,
+                password: "password"}
+        heRegister params
+        #User.create(username: user_name,nickname: Faker::Name.first_name, follower_number: 0, following_number: 0).update_column(:id, user_id)
     end
 end
 
 def setTweet offset
     CSV.foreach('./api/test/seeds/tweets.csv') do |row|
         user_id = row[0].to_i+offset
+        user=User.find(user_id)
         tweet = row[1]
         time = DateTime.parse(row[2])
-        Tweet.create(user_id: user_id, content: tweet, create_time: time, is_forwarding: false, is_mentioning: false, has_hashtag: false, like_numbers: 0, forwarded_number: 0, reply_number: 0)
+        Tweet.create(user_id: user_id, username: user.username, nickname: user.nickname, content: tweet, create_time: time, is_forwarding: false, is_mentioning: false, has_hashtag: false, like_numbers: 0, forwarded_number: 0, reply_number: 0)
     end
 end
 
