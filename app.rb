@@ -50,7 +50,10 @@ get '/' do
     m = rand(100)
     if m < n
         bonnie = User.find_by(username: params[:username])
-        x = { user_id: bonnie[:id], content: 'Hello,bonnie' }
+        print bonnie
+        x={}
+        x['user_id']= bonnie[:id]
+        x['content']= 'Hello,bonnie'
         hisNewTweet(x)
     end
     check_log_in params
