@@ -64,11 +64,12 @@ def redirect_to_original_request
 end
 
 get '/' do
-    check_log_in;
+    print params
+    check_log_in params
 end
 
 get '/home' do
-    check_log_in;
+    check_log_in params
 end
 
 get '/signup' do
@@ -126,9 +127,21 @@ get '/protected/?' do
     erb :protected, locals: { title: 'Protected Page' }
 end
 
-def check_log_in
+def check_log_in params
   if session[:user_id].nil?
-      not_log_in_home
+      if params[:username].nil?
+        not_log_in_home
+      else
+        id,name=User.authenticate params
+        #puts id,name
+        if id.nil?
+          not_log_in_home
+        else
+          session[:user_id]=id
+          session[:username]=name
+          log_in_home
+        end
+      end
   else
       log_in_home
   end

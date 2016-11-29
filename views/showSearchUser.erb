@@ -7,37 +7,39 @@
     <div class="container theme-showcase" role="main">
 
         <h1>Search Result of <%= @word %>!</h1>
-        <% if @users.nil? %>
-        <%= "No Result Found" %>
+        <% if @users.to_a.size ==0  %>
+        <h2> Oops, No Result Found </h2>
         <% else %>
-        <% for i in 0..@users.size-1 %>
-        <% @iffollow = iffollow(session[:id], @users[i][:id]) %>
-        <% if @iffollow %>
-        <% @status = "Following" %>
-        <% else %>
-        <% @status = "Not following" %>
-        <% end %>
+        <% for i in 0+@n*10..9+@n*10 %>
+        <%if @users[i].nil? %>
+        <%break%>
+        <%else%>
+        <% determine_status @users[i][:id]%>
         <% @i = i %>
         <%= erb :singleUser %>
         <% end %>
         <% end %>
+        <%end%>
 
-
+        <% @link ="/searchUser?word=#{@word}&&s" %>
+        <%= erb :control_pages%>
 
     </div>
   </body>
 </html>
+
+<%if @status != "unable to follow"%>
 <script type="text/javascript">
   var cui=<%= session[:user_id] %>+0;
   $(".status").hover(function(){
-    if(this.innerHTML==="Following"){
-      $(this).html("Unfollow");
+    if(this.innerHTML==="  Following  "){
+      $(this).html("  Unfollow  ");
     }else{
-      $(this).html("Follow");
+      $(this).html("   Follow   ");
     }
   },function(){
-    if(this.innerHTML==="Unfollow"){
-      $(this).html("Following");
+    if(this.innerHTML==="  Unfollow  "){
+      $(this).html("  Following  ");
     }else{
       $(this).html("Not following");
     }
@@ -47,8 +49,8 @@
       $("#login-first").show();
     }else{
         var st=this.innerHTML;
-        if(st === "Unfollow"){
-          $(this).html("Follow");
+        if(st === "  Unfollow  "){
+          $(this).html("   Follow   ");
           var putFollow = new XMLHttpRequest();
           putFollow.open("PUT", '/api/v1/users/' + '<%= session[:user_id] %>' + '/unfollow/' + this.id, true);
           putFollow.send();
@@ -56,7 +58,7 @@
           //$("#following_number").html(following_number+' followings  ');
         }else{
           var putFollow = new XMLHttpRequest();
-          $(this).html("Unfollow");
+          $(this).html("  Unfollow  ");
           putFollow.open("PUT", '/api/v1/users/' + '<%= session[:user_id] %>' + '/follow/' + this.id, true);
           putFollow.send();
           //following_number+=1;
@@ -65,3 +67,4 @@
       }
 });
 </script>
+<%end%>

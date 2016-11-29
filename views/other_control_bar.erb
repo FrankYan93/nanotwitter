@@ -6,39 +6,43 @@
 
 <button class="btn" type="submit" onclick= <%= @z %>> <%= @user[:following_number] %> followings  </button>
 
-<button class="btn btn-primary status"  id="<%= @user[:id] %>" ><%= @status%> </button>
+<% determine_status @user[:id]%>
+
+<button class="btn btn-primary status"  id="<%= @user[:id] %>" ><%= @status%></button>
 
  <br><br>
 
+<%if @status != "unable to follow"%>
 <script type="text/javascript">
 
 $(".status").hover(function(){
-  if(this.innerHTML==="Following"){
-    $(this).html("Unfollow");
+  if(this.innerHTML==="  Following  "){
+    $(this).html("  Unfollow  ");
   }else{
-    $(this).html("Follow");
+    $(this).html("   Follow   ");
   }
 },function(){
-  if(this.innerHTML==="Unfollow"){
-    $(this).html("Following");
+  if(this.innerHTML==="  Unfollow  "){
+    $(this).html("  Following  ");
   }else{
     $(this).html("Not following");
   }
 });
   $(".status").click(function(){
     var st=this.innerHTML;
-    if(st === "Unfollow"){
+    if(st === "  Unfollow  "){
       <% @status="Not following"%>
       var putFollow = new XMLHttpRequest();
-      $(this).html("Follow");
+      $(this).html("   Follow   ");
       putFollow.open("PUT", '/api/v1/users/' + '<%= session[:user_id] %>' + '/unfollow/' + this.id, true);
       putFollow.send();
     }else{
-      <% @status="Following"%>
+      <% @status="  Following  "%>
       var putFollow = new XMLHttpRequest();
-      $(this).html("Unfollow");
+      $(this).html("  Unfollow  ");
       putFollow.open("PUT", '/api/v1/users/' + '<%= session[:user_id] %>' + '/follow/' + this.id, true);
       putFollow.send();
     }
   });
 </script>
+<%end%>

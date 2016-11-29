@@ -22,10 +22,9 @@ end
 get '/:username/followers' do
     currentUser = User.find_by(username: params[:username])
     @user_name = params[:username]
-
     @user = currentUser
     @followers = hisFollowers(currentUser.id)
-
+    @n = params[:n].to_i || 0
     erb :userfollowers
 end
 
@@ -41,25 +40,35 @@ get '/:username/followings' do
     @count_number = 10
     users = User.not_follow_by(currentUser.id)
     @unfollowings = shuffle users.to_a, @count_number
+
+    @n = params[:n].to_i || 0
     erb :userfollowings
 end
 
 get '/showProfile' do
-  if session[:user_id].nil?
-    not_log_in_home
-  else
-  @username = params[:usename]
-  @user = User.find_by(username: session[:username])
+    if session[:user_id].nil?
+        not_log_in_home
+    else
+        @username = params[:usename]
+        @user = User.find_by(username: session[:username])
 
-  erb :showProfile
-  end
+        erb :showProfile
+    end
 end
 
 def iffollow(id, following_id)
-    relationship = Followerfollowing.find_by({user_id: id, followed_user_id: following_id})
-    if relationship.nil?
-        return false
+    !Followerfollowing.find_by(user_id: id, followed_user_id: following_id).nil?
+end
+
+def determine_status(id)
+    if session[:user_id].nil?
+        @status = 'unable to follow'
     else
-        return true
+        @iffollow = iffollow(session[:user_id], id)
+        @status = if @iffollow
+                      '  Following  '
+                  else
+                      'Not following'
+                  end
     end
 end

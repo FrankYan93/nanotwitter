@@ -8,16 +8,22 @@
     <div class="container theme-showcase" role="main">
 
         <h1>Search Result of <%= @word %>!</h1>
-        <% if @tweets.nil? %>
-        <%= "No Result Found" %>
+        <% if @tweets.to_a.size == 0 %>
+
+          <h2> Oops, No Result Found </h2>
         <% else %>
-        <% for i in 0..@tweets.size-1 %>
-          <% @tweet = @tweets[i] %>
-          <%= erb :singleTweet %>
+        <% for i in 0+@n*10..9+@n*10 %>
+          <% if @tweets[i].nil? %>
+              <% break %>
+           <%else %>
+            <% @tweet = @tweets[i] %>
+            <%= erb :singleTweet %>
+          <% end %>
         <% end %>
         <% end %>
 
-
+        <% @link ="/searchTweet?word=#{@word}&&" %>
+        <%= erb :control_pages%>
 
     </div>
   </body>

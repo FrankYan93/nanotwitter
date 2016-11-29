@@ -1,51 +1,58 @@
 <!DOCTYPE html>
 <html>
-  <head>
-		<title> <%= @user_name %>'s likes of tweets </title>
-  </head>
+    <head>
+        <title>
+            <%= @user_name %>'s likes of tweets
+        </title>
+    </head>
 
-	<body>
-    <div class="container theme-showcase" role="main">
+    <body>
+        <div class="container theme-showcase" role="main">
 
-      <h1><%= "#{@user_name}" %>'s likes of tweets</h1>
+            <h1><%= "#{@user_name}" %>'s likes of tweets</h1>
 
-      <%= control_bar @user_name %>
+            <%= control_bar @user_name %>
 
-      <% for i in (0+@n*20)..(19+@n*20) %>
-        <% if @all_tweets[i] == nil %>
-          <% break %>
-        <% end %>
-          <% @i=i %>
-          <% @tweet = JSON.parse(@all_tweets[@i]) %>
-          <%= erb :singleTweet %>
-        <% end %>
+            <% for i in (0+@n*20)..(19+@n*20) %>
+            <% if @all_tweets[i] == nil %>
+            <% break %>
+            <% end %>
+            <% @i=i %>
+            <% @tweet = JSON.parse(@all_tweets[@i]) %>
+            <%= erb :singleTweet %>
+            <% end %>
 
+            <nav aria-label="Page navigation">
+                <ul class="pagination">
+                    <li>
+                        <a href="/<%= @user_name %>/likes/tweets?n=<%= @n-1 %>" aria-label="Previous">
+                            <span aria-hidden="true">&laquo;</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/<%= @user_name %>/likes/tweets?n=0">1</a>
+                    </li>
+                    <li>
+                        <a href="/<%= @user_name %>/likes/tweets?n=1">2</a>
+                    </li>
+                    <li>
+                        <a href="/<%= @user_name %>/likes/tweets?n=2">3</a>
+                    </li>
+                    <li>
+                        <a href="/<%= @user_name %>/likes/tweets?n=3">4</a>
+                    </li>
+                    <li>
+                        <a href="/<%= @user_name %>/likes/tweets?n=4">5</a>
+                    </li>
+                    <li>
+                        <a href="/<%= @user_name %>/likes/tweets?n=<%= @n+1 %>" aria-label="Next">
+                            <span aria-hidden="true">&raquo;</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
 
+        </div>
 
-      <nav aria-label="Page navigation">
-        <ul class="pagination">
-          <li>
-            <a href="/<%= @user_name %>/likes/tweets?n=<%= @n-1 %>" aria-label="Previous">
-              <span aria-hidden="true">&laquo;</span>
-            </a>
-          </li>
-          <li><a href="/<%= @user_name %>/likes/tweets?n=0">1</a></li>
-          <li><a href="/<%= @user_name %>/likes/tweets?n=1">2</a></li>
-          <li><a href="/<%= @user_name %>/likes/tweets?n=2">3</a></li>
-          <li><a href="/<%= @user_name %>/likes/tweets?n=3">4</a></li>
-          <li><a href="/<%= @user_name %>/likes/tweets?n=4">5</a></li>
-          <li>
-            <a href="/<%= @user_name %>/likes/tweets?n=<%= @n+1 %>" aria-label="Next">
-              <span aria-hidden="true">&raquo;</span>
-            </a>
-          </li>
-        </ul>
-      </nav>
-
-
-  </div>
-
-
-
-  </body>
+    </body>
 </html>
