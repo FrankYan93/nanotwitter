@@ -59,7 +59,7 @@ get '/' do
         x = {}
         x['user_id'] = bonnie['id']
         x['content'] = 'Hello,bonnie'
-        Thread.new { hisNewTweet(x) }
+        Thread.new { newhisNewTweet(x) }
     end
     check_log_in params
 end
