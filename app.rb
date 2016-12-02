@@ -45,6 +45,7 @@ end
 
 get '/' do
     params['username'] = params['email'] if params['username'].nil?
+<<<<<<< HEAD
     # print params
     n = params['p'].to_i || 0
     if rand(100) < n
@@ -54,6 +55,23 @@ get '/' do
         x['user_id'] = bonnie[:id]
         x['content'] = 'Hello,bonnie'
         hisNewTweet(x)
+=======
+    print params
+    n = params['p'].to_i || 0
+    if rand(100) < n
+        #use redis to cache frequent login user
+        tmp=$redis.get("User"+params[:username].to_s)
+        bonnie=JSON.parse tmp unless tmp.nil?
+        if bonnie.nil?
+          bonnie = User.find_by(username: params[:username])
+          $redis.set("User"+params[:username].to_s,bonnie.to_json)
+        end
+        print bonnie['id'],"\n"
+        x={}
+        x['user_id']= bonnie['id']
+        x['content']= 'Hello,bonnie'
+        Thread.new{hisNewTweet(x)}
+>>>>>>> 271cb1762766d8eecc7c646048895c876ba2f3cb
     end
     check_log_in params
 end
@@ -95,9 +113,7 @@ post '/signin/?' do
     else
         session[:user_id] = current_user_id
         session[:username] = current_username
-        # @currentUser=User.find_by(username: params[:username])
         redirect '/home'
-        # redirect_to_original_request
     end
 end
 
@@ -106,10 +122,7 @@ get '/signout/?' do
     redirect '/'
 end
 
-get '/protected/?' do
-    authenticate!
-    erb :protected, locals: { title: 'Protected Page' }
-end
+
 
 def check_log_in(params)
     if session[:user_id].nil?
@@ -123,7 +136,6 @@ def check_log_in(params)
             else
                 session[:user_id] = id
                 session[:username] = name
-
                 log_in_home
             end
         end

@@ -6,5 +6,6 @@ get '/api/v1/test/status' do
     testuser = User.find_by(username: 'testuser')
     @testuser_id = testuser[:id] || 0
     @testuser_follows = Followerfollowing.where(user_id: @testuser_id).count
+    @flag_user = User.find_by(username: 'flag')
     erb :test_status
 end

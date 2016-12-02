@@ -12,4 +12,12 @@
     <%= @testuser_id %></p>
 <p>testuser follows
     <%= @testuser_follows %>
-    accounts</p>
+    accounts
+</p>
+<p>
+    <% if @flag_user.nil? %>
+    standard set not done
+<% else %>
+    standard set is done
+    <% end %>
+</p>
