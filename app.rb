@@ -16,19 +16,19 @@ Dir[File.dirname(__FILE__) + '/api/users/*.rb'].each { |file| require file }
 Dir[File.dirname(__FILE__) + '/api/tweets/*.rb'].each { |file| require file }
 Dir[File.dirname(__FILE__) + '/api/test/*.rb'].each { |file| require file }
 Dir[File.dirname(__FILE__) + '/service/*.rb'].each { |file| require file }
-#initialize redis
+# initialize redis
 require_relative 'config/initializers/redis.rb'
-#config new relic
+# config new relic
 configure :production do
     require 'newrelic_rpm'
 end
 
 enable :sessions
-#flush redis if necessary
+# flush redis if necessary
 require_relative 'cache_redis.rb' if $redis.llen('nonlogin_timeline').zero? && !$rakedb
 
 include BCrypt
-#just check session
+# just check session
 def authenticate!
     if session[:user_id].nil?
         session[:original_request] = request.path_info
@@ -45,14 +45,14 @@ end
 
 get '/' do
     params['username'] = params['email'] if params['username'].nil?
-    #print params
+    # print params
     n = params['p'].to_i || 0
     if rand(100) < n
         bonnie = User.find_by(username: params[:username])
-        print bonnie
-        x={}
-        x['user_id']= bonnie[:id]
-        x['content']= 'Hello,bonnie'
+        # print bonnie
+        x = {}
+        x['user_id'] = bonnie[:id]
+        x['content'] = 'Hello,bonnie'
         hisNewTweet(x)
     end
     check_log_in params
