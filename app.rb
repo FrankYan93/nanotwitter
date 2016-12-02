@@ -48,7 +48,12 @@ get '/' do
     #print params
     n = params['p'].to_i || 0
     if rand(100) < n
-        bonnie = User.find_by(username: params[:username])
+        tmp=$redis.get("User"+params[:username].to_s)
+        bonnie=JSON.parse tmp unless tmp.nil?
+        if bonnie.nil?
+          bonnie = User.find_by(username: params[:username])
+          $redis.set("User"+params[:username].to_s,bonnie.to_json)
+        end
         print bonnie
         x={}
         x['user_id']= bonnie[:id]
