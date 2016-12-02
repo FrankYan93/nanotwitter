@@ -13,6 +13,10 @@ end
 # create data based on seeds
 get '/api/v1/test/reset/standard' do
     Thread.new{
+      flagUser=User.new
+      flagUser.username="flag"
+      flagUser.save
+
       offset=User.maximum(:id)
       deleteAll
       resetTestuser
@@ -22,6 +26,8 @@ get '/api/v1/test/reset/standard' do
       setUser offset
       setTweet(offset,params["n"].to_i)
       setFollows offset
+
+      flagUser.destroy
     }
 end
 
