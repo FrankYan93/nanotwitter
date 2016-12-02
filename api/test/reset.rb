@@ -11,6 +11,7 @@ get '/api/v1/test/reset/all' do
 end
 
 # create data based on seeds
+# /api/v1/test/reset/standard?n=5000
 get '/api/v1/test/reset/standard' do
     Thread.new{
       offset=User.maximum(:id)

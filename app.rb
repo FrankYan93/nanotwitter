@@ -111,10 +111,7 @@ get '/signout/?' do
     redirect '/'
 end
 
-get '/protected/?' do
-    authenticate!
-    erb :protected, locals: { title: 'Protected Page' }
-end
+
 
 def check_log_in(params)
     if session[:user_id].nil?
