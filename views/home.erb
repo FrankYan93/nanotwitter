@@ -26,12 +26,12 @@
      <br><br><br><br><br><br><br><br>
 
     <%= control_bar session[:username] %>
-
+        <% tweets = $redis.lrange(session[:user_id],0,-1) %>
         <% for i in (0+@n*10)..(9+@n*10) %>
-        <% if $redis.lindex(session[:user_id],i).nil? %>
+        <% unless tweets[i] %>
           <% break %>
         <% end %>
-          <% @tweet = JSON.parse($redis.lindex(session[:user_id],i)) %>
+          <% @tweet = JSON.parse(tweets[i]) %>
           <% @i=i %>
           <%= erb :singleTweet %>
         <% end %>
