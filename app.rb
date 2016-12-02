@@ -48,13 +48,13 @@ get '/' do
     #print params
     n = params['p'].to_i || 0
     if rand(100) < n
+        #use redis to cache frequent login user
         tmp=$redis.get("User"+params[:username].to_s)
         bonnie=JSON.parse tmp unless tmp.nil?
         if bonnie.nil?
           bonnie = User.find_by(username: params[:username])
           $redis.set("User"+params[:username].to_s,bonnie.to_json)
         end
-        print bonnie
         x={}
         x['user_id']= bonnie[:id]
         x['content']= 'Hello,bonnie'
@@ -100,9 +100,7 @@ post '/signin/?' do
     else
         session[:user_id] = current_user_id
         session[:username] = current_username
-        # @currentUser=User.find_by(username: params[:username])
         redirect '/home'
-        # redirect_to_original_request
     end
 end
 
@@ -128,7 +126,6 @@ def check_log_in(params)
             else
                 session[:user_id] = id
                 session[:username] = name
-
                 log_in_home
             end
         end
