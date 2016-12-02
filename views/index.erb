@@ -8,12 +8,13 @@
   <body>
     <div class="container theme-showcase" role="main">
       <h1>Recent tweets</h1>
+      <% tweets=$redis.lrange('nonlogin_timeline',0,-1) %>
       <% for i in (0+@n*10)..(9+@n*10) %>
         <% #if @all_tweets[i] == nil %>
-        <% unless $redis.lindex 'nonlogin_timeline',i %>
+        <% unless tweets[i] %>
           <% break %>
         <% end %>
-          <% @tweet = JSON.parse($redis.lindex('nonlogin_timeline',i)) %>
+          <% @tweet = JSON.parse(tweets[i]) %>
           <% @i=i %>
           <%= erb :singleTweet %>
         <% end %>
