@@ -23,6 +23,11 @@ post '/editProfile' do
         tweet.save
     end
 
+    $redis.del session[:user_id].to_s + '_tweet'
+    $redis.del session[:user_id]
+    updateProfileTweets(session[:user_id], 50)
+    updateUserInfo(session[:user_id])
+    modifyRedis(session[:user_id])
     log_in_home
 end
 
