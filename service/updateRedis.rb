@@ -32,8 +32,8 @@ def updateProfileTweets(userId, n)
         # print tmp[i].to_json
         # puts
         break if tmp[i].nil?
-        $redis.lpush(label, tmp[i].to_json)
-        $redis.rpop(label) if $redis.llen(label) > n
+        $redis.rpush(label, tmp[i].to_json)
+        $redis.lpop(label) if $redis.llen(label) > n
     end
 end
 # updatePersonalTweets
