@@ -27,6 +27,8 @@ def a_follow_b(params)
   #  puts followed_user["follower_number"]
     user.save
     followed_user.save
+    Thread.new{updateUserInfo params[:user_id]}
+    Thread.new{updateUserInfo params[:following_id]}
     followRelation
   else
     nil

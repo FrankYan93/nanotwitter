@@ -45,7 +45,7 @@ end
 
 get '/' do
     params['username'] = params['email'] if params['username'].nil?
-    print params
+    #print params
     n = params['p'].to_i || 0
     if rand(100) < n
         # use redis to cache frequent login user
@@ -55,11 +55,11 @@ get '/' do
             bonnie = User.find_by(username: params[:username])
             $redis.set('User' + params[:username].to_s, bonnie.to_json)
         end
-        print bonnie['id'], "\n"
+        #print bonnie['id'], "\n"
         x = {}
         x['user_id'] = bonnie['id']
         x['content'] = 'Hello,bonnie'
-        Thread.new { hisNewTweet(x) }
+        Thread.new { newhisNewTweet(x) }
     end
     check_log_in params
 end

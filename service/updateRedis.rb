@@ -36,3 +36,8 @@ def updateLike userId
     $redis.sadd(label,x[:tweet_id])
   }
 end
+
+def updateUserInfo id
+  user=User.find(id)
+  $redis.set("User"+id.to_s,user.to_json)
+end

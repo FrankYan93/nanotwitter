@@ -12,5 +12,7 @@ def heUnfollow params
     b=User.find(params[:following_id])
     b[:follower_number]-=1
     b.save
+    Thread.new{updateUserInfo params[:user_id]}
+    Thread.new{updateUserInfo params[:following_id]}
   end
 end
