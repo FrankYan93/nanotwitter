@@ -16,6 +16,13 @@ post '/editProfile' do
     currentUser.nickname = params[:nickname] unless params[:nickname].nil?
     currentUser.description = params[:description] unless params[:description].nil?
     currentUser.save
+
+    tweets = Tweet.where(user_id: session[:user_id])
+    tweets.each do |tweet|
+        tweet.nickname = currentUser.nickname
+        tweet.save
+    end
+
     log_in_home
 end
 
