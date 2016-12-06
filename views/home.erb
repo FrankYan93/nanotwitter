@@ -27,7 +27,7 @@
 
     <%= control_bar session[:username] %>
         <% tweets = $redis.lrange(session[:user_id],0,-1) %>
-        <% for i in (0+@n*10)..(9+@n*10) %>
+        <% for i in (0+@n*50)..(49+@n*50) %>
         <% unless tweets[i] %>
           <% break %>
         <% end %>
