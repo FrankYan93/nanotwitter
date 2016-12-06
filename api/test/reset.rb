@@ -22,10 +22,10 @@ get '/api/v1/test/reset/standard' do
       flagUser.save
 
       offset=User.maximum(:id)
-      
+
       print params["n"]
       offset=0 if offset.nil?
-      offset+=1
+
       setUser offset
       setTweet(offset,params["n"].to_i)
       setFollows offset
@@ -89,7 +89,6 @@ end
 def setTweet(offset,n)
     CSV.foreach('./api/test/seeds/tweets.csv') do |row|
         n-=1
-        puts
         puts n
         return nil if n<0
         user_id = row[0].to_i+offset
@@ -106,7 +105,7 @@ def setFollows offset
         user_id = row[0].to_i+offset
         followed_user_id = row[1].to_i+offset
         params={user_id: user_id,following_id: followed_user_id}
-        #print params
+        print params
         a_follow_b(params)
     end
 end
