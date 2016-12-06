@@ -16,6 +16,27 @@ post '/editProfile' do
     currentUser.nickname = params[:nickname] unless params[:nickname].nil?
     currentUser.description = params[:description] unless params[:description].nil?
     currentUser.save
+
+    tweets = Tweet.where(user_id: session[:user_id])
+    tweets.each do |tweet|
+        tweet.nickname = currentUser.nickname
+        tweet.save
+    end
+    # update user's homepage and tweets in redis
+    $redis.del session[:user_id].to_s + '_tweet'
+    updateProfileTweets(session[:user_id], 50)
+
+    $redis.del session[:user_id]
+    modifyRedis(session[:user_id])
+
+    # update user's followes' homepage
+    followers = Followerfollowing.where(followed_user_id: session[:user_id])
+    followers.each do |follower|
+        $redis.del follower.id
+        modifyRedis(follower.id)
+    end
+    # update non_log_in's page
+
     log_in_home
 end
 

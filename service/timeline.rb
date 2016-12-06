@@ -23,12 +23,12 @@ def log_in_home
     if session[:user_id].nil?
         not_log_in_home
     else
-        #print "userid in session:",session[:user_id],"\n"
-        tmp=$redis.get("User"+session[:user_id].to_s)
-        currentUser=JSON.parse tmp unless tmp.nil?
+        # print "userid in session:",session[:user_id],"\n"
+        tmp = $redis.get('User' + session[:user_id].to_s)
+        currentUser = JSON.parse tmp unless tmp.nil?
         if currentUser.nil?
-          currentUser = User.find_by(id: session[:user_id])
-          $redis.set("User"+session[:user_id].to_s,currentUser.to_json)
+            currentUser = User.find_by(id: session[:user_id])
+            $redis.set('User' + session[:user_id].to_s, currentUser.to_json)
         end
         @user = currentUser
         updateUserRedis session[:user_id]

@@ -1,10 +1,20 @@
 def insertIntoAllFollower(theId, tweet)
     theFollowers = hisFollowers theId
+    user=JSON.parse $redis.get("User"+theId.to_s)
+    if user.nil?
+      user=User.find(theId)
+      $redis.set("User"+theId.to_s,user)
+    end
+    theFollowers<<user
     theFollowers.each do |x|
-        next if $redis.ttl(x) == -2
+      print x,"\n"
+
+        next if $redis.ttl(x["id"]) == -2
+        print x['id'],"\n"
+
         n = 100
         # tweet is the whole record
-        $redis.lpush(x, tweet)
+        $redis.lpush(x['id'], tweet.to_json)
         $redis.rpop x if $redis.llen(x) > n
     end
 end

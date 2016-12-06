@@ -3,20 +3,7 @@ put '/api/v1/users/:user_id/tweets/:content' do
 end
 
 def hisNewTweet(params)
-    tmp=$redis.get("User"+params['user_id'].to_s)
-    user=JSON.parse tmp unless tmp.nil?
-    if user.nil?
-      user = User.find(params['user_id'])
-      $redis.set("User"+params['user_id'].to_s,user.to_json)
-    end
-    #user = User.find(params['user_id'])
-    newtweet = Tweet.new
-    newtweet.username = user['username']
-    newtweet.nickname = user['nickname']
-    newtweet.content = params['content']
-    newtweet.user_id = params['user_id']
-    newtweet.create_time = Time.now
-    newtweet.save!
+    newtweet=newhisNewTweet(params)
     #update nonloging_timeline
     $redis.lpush('nonlogin_timeline', newtweet.to_json)
     if $redis.llen('nonlogin_timeline') > $maxRecentNum
@@ -43,4 +30,5 @@ def newhisNewTweet(params)
   newtweet.user_id = params['user_id']
   newtweet.create_time = Time.now
   newtweet.save!
+  newtweet
 end
