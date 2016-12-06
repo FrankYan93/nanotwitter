@@ -13,25 +13,25 @@ end
 # create data based on seeds
 # /api/v1/test/reset/standard?n=5000
 get '/api/v1/test/reset/standard' do
-    Thread.new{
-      deleteAll
-      resetTestuser
+    Thread.new do
+        deleteAll
+        resetTestuser
 
-      flagUser=User.new
-      flagUser.username="flag"
-      flagUser.save
+        flagUser = User.new
+        flagUser.username = 'flag'
+        flagUser.save
 
-      offset=User.maximum(:id)
-      
-      print params["n"]
-      offset=0 if offset.nil?
-      offset+=1
-      setUser offset
-      setTweet(offset,params["n"].to_i)
-      setFollows offset
+        offset = User.maximum(:id)
 
-      flagUser.destroy
-    }
+        print params['n']
+        offset = 0 if offset.nil?
+        offset += 1
+        setUser offset
+        setTweet(offset, params['n'].to_i)
+        setFollows offset
+
+        flagUser.destroy
+    end
 end
 
 # reset all about testuser
@@ -43,10 +43,8 @@ get '/api/v1/test/reset/testuser' do
         deleteAsFollowing('testuser')
     end
     resetTestuser
-    "test user is reseted"
+    'test user is reseted'
 end
-
-
 
 def deleteAll
     User.destroy_all
@@ -75,38 +73,38 @@ def resetTestuser
     a_follow_b(theparam)
 end
 
-def setUser offset
+def setUser(_offset)
     CSV.foreach('./api/test/seeds/users.csv') do |row|
-        #user_id = row[0].to_i+offset
+        # user_id = row[0].to_i+offset
         user_name = row[1]
-        params={username: user_name,
-                password: "password"}
+        params = { username: user_name,
+                   password: 'password' }
         heRegister params
-        #User.create(username: user_name,nickname: Faker::Name.first_name, follower_number: 0, following_number: 0).update_column(:id, user_id)
+        # User.create(username: user_name,nickname: Faker::Name.first_name, follower_number: 0, following_number: 0).update_column(:id, user_id)
     end
 end
 
-def setTweet(offset,n)
+def setTweet(offset, n)
     CSV.foreach('./api/test/seeds/tweets.csv') do |row|
-        n-=1
+        n -= 1
         puts
         puts n
-        return nil if n<0
-        user_id = row[0].to_i+offset
-        user=User.find(user_id)
+        return nil if n < 0
+        user_id = row[0].to_i + offset
+        user = User.find(user_id)
         tweet = row[1]
         time = DateTime.parse(row[2])
         Tweet.create(user_id: user_id, username: user.username, nickname: user.nickname, content: tweet, create_time: time, is_forwarding: false, is_mentioning: false, has_hashtag: false, like_numbers: 0, forwarded_number: 0, reply_number: 0)
     end
 end
 
-def setFollows offset
+def setFollows(offset)
     CSV.foreach('./api/test/seeds/follows.csv') do |row|
-        #print row,"\n"
-        user_id = row[0].to_i+offset
-        followed_user_id = row[1].to_i+offset
-        params={user_id: user_id,following_id: followed_user_id}
-        #print params
+        # print row,"\n"
+        user_id = row[0].to_i + offset
+        followed_user_id = row[1].to_i + offset
+        params = { user_id: user_id, following_id: followed_user_id }
+        # print params
         a_follow_b(params)
     end
 end
