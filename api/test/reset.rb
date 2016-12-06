@@ -14,13 +14,16 @@ end
 # /api/v1/test/reset/standard?n=5000
 get '/api/v1/test/reset/standard' do
     Thread.new{
-      flagUser=User.new
-      flagUser.username="flag"
-      flagUser.save
+
 
       offset=User.maximum(:id)
       deleteAll
       resetTestuser
+
+      flagUser=User.new
+      flagUser.username="flag"
+      flagUser.save
+      
       print params["n"]
       offset=0 if offset.nil?
       offset+=1
