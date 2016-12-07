@@ -23,7 +23,6 @@ ruby test/testUser/testUserCreate.rb
 ruby test/testUser/testFollowUnfollow.rb
 ruby test/testUser/testEditProfile.rb
 ruby test/testTweet/testTweetCreate.rb
-
   ```
 # Screenshots
 
@@ -51,7 +50,7 @@ nT1.0
 
 # License
 
-This project is licensed under xxx License
+This project is licensed under MIT License
 
 # Acknowledgments
 
