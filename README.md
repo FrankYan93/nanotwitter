@@ -1,6 +1,12 @@
 # NanoTwitter  [![Code Climate](https://codeclimate.com/github/FrankYan93/nanotwitter/badges/gpa.svg)](https://codeclimate.com/github/FrankYan93/nanotwitter)
 NanoTwitter is a app with basic function of twitter. You can follow other users, tweet, like tweets and so on.
 
+# Authors
+
+- **Jiadong Yan**
+- **Jiaming Xu**
+- **Xinyi Jiang**
+
 # Getting Started
 
 Notification service repo: https://github.com/FrankYan93/nanoNotification
@@ -19,19 +25,17 @@ Main website: https://nano-twitter-dratini.herokuapp.com
 ## Running the tests
 
 **How to run tests**
-
-- rake (run all minitests)
-- ruby test/testUser/testGet.rb
-- ruby test/testUser/testUserCreate.rb
-- ruby test/testUser/testFollowUnfollow.rb
-- ruby test/testUser/testEditProfile.rb
-- ruby test/testTweet/testTweetCreate.rb
+  ```
+rake (run all minitests)
+ruby test/testUser/testGet.rb
+ruby test/testUser/testUserCreate.rb
+ruby test/testUser/testFollowUnfollow.rb
+ruby test/testUser/testEditProfile.rb
+ruby test/testTweet/testTweetCreate.rb
 
   ```
-  Give some code exmaple
-  ```
 
-  ### Deployment
+# Deployment
 
 # Built with
 
@@ -51,12 +55,7 @@ Main website: https://nano-twitter-dratini.herokuapp.com
 - ...
 
 # Versioning
-
-# Authors
-
-- **Jiadong Yan**
-- **Jiaming Xu**
-- **Xinyi Jiang**
+nT1.0
 
 # License
 
@@ -87,12 +86,7 @@ heroku run `rake db:seed`
 # Steps in local:
 
 1. git clone
-
-  <links from="" github="">
-  </links>
-
 2. install redis in local and run redis by `redis-server` links: <http://download.redis.io/releases/redis-3.2.5.tar.gz> follow readme to install redis first
-
 3. install RabbitMQ server by `brew update`, `brew install rabbitmq`, should first install brew first. Run rabbitmq by `rabbitmq-server` if you have some problem to start, try `sudo chown $(whoami) /usr/local/share/man/man3` and `sudo chown $(whoami) /usr/local/share/man/man5`
 4. install all gems by `bundle install`
 5. install postgreSQL and open it
