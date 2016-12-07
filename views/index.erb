@@ -9,7 +9,7 @@
     <div class="container theme-showcase" role="main">
       <h1>Recent tweets</h1>
       <% tweets=$redis.lrange('nonlogin_timeline',0,-1) %>
-      <% for i in (0+@n*10)..(9+@n*10) %>
+      <% for i in (0+@n*50)..(49+@n*50) %>
         <% #if @all_tweets[i] == nil %>
         <% unless tweets[i] %>
           <% break %>

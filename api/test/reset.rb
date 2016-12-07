@@ -11,7 +11,7 @@ get '/api/v1/test/reset/all' do
 end
 
 # create data based on seeds
-# /api/v1/test/reset/standard?n=5000
+# /api/v1/test/reset/standard?n=8000
 get '/api/v1/test/reset/standard' do
 
     Thread.new{
@@ -87,12 +87,7 @@ end
 
 def setTweet(offset, n)
     CSV.foreach('./api/test/seeds/tweets.csv') do |row|
-<<<<<<< HEAD
-        n -= 1
-        puts
-=======
         n-=1
->>>>>>> fdf915a8c843f55bda49ed3db731f9b238b2da17
         puts n
         return nil if n < 0
         user_id = row[0].to_i + offset
@@ -105,19 +100,9 @@ end
 
 def setFollows(offset)
     CSV.foreach('./api/test/seeds/follows.csv') do |row|
-<<<<<<< HEAD
-        # print row,"\n"
-        user_id = row[0].to_i + offset
-        followed_user_id = row[1].to_i + offset
-        params = { user_id: user_id, following_id: followed_user_id }
-        # print params
-=======
-        #print row,"\n"
         user_id = row[0].to_i+offset
         followed_user_id = row[1].to_i+offset
         params={user_id: user_id,following_id: followed_user_id}
-        print params
->>>>>>> fdf915a8c843f55bda49ed3db731f9b238b2da17
         a_follow_b(params)
     end
 end
