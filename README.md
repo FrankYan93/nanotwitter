@@ -72,6 +72,7 @@ run `heroku redis:cli`  `flushall`
 
 6. https://nano-notification.herokuapp.com/start will start the rabbitmq notification service
 
+7. https://frankyan93.github.io/nanotwitter/ portfolio
 
 # Steps in local:
 

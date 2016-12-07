@@ -37,6 +37,8 @@ post '/editProfile' do
     end
     # update non_log_in's page
 
+    require_relative '../cache_redis.rb'
+
     log_in_home
 end
 

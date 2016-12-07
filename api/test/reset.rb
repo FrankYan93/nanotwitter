@@ -13,26 +13,25 @@ end
 # create data based on seeds
 # /api/v1/test/reset/standard?n=8000
 get '/api/v1/test/reset/standard' do
+    Thread.new do
+        deleteAll
+        resetTestuser
 
-    Thread.new{
-      deleteAll
-      resetTestuser
+        flagUser = User.new
+        flagUser.username = 'flag'
+        flagUser.save
 
-      flagUser=User.new
-      flagUser.username="flag"
-      flagUser.save
+        offset = User.maximum(:id)
 
-      offset=User.maximum(:id)
+        print params['n']
+        offset = 0 if offset.nil?
 
-      print params["n"]
-      offset=0 if offset.nil?
+        setUser offset
+        setTweet(offset, params['n'].to_i)
+        setFollows offset
 
-      setUser offset
-      setTweet(offset,params["n"].to_i)
-      setFollows offset
-
-      flagUser.destroy
-
+        flagUser.destroy
+    end
 end
 
 # reset all about testuser
@@ -87,7 +86,7 @@ end
 
 def setTweet(offset, n)
     CSV.foreach('./api/test/seeds/tweets.csv') do |row|
-        n-=1
+        n -= 1
         puts n
         return nil if n < 0
         user_id = row[0].to_i + offset
@@ -100,9 +99,9 @@ end
 
 def setFollows(offset)
     CSV.foreach('./api/test/seeds/follows.csv') do |row|
-        user_id = row[0].to_i+offset
-        followed_user_id = row[1].to_i+offset
-        params={user_id: user_id,following_id: followed_user_id}
+        user_id = row[0].to_i + offset
+        followed_user_id = row[1].to_i + offset
+        params = { user_id: user_id, following_id: followed_user_id }
         a_follow_b(params)
     end
 end
