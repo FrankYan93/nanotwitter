@@ -85,3 +85,6 @@ run `heroku redis:cli`  `flushall`
 8. open `0.0.0.0:4567` in the web browser
 9. reset data using test api
 10. done!
+
+# Last Modify Date
+Dec 7, 2016
