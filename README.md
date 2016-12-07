@@ -65,10 +65,9 @@ This project is licensed under xxx License
 
 
 3. We must flush all redis after test api used, and restart app.
-run `heroku redis:cli`  `flushall` `Ok`
+run `heroku redis:cli`  `flushall`
 
-4. heroku run `rake db:migrate`
-heroku run `rake db:seed`
+4. `heroku run rake db:migrate`
 
 5. `lsof -i :4567` to see which process is running in port 4567
 
@@ -81,7 +80,7 @@ heroku run `rake db:seed`
 2. install redis in local and run redis by `redis-server` links: <http://download.redis.io/releases/redis-3.2.5.tar.gz> follow readme to install redis first
 3. install RabbitMQ server by `brew update`, `brew install rabbitmq`, should first install brew first. Run rabbitmq by `rabbitmq-server` if you have some problem to start, try `sudo chown $(whoami) /usr/local/share/man/man3` and `sudo chown $(whoami) /usr/local/share/man/man5`
 4. install all gems by `bundle install`
-5. install postgreSQL and open it
+5. install `postgreSQL` and open it
 6. run `rake db:migrate`
 7. run `ruby app.rb` to start the service
 8. open `0.0.0.0:4567` in the web browser
