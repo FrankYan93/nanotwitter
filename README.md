@@ -13,15 +13,6 @@ Notification service repo: https://github.com/FrankYan93/nanoNotification
 We must visit https://nano-notification.herokuapp.com/start to start our web service for notification.
 Main website: https://nano-twitter-dratini.herokuapp.com
 
-## Installing
-
-1. download for our website
-2. double click the icon
-
-  ```
-  Give some code exmaple
-  ```
-
 ## Running the tests
 
 **How to run tests**
@@ -34,6 +25,7 @@ ruby test/testUser/testEditProfile.rb
 ruby test/testTweet/testTweetCreate.rb
 
   ```
+# Screenshots
 
 # Deployment
 
