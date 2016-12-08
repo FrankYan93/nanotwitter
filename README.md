@@ -99,6 +99,8 @@ ruby test/testTweet/testTweetCreate.rb
   7. random send tweet:"Hello,bonnie"
 - #### All complete! Cheers!
 
+-  **Result Of Scalability Work**
+  ![Result Of Scalability Work](https://pbs.twimg.com/media/CzMTkdSW8AAA1L6.jpg:large)
 # Versioning
 nT1.0
 
