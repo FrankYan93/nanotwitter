@@ -43,6 +43,7 @@ def redirect_to_original_request
     redirect original_request
 end
 
+#/?username=someone&password=sth&p=50
 get '/' do
     params['username'] = params['email'] if params['username'].nil?
     #print params
