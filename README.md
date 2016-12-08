@@ -3,9 +3,9 @@ NanoTwitter is a ruby app with basic function of twitter. You can follow other u
 
 # Authors
 
-- **Jiadong Yan**
-- **Jiaming Xu**
-- **Xinyi Jiang**
+- **[Jiadong Yan](https://frankyan93.github.io/)**
+- **[Jiaming Xu](https://github.com/Dragoncell)**
+- **[Xinyi Jiang](https://github.com/xyjiang94)**
 
 # Technology Description
 We build this web application step by step with frequent integration of code using ***[Github](https://github.com/FrankYan93/nanotwitter), [Codeship](https://codeship.com), [Heroku](https://www.heroku.com)***.    
