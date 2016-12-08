@@ -53,7 +53,7 @@
 
 <script type="text/javascript">
   <% theparams={user_id: cui,tweet_id: tId} %>
-  <% if ((1==1) || (userLikeTweet theparams)) %>
+  <% if userLikeTweet theparams %>
     $("#like<%= @i %>").hide();
   <% else %>
     $("#unlike<%= @i %>").hide();
