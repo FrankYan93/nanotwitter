@@ -75,21 +75,21 @@ ruby test/testTweet/testTweetCreate.rb
 - ...
 
 # Loader Test Results
-- #### 0-1000 over 1 min with the root url not logged in
+- ** 0-1000 over 1 min with the root url not logged in **
   1. Max # of clients active:1000
   2. What time stopped:1min
   3. average response time (ms):2503
   4. min/max response times:15/7151
   5. Error Rate:0%
   6. total successes (response counts):11137
-- #### 0 - 500 in 1 min Logged In (Test 2) - User14, Verda
+- ** 0 - 500 in 1 min Logged In (Test 2) - User14, Verda **
   1. Max # of clients active:500
   2. What time stopped:1min
   3. average response time (ms):1987
   4. min/max response times:12/4842
   5. Error Rate:0%
   6. total successes (response counts):6987
-- #### Logged in Random Tweets (Test 3) 0-500clients over 1 min
+- ** Logged in Random Tweets (Test 3) 0-500clients over 1 min **
   1. Max # of clients active:500
   2. What time stopped:1min
   3. average response time (ms):3353
@@ -97,11 +97,11 @@ ruby test/testTweet/testTweetCreate.rb
   5. Error Rate:0%
   6. total successes (response counts):4011
   7. random send tweet:"Hello,bonnie"
-- #### All complete! Cheers!
+- ** All complete! Cheers! **
 
 -  **Result Of Scalability Work**
   ![Result Of Scalability Work](https://pbs.twimg.com/media/CzMTkdSW8AAA1L6.jpg:large)
-  
+
 # Version
 nT1.0
 
