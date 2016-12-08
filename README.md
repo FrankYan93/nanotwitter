@@ -8,16 +8,22 @@ NanoTwitter is a ruby app with basic function of twitter. You can follow other u
 - **Xinyi Jiang**
 
 # Technology Description
-We build this web application step by step with frequent integration of code using ***Github, Codeship, Heroku***.    
-1. Design the overall functionality and database(We use ***PostgreSQL***) schema.  
-2. Build the simple skeleton of a ***Sinatra*** application.  
+We build this web application step by step with frequent integration of code using ***[Github](https://github.com/FrankYan93/nanotwitter), [Codeship](https://codeship.com), [Heroku](https://www.heroku.com)***.    
+1. Design the overall functionality and database(We use ***[PostgreSQL](https://www.postgresql.org/)***) schema.  
+2. Build the simple skeleton of a ***[Sinatra](http://www.sinatrarb.com/)*** application.  
 3. Design APIs that have the fundamental interaction with our database.  
-4. We use ***ActiveRecord*** to abstract database, which is a great tool implementing ORM(object-relation mapping).  
+4. We use ***[ActiveRecord](https://rubygems.org/gems/sinatra-activerecord/versions/2.0.9)*** to abstract database, which is a great tool implementing ORM(object-relation mapping).  
 5. Build some mini-tests and create test interface.  
-6. Create UI with ***erb*** (embedded ruby) and use ***JQuery*** to control some behavior of the website elements.  
-7. Include some CDN to beautify the website, such as ***Bootstrap***.  
-8. Using ***Redis***(a cache) to speed up the response by reducing direct database operations.  
-9. Using ***RabbitMQ***(queue) to communicate between different servers.  
+6. Create UI with ***[erb](https://www.tutorialspoint.com/ruby/eruby.htm)*** (embedded ruby) and use ***[JQuery](https://jquery.com/)*** to control some behavior of the website elements.  
+7. Include some CDN to beautify the website, such as ***[Bootstrap](http://getbootstrap.com/)***.  
+8. Using ***[Redis](https://redis.io/)***(a cache) to speed up the response by reducing direct database operations.  
+9. Using ***[RabbitMQ](http://www.rabbitmq.com/tutorials/tutorial-one-ruby.html)***(queue, RPC) to communicate between different servers.  
+
+# Interesting Engineering
+1. We can pop up the single tweet when you click on this tweet, which is implemented by ***[JQuery](https://jquery.com/)***.
+2. We have another ***[Sinatra](http://www.sinatrarb.com/)*** application running on ***[Heroku](www.heroku.com)*** that works as a web service for notification.
+3. `shuffle(arr, k)` is an interesting method that input an array and a number k. Then it will return k random elements without repetition.
+
 
 # Getting Started
 
