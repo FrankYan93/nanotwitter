@@ -8,6 +8,13 @@ NanoTwitter is a ruby app with basic function of twitter. You can follow other u
 - **[Jiaming Xu](https://github.com/Dragoncell)**
 - **[Xinyi Jiang](https://github.com/xyjiang94)**
 
+# Summary Statement
+This project is a web application with the basic function of twitter. A logged in user can tweet, follow and unfollow other users, like and unlike tweet. A user can see all the tweets of his/her followings in the timeline.
+
+We provide RESTful apis, which send reponses in json. We also provide a client library which send and process http request to our apis.
+
+We optimize our application to handle large scalability problems. Techniques we used including cache, multiple threads, queue, seperate service.
+
 # Technology Description
 We build this web application step by step with frequent integration of code using ***[Github](https://github.com/FrankYan93/nanotwitter), [Codeship](https://codeship.com), [Heroku](https://www.heroku.com)***.    
 1. Design the overall functionality and database(We use ***[PostgreSQL](https://www.postgresql.org/)***) schema.  
