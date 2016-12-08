@@ -123,7 +123,7 @@ run `heroku redis:cli`  `flushall`
 2. install redis in local and run redis by `redis-server` links: <http://download.redis.io/releases/redis-3.2.5.tar.gz> follow readme to install redis first
 3. install RabbitMQ server by `brew update`, `brew install rabbitmq`, should first install brew first. Run rabbitmq by `rabbitmq-server` if you have some problem to start, try `sudo chown $(whoami) /usr/local/share/man/man3` and `sudo chown $(whoami) /usr/local/share/man/man5`
 4. install all gems by `bundle install`
-5. install `postgreSQL` and open it
+5. install [PostgreSQL](https://www.postgresql.org/) and open it
 6. run `rake db:migrate`
 7. run `ruby app.rb` to start the service
 8. open `0.0.0.0:4567` in the web browser
@@ -131,4 +131,4 @@ run `heroku redis:cli`  `flushall`
 10. done!
 
 # Last Modify Date
-Dec 7, 2016
+Dec 8, 2016
