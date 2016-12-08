@@ -112,19 +112,18 @@ def deleteTweet(username)
 end
 
 def deleteAsFollower(username)
-    testuser = User.find_by username: username
-    Followerfollowing.where(user_id: testuser[:id]).find_each do |follow|
-        followed_user = User.find_by id: follow[:followed_user_id]
-        followed_user[:follower_number] -= 1
-        follow.destroy
-    end
+    wrapDeleteFollow(username,:followed_user_id)
 end
 
 def deleteAsFollowing(username)
-    testuser = User.find_by username: username
-    Followerfollowing.where(followed_user_id: testuser[:id]).find_each do |follow|
-        following_user = User.find_by id: follow[:user_id]
-        following_user[:following_number] -= 1
-        follow.destroy
-    end
+    wrapDeleteFollow(username,:user_id)
+end
+
+def wrapDeleteFollow username,type_id
+  testuser = User.find_by username: username
+  Followerfollowing.where(followed_user_id: testuser[:id]).find_each do |follow|
+      following_user = User.find_by id: follow[type_id]
+      following_user[:following_number] -= 1
+      follow.destroy
+  end
 end
