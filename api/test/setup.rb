@@ -1,7 +1,7 @@
 # build everything from scratch
 # /api/v1/test/setup/all?count=100&tweets=100&testtweet=20&testfollow=20&follows=20
 get '/api/v1/test/setup/all' do
-    'begin setup'
+    #begin setup
     begin_time = Time.now
     count_number = (params[:count] || 100).to_i
     tweet_number = (params[:tweets] || 10).to_i

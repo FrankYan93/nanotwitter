@@ -52,8 +52,10 @@ ruby test/testUser/testEditProfile.rb
 ruby test/testTweet/testTweetCreate.rb
   ```
 # Screenshots
+
 - ***Click the awesome image to see our descriptive video.[If you are curious about our voice :) ]***
-[![nanoTwitter](https://pbs.twimg.com/media/CzMA40-UoAQVu5p.jpg:large)](https://www.youtube.com/watch?v=XyMneXq2ENQ)
+[![nanoTwitter](https://pbs.twimg.com/media/CzMA40-UoAQVu5p.jpg:large)](https://www.youtube.com/watch?v=wBycBuGw380)
+
 
 # Built with
 

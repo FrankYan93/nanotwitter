@@ -2,7 +2,6 @@
 # input an array, return randam k elements in an array.
 def shuffle(arr, k)
     rd = Random.new
-    ar = []
     ar = arr.clone
     n = arr.size
     k = n if k > n
