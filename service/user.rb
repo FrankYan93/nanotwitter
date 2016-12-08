@@ -39,6 +39,8 @@ post '/editProfile' do
 
     require_relative '../cache_redis.rb'
 
+    updateUserInfo(session[:user_id])
+
     log_in_home
 end
 
