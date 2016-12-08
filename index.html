@@ -23,7 +23,7 @@
 <a id="nanotwitter--" class="anchor" href="#nanotwitter--" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>NanoTwitter  <a href="https://codeclimate.com/github/FrankYan93/nanotwitter"><img src="https://codeclimate.com/github/FrankYan93/nanotwitter/badges/gpa.svg" alt="Code Climate"></a>
 </h1>
 
-<p>NanoTwitter is a app with basic function of twitter. You can follow other users, tweet, like tweets and so on.</p>
+<p>NanoTwitter is a ruby app with basic function of twitter. You can follow other users, tweet, like tweets and so on.</p>
 
 <h1>
 <a id="authors" class="anchor" href="#authors" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Authors</h1>
@@ -35,11 +35,26 @@
 </ul>
 
 <h1>
+<a id="summary-statement" class="anchor" href="#summary-statement" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Summary Statement</h1>
+
+<p>We build this web application step by step with frequent integration of code using <strong><em>Github, Codeship, Heroku</em></strong>.<br>
+1. Design the overall functionality and database(We use <strong><em>PostgreSQL</em></strong>) schema.<br>
+2. Build the simple skeleton of a <strong><em>Sinatra</em></strong> application.<br>
+3. Design APIs that have the fundamental interaction with our database.<br>
+4. We use <strong><em>ActiveRecord</em></strong> to abstract database, which is a great tool implementing ORM(object-relation mapping).<br>
+5. Build some mini-tests and create test interface.<br>
+6. Create UI with <strong><em>erb</em></strong> (embedded ruby) and use <strong><em>JQuery</em></strong> to control some behavior of the website elements.<br>
+7. Include some CDN to beautify the website, such as <strong><em>Bootstrap</em></strong>.<br>
+8. Using <strong><em>Redis</em></strong>(a cache) to speed up the response by reducing direct database operations.<br>
+9. Using <strong><em>RabbitMQ</em></strong>(queue) to communicate between different servers.  </p>
+
+<h1>
 <a id="getting-started" class="anchor" href="#getting-started" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Getting Started</h1>
 
-<p>Notification service repo: <a href="https://github.com/FrankYan93/nanoNotification">https://github.com/FrankYan93/nanoNotification</a>
-We must visit <a href="https://nano-notification.herokuapp.com/start">https://nano-notification.herokuapp.com/start</a> to start our web service for notification.
-Main website: <a href="https://nano-twitter-dratini.herokuapp.com">https://nano-twitter-dratini.herokuapp.com</a></p>
+<p>Notification service repo: <a href="https://github.com/FrankYan93/nanoNotification">https://github.com/FrankYan93/nanoNotification</a><br>
+We must visit <a href="https://nano-notification.herokuapp.com/start">https://nano-notification.herokuapp.com/start</a> to start our web service for notification.<br>
+Main website: <a href="https://nano-twitter-dratini.herokuapp.com">https://nano-twitter-dratini.herokuapp.com</a><br>
+You are welcome to sign up and have fun.</p>
 
 <h2>
 <a id="running-the-tests" class="anchor" href="#running-the-tests" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Running the tests</h2>
@@ -52,7 +67,6 @@ ruby test/testUser/testUserCreate.rb
 ruby test/testUser/testFollowUnfollow.rb
 ruby test/testUser/testEditProfile.rb
 ruby test/testTweet/testTweetCreate.rb
-
 </code></pre>
 
 <h1>
@@ -82,14 +96,52 @@ ruby test/testTweet/testTweetCreate.rb
 </ul>
 
 <h1>
-<a id="versioning" class="anchor" href="#versioning" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Versioning</h1>
+<a id="loader-test-results" class="anchor" href="#loader-test-results" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Loader Test Results</h1>
 
-<p>nT1.0</p>
+<ul>
+<li>0-1000 over 1 min with the root url not logged in
+
+<ol>
+<li>Max # of clients active:1000</li>
+<li>What time stopped:1min</li>
+<li>average response time (ms):2503</li>
+<li>min/max response times:15/7151</li>
+<li>Error Rate:0%</li>
+<li>total successes (response counts):11137</li>
+</ol>
+</li>
+<li>0 - 500 in 1 min Logged In (Test 2) - User14, Verda
+
+<ol>
+<li>Max # of clients active:500</li>
+<li>What time stopped:1min</li>
+<li>average response time (ms):1987</li>
+<li>min/max response times:12/4842</li>
+<li>Error Rate:0%</li>
+<li>total successes (response counts):6987</li>
+</ol>
+</li>
+<li>Logged in Random Tweets (Test 3) 0-500clients over 1 min
+
+<ol>
+<li>Max # of clients active:500</li>
+<li>What time stopped:1min</li>
+<li>average response time (ms):3353</li>
+<li>min/max response times:17/7750</li>
+<li>Error Rate:0%</li>
+<li>total successes (response counts):4011</li>
+<li>random send tweet:"Hello,bonnie"</li>
+</ol>
+</li>
+<li>All complete
+# Versioning
+nT1.0</li>
+</ul>
 
 <h1>
 <a id="license" class="anchor" href="#license" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>License</h1>
 
-<p>This project is licensed under xxx License</p>
+<p>This project is licensed under MIT License</p>
 
 <h1>
 <a id="acknowledgments" class="anchor" href="#acknowledgments" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Acknowledgments</h1>
@@ -106,6 +158,7 @@ run <code>heroku redis:cli</code>  <code>flushall</code></p></li>
 <li><p><code>heroku run rake db:migrate</code></p></li>
 <li><p><code>lsof -i :4567</code> to see which process is running in port 4567</p></li>
 <li><p><a href="https://nano-notification.herokuapp.com/start">https://nano-notification.herokuapp.com/start</a> will start the rabbitmq notification service</p></li>
+<li><p><a href="https://frankyan93.github.io/nanotwitter/">https://frankyan93.github.io/nanotwitter/</a> portfolio</p></li>
 </ol>
 
 <h1>
@@ -126,6 +179,11 @@ run <code>heroku redis:cli</code>  <code>flushall</code></p></li>
 <li>reset data using test api</li>
 <li>done!</li>
 </ol>
+
+<h1>
+<a id="last-modify-date" class="anchor" href="#last-modify-date" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Last Modify Date</h1>
+
+<p>Dec 7, 2016</p>
 
       <footer class="site-footer">
         <span class="site-footer-owner"><a href="https://github.com/FrankYan93/nanotwitter">Nanotwitter</a> is maintained by <a href="https://github.com/FrankYan93">FrankYan93</a>.</span>
