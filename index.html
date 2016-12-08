@@ -23,30 +23,40 @@
 <a id="nanotwitter--" class="anchor" href="#nanotwitter--" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>NanoTwitter  <a href="https://codeclimate.com/github/FrankYan93/nanotwitter"><img src="https://codeclimate.com/github/FrankYan93/nanotwitter/badges/gpa.svg" alt="Code Climate"></a>
 </h1>
 
-<p>NanoTwitter is a ruby app with basic function of twitter. You can follow other users, tweet, like tweets and so on.</p>
+<p>NanoTwitter is a ruby app with basic function of twitter. You can follow other users, tweet, like tweets and so on.<br>
+<a href="https://frankyan93.github.io/nanotwitter/">Portfolio</a></p>
 
 <h1>
 <a id="authors" class="anchor" href="#authors" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Authors</h1>
 
 <ul>
-<li><strong>Jiadong Yan</strong></li>
-<li><strong>Jiaming Xu</strong></li>
-<li><strong>Xinyi Jiang</strong></li>
+<li><strong><a href="https://frankyan93.github.io/">Jiadong Yan</a></strong></li>
+<li><strong><a href="https://github.com/Dragoncell">Jiaming Xu</a></strong></li>
+<li><strong><a href="https://github.com/xyjiang94">Xinyi Jiang</a></strong></li>
 </ul>
 
 <h1>
-<a id="summary-statement" class="anchor" href="#summary-statement" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Summary Statement</h1>
+<a id="technology-description" class="anchor" href="#technology-description" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Technology Description</h1>
 
-<p>We build this web application step by step with frequent integration of code using <strong><em>Github, Codeship, Heroku</em></strong>.<br>
-1. Design the overall functionality and database(We use <strong><em>PostgreSQL</em></strong>) schema.<br>
-2. Build the simple skeleton of a <strong><em>Sinatra</em></strong> application.<br>
+<p>We build this web application step by step with frequent integration of code using <strong><em><a href="https://github.com/FrankYan93/nanotwitter">Github</a>, <a href="https://codeship.com">Codeship</a>, <a href="https://www.heroku.com">Heroku</a></em></strong>.<br>
+1. Design the overall functionality and database(We use <strong><em><a href="https://www.postgresql.org/">PostgreSQL</a></em></strong>) schema.<br>
+2. Build the simple skeleton of a <strong><em><a href="http://www.sinatrarb.com/">Sinatra</a></em></strong> application.<br>
 3. Design APIs that have the fundamental interaction with our database.<br>
-4. We use <strong><em>ActiveRecord</em></strong> to abstract database, which is a great tool implementing ORM(object-relation mapping).<br>
+4. We use <strong><em><a href="https://rubygems.org/gems/sinatra-activerecord/versions/2.0.9">ActiveRecord</a></em></strong> to abstract database, which is a great tool implementing ORM(object-relation mapping).<br>
 5. Build some mini-tests and create test interface.<br>
-6. Create UI with <strong><em>erb</em></strong> (embedded ruby) and use <strong><em>JQuery</em></strong> to control some behavior of the website elements.<br>
-7. Include some CDN to beautify the website, such as <strong><em>Bootstrap</em></strong>.<br>
-8. Using <strong><em>Redis</em></strong>(a cache) to speed up the response by reducing direct database operations.<br>
-9. Using <strong><em>RabbitMQ</em></strong>(queue) to communicate between different servers.  </p>
+6. Create UI with <strong><em><a href="https://www.tutorialspoint.com/ruby/eruby.htm">erb</a></em></strong> (embedded ruby) and use <strong><em><a href="https://jquery.com/">JQuery</a></em></strong> to control some behavior of the website elements.<br>
+7. Include some <strong><em><a href="https://en.wikipedia.org/wiki/Content_delivery_network">CDN</a></em></strong> to beautify the website, such as <strong><em><a href="http://getbootstrap.com/">Bootstrap</a></em></strong>.<br>
+8. Using <strong><em><a href="https://redis.io/">Redis</a></em></strong>(a cache) to speed up the response by reducing direct database operations.<br>
+9. Using <strong><em><a href="http://www.rabbitmq.com/tutorials/tutorial-one-ruby.html">RabbitMQ</a></em></strong>(queue, RPC) to communicate between different servers.  </p>
+
+<h1>
+<a id="interesting-engineering" class="anchor" href="#interesting-engineering" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Interesting Engineering</h1>
+
+<ol>
+<li>We can pop up the single tweet when you click on this tweet, which is implemented by <strong><em><a href="https://jquery.com/">JQuery</a></em></strong>.</li>
+<li>We have another <strong><em><a href="http://www.sinatrarb.com/">Sinatra</a></em></strong> application running on <strong><em><a href="www.heroku.com">Heroku</a></em></strong> that works as a web service for notification.</li>
+<li>We have a special function that the app will recommend some users may interest to current user realized by shuffle. <code>shuffle(arr, k)</code> is an interesting method that input an array and a number k. Then it will return k random elements without repetition.</li>
+</ol>
 
 <h1>
 <a id="getting-started" class="anchor" href="#getting-started" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Getting Started</h1>
@@ -73,9 +83,6 @@ ruby test/testTweet/testTweetCreate.rb
 <a id="screenshots" class="anchor" href="#screenshots" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Screenshots</h1>
 
 <h1>
-<a id="deployment" class="anchor" href="#deployment" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Deployment</h1>
-
-<h1>
 <a id="built-with" class="anchor" href="#built-with" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Built with</h1>
 
 <ul>
@@ -99,7 +106,7 @@ ruby test/testTweet/testTweetCreate.rb
 <a id="loader-test-results" class="anchor" href="#loader-test-results" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Loader Test Results</h1>
 
 <ul>
-<li>0-1000 over 1 min with the root url not logged in
+<li>#### 0-1000 over 1 min with the root url not logged in
 
 <ol>
 <li>Max # of clients active:1000</li>
@@ -110,7 +117,7 @@ ruby test/testTweet/testTweetCreate.rb
 <li>total successes (response counts):11137</li>
 </ol>
 </li>
-<li>0 - 500 in 1 min Logged In (Test 2) - User14, Verda
+<li>#### 0 - 500 in 1 min Logged In (Test 2) - User14, Verda
 
 <ol>
 <li>Max # of clients active:500</li>
@@ -121,7 +128,7 @@ ruby test/testTweet/testTweetCreate.rb
 <li>total successes (response counts):6987</li>
 </ol>
 </li>
-<li>Logged in Random Tweets (Test 3) 0-500clients over 1 min
+<li>#### Logged in Random Tweets (Test 3) 0-500clients over 1 min
 
 <ol>
 <li>Max # of clients active:500</li>
@@ -133,10 +140,13 @@ ruby test/testTweet/testTweetCreate.rb
 <li>random send tweet:"Hello,bonnie"</li>
 </ol>
 </li>
-<li>All complete
-# Versioning
-nT1.0</li>
+<li>#### All complete! Cheers!</li>
 </ul>
+
+<h1>
+<a id="versioning" class="anchor" href="#versioning" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Versioning</h1>
+
+<p>nT1.0</p>
 
 <h1>
 <a id="license" class="anchor" href="#license" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>License</h1>
@@ -146,19 +156,24 @@ nT1.0</li>
 <h1>
 <a id="acknowledgments" class="anchor" href="#acknowledgments" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Acknowledgments</h1>
 
+<p>Thanks for Professor <strong>Pito Salas</strong>'s great guide and help from teaching assistants <strong>Karishma Reddy Khan</strong> and <strong>Alex Suk</strong>.  </p>
+
 <h1>
 <a id="tips" class="anchor" href="#tips" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Tips</h1>
 
 <ol>
-<li><p>To run the test, conduct <code>rake db:test:prepare</code> and <code>rake db:test:load</code>
-Then type <code>rake</code> in the terminal to run all the test</p></li>
-<li><p>Reset database: <code>heroku pg:reset DATABASE_URL</code></p></li>
-<li><p>We must flush all redis after test api used, and restart app.
-run <code>heroku redis:cli</code>  <code>flushall</code></p></li>
-<li><p><code>heroku run rake db:migrate</code></p></li>
-<li><p><code>lsof -i :4567</code> to see which process is running in port 4567</p></li>
-<li><p><a href="https://nano-notification.herokuapp.com/start">https://nano-notification.herokuapp.com/start</a> will start the rabbitmq notification service</p></li>
-<li><p><a href="https://frankyan93.github.io/nanotwitter/">https://frankyan93.github.io/nanotwitter/</a> portfolio</p></li>
+<li>To run the test, conduct <code>rake db:test:prepare</code> and <code>rake db:test:load</code>
+Then type <code>rake</code> in the terminal to run all the test</li>
+<li>Reset database: <code>heroku pg:reset DATABASE_URL</code>
+</li>
+<li>We must flush all redis after test api used, and restart app.
+run <code>heroku redis:cli</code>  <code>flushall</code>
+</li>
+<li><code>heroku run rake db:migrate</code></li>
+<li>
+<code>lsof -i :4567</code> to see which process is running in port 4567</li>
+<li>
+<a href="https://nano-notification.herokuapp.com/start">https://nano-notification.herokuapp.com/start</a> will start the rabbitmq notification service</li>
 </ol>
 
 <h1>
@@ -171,7 +186,7 @@ run <code>heroku redis:cli</code>  <code>flushall</code></p></li>
 </li>
 <li>install all gems by <code>bundle install</code>
 </li>
-<li>install <code>postgreSQL</code> and open it</li>
+<li>install <a href="https://www.postgresql.org/">PostgreSQL</a> and open it</li>
 <li>run <code>rake db:migrate</code>
 </li>
 <li>run <code>ruby app.rb</code> to start the service</li>
@@ -183,7 +198,7 @@ run <code>heroku redis:cli</code>  <code>flushall</code></p></li>
 <h1>
 <a id="last-modify-date" class="anchor" href="#last-modify-date" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Last Modify Date</h1>
 
-<p>Dec 7, 2016</p>
+<p>Dec 8, 2016</p>
 
       <footer class="site-footer">
         <span class="site-footer-owner"><a href="https://github.com/FrankYan93/nanotwitter">Nanotwitter</a> is maintained by <a href="https://github.com/FrankYan93">FrankYan93</a>.</span>
