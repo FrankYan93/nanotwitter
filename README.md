@@ -1,5 +1,6 @@
 # NanoTwitter  [![Code Climate](https://codeclimate.com/github/FrankYan93/nanotwitter/badges/gpa.svg)](https://codeclimate.com/github/FrankYan93/nanotwitter)
 NanoTwitter is a ruby app with basic function of twitter. You can follow other users, tweet, like tweets and so on.
+[Portfolio](https://frankyan93.github.io/nanotwitter/)
 
 # Authors
 
@@ -22,7 +23,7 @@ We build this web application step by step with frequent integration of code usi
 # Interesting Engineering
 1. We can pop up the single tweet when you click on this tweet, which is implemented by ***[JQuery](https://jquery.com/)***.
 2. We have another ***[Sinatra](http://www.sinatrarb.com/)*** application running on ***[Heroku](www.heroku.com)*** that works as a web service for notification.
-3. `shuffle(arr, k)` is an interesting method that input an array and a number k. Then it will return k random elements without repetition.
+3. We have a special function that the app will recommend some users may interest to current user realized by shuffle. `shuffle(arr, k)` is an interesting method that input an array and a number k. Then it will return k random elements without repetition.
 
 
 # Getting Started
@@ -44,8 +45,6 @@ ruby test/testUser/testEditProfile.rb
 ruby test/testTweet/testTweetCreate.rb
   ```
 # Screenshots
-
-# Deployment
 
 # Built with
 
@@ -88,6 +87,7 @@ ruby test/testTweet/testTweetCreate.rb
   6. total successes (response counts):4011
   7. random send tweet:"Hello,bonnie"
 - #### All complete! Cheers!
+
 # Versioning
 nT1.0
 
@@ -97,25 +97,19 @@ This project is licensed under MIT License
 
 # Acknowledgments
 
+Thanks for Professor **Pito Salas**'s great guide and help from teaching assistants **Karishma Reddy Khan** and **Alex Suk**.  
+
 # Tips
 
 1. To run the test, conduct `rake db:test:prepare` and `rake db:test:load`
    Then type `rake` in the terminal to run all the test
-
-
 2. Reset database: `heroku pg:reset DATABASE_URL`
-
-
 3. We must flush all redis after test api used, and restart app.
 run `heroku redis:cli`  `flushall`
-
 4. `heroku run rake db:migrate`
-
 5. `lsof -i :4567` to see which process is running in port 4567
-
 6. https://nano-notification.herokuapp.com/start will start the rabbitmq notification service
 
-7. https://frankyan93.github.io/nanotwitter/ portfolio
 
 # Steps in local:
 
