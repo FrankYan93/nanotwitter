@@ -48,7 +48,7 @@ def rpcClient sendHash#the producer
   ch = conn.create_channel
 
     client = NotificationClient.new(ch, 'rpc_queue')
-    puts " [x] Requesting #{sendHash}"
+    print " [x] Requesting #{sendHash}\n"
 
     response = client.call(sendHash.to_json)
     puts " [.] Got #{response}"
