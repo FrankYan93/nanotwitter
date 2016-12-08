@@ -46,7 +46,7 @@ ruby test/testTweet/testTweetCreate.rb
   ```
 # Screenshots
 - ***Click the image to see our descriptive video.***
-[![nanoTwitter](https://pbs.twimg.com/media/CzMA40-UoAQVu5p.jpg:large)](https://www.youtube.com/watch?v=XyMneXq2ENQ)
+[![nanoTwitter](https://pbs.twimg.com/media/CzMA40-UoAQVu5p.jpg:large)](https://www.youtube.com/watch?v=wBycBuGw380)
 
 # Built with
 
