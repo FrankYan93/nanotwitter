@@ -1,7 +1,7 @@
 # NanoTwitter  [![Code Climate](https://codeclimate.com/github/FrankYan93/nanotwitter/badges/gpa.svg)](https://codeclimate.com/github/FrankYan93/nanotwitter)
-NanoTwitter is a ruby app with basic function of twitter. You can follow other users, tweet, like tweets and so on.
-[Portfolio](https://frankyan93.github.io/nanotwitter/)
 
+NanoTwitter is a ruby app with basic function of twitter. You can follow other users, tweet, like tweets and so on.  
+[Portfolio](https://frankyan93.github.io/nanotwitter/)
 # Authors
 
 - **[Jiadong Yan](https://frankyan93.github.io/)**
