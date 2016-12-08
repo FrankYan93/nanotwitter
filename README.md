@@ -15,7 +15,7 @@ We build this web application step by step with frequent integration of code usi
 4. We use ***[ActiveRecord](https://rubygems.org/gems/sinatra-activerecord/versions/2.0.9)*** to abstract database, which is a great tool implementing ORM(object-relation mapping).  
 5. Build some mini-tests and create test interface.  
 6. Create UI with ***[erb](https://www.tutorialspoint.com/ruby/eruby.htm)*** (embedded ruby) and use ***[JQuery](https://jquery.com/)*** to control some behavior of the website elements.  
-7. Include some CDN to beautify the website, such as ***[Bootstrap](http://getbootstrap.com/)***.  
+7. Include some ***[CDN](https://en.wikipedia.org/wiki/Content_delivery_network)*** to beautify the website, such as ***[Bootstrap](http://getbootstrap.com/)***.  
 8. Using ***[Redis](https://redis.io/)***(a cache) to speed up the response by reducing direct database operations.  
 9. Using ***[RabbitMQ](http://www.rabbitmq.com/tutorials/tutorial-one-ruby.html)***(queue, RPC) to communicate between different servers.  
 
@@ -65,21 +65,21 @@ ruby test/testTweet/testTweetCreate.rb
 - ...
 
 # Loader Test Results
-- 0-1000 over 1 min with the root url not logged in
+- #### 0-1000 over 1 min with the root url not logged in
   1. Max # of clients active:1000
   2. What time stopped:1min
   3. average response time (ms):2503
   4. min/max response times:15/7151
   5. Error Rate:0%
   6. total successes (response counts):11137
-- 0 - 500 in 1 min Logged In (Test 2) - User14, Verda
+- #### 0 - 500 in 1 min Logged In (Test 2) - User14, Verda
   1. Max # of clients active:500
   2. What time stopped:1min
   3. average response time (ms):1987
   4. min/max response times:12/4842
   5. Error Rate:0%
   6. total successes (response counts):6987
-- Logged in Random Tweets (Test 3) 0-500clients over 1 min
+- #### Logged in Random Tweets (Test 3) 0-500clients over 1 min
   1. Max # of clients active:500
   2. What time stopped:1min
   3. average response time (ms):3353
@@ -87,7 +87,7 @@ ruby test/testTweet/testTweetCreate.rb
   5. Error Rate:0%
   6. total successes (response counts):4011
   7. random send tweet:"Hello,bonnie"
-- All complete
+- #### All complete! Cheers!
 # Versioning
 nT1.0
 
