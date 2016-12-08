@@ -8,16 +8,16 @@ NanoTwitter is a ruby app with basic function of twitter. You can follow other u
 - **Xinyi Jiang**
 
 # Summary Statement
-We build this web application step by step with frequent integration of code using ***Github, Codeship, Heroku***.  
-1. Design the overall functionality and database(We use ***PostgreSQL***) schema.
-2. Build the simple skeleton of a ***Sinatra*** application.
-3. Design APIs that have the fundamental interaction with our database.
-4. We use ***ActiveRecord*** to abstract database, which is a great tool implementing ORM(object-relation mapping).
-5. Build some mini-tests and create test interface.
-6. Create UI with ***erb*** (embedded ruby) and use ***JQuery*** to control some behavior of the website elements.
-7. Include some CDN to beautify the website, such as ***Bootstrap***.
-8. Using ***Redis***(a cache) to speed up the response by reducing direct database operations.
-9. Using ***RabbitMQ***(queue) to communicate between different servers.
+We build this web application step by step with frequent integration of code using ***Github, Codeship, Heroku***.   
+1. Design the overall functionality and database(We use ***PostgreSQL***) schema.  
+2. Build the simple skeleton of a ***Sinatra*** application.  
+3. Design APIs that have the fundamental interaction with our database.  
+4. We use ***ActiveRecord*** to abstract database, which is a great tool implementing ORM(object-relation mapping).  
+5. Build some mini-tests and create test interface.  
+6. Create UI with ***erb*** (embedded ruby) and use ***JQuery*** to control some behavior of the website elements.  
+7. Include some CDN to beautify the website, such as ***Bootstrap***.  
+8. Using ***Redis***(a cache) to speed up the response by reducing direct database operations.  
+9. Using ***RabbitMQ***(queue) to communicate between different servers.  
 # Getting Started
 
 Notification service repo: https://github.com/FrankYan93/nanoNotification  
