@@ -89,7 +89,7 @@ ruby test/testTweet/testTweetCreate.rb
   4. min/max response times:12/4842
   5. Error Rate:0%
   6. total successes (response counts):6987
-- **Logged in Random Tweets (Test 3) 0-500clients over 1 min**
+- **Logged in Random Tweets (Test 3) 0-500 clients over 1 min**
   1. Max # of clients active:500
   2. What time stopped:1min
   3. average response time (ms):3353
